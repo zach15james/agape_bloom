@@ -10,12 +10,13 @@ class myHeader extends HTMLElement {
     this.innerHTML = `
       <header class="header">
         <div class="header-container">
-          <a href="/index.html"><img class="signature-image" src="/archive/images/agape_bloom_signature.png"
+          <a href="/index.html"><img class="signature-image" src="/archive/images/ab_black_center.png"
               alt="Agape Bloom" /></a>
           <nav>
             <ul>
-              <li><a href="/contact.html">Contact</a></li>
-              <li><a href="/about.html">About</a></li>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/coffee.html">Terra</a></li>
+              <li><a href="/mow.html">Steward</a></li>
               <li><a href="/archive.html">Archive</a></li>
             </ul>
           </nav>
@@ -60,7 +61,7 @@ class myFooter extends HTMLElement {
             </a>
           </div>
         </div>
-        <p id="copywright">© Zachary Robert James. All rights reserved.</p>
+        <p id="copywright">© Agape Bloom. All rights reserved.</p>
       </footer>
     `;
   }

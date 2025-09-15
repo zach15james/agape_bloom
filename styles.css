@@ -1,3 +1,8 @@
+
+/* =============================================== */
+/* === YOUR ORIGINAL CSS (UNCHANGED) STARTS HERE === */
+/* =============================================== */
+
 html,
 body {
   overflow: -moz-scrollbars-none;
@@ -29,8 +34,28 @@ body::-webkit-scrollbar {
   font-style: normal;
 }
 
+/* Iter Font */
+
+/* Defines the standard, upright font and its available weight range */
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 100 900; /* Specifies the full range of weights supported by this variable font */
+  font-display: swap; /* Improves performance by showing fallback font while this one loads */
+  src: url("fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+}
+
+/* Defines the italic font and its available weight range */
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 100 900; /* Specifies the full range of weights supported by this variable font */
+  font-display: swap;
+  src: url("fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+}
+
 body {
-  font-family: 'GeorgiaPro', sans-serif;
+  font-family: 'Inter', 'GeorgiaPro', sans-serif;
   font-weight: normal;
   font-style: normal;
   color: black;
@@ -40,7 +65,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'GeorgiaPro', sans-serif;
+  font-family: 'Inter', 'GeorgiaPro', sans-serif;
   font-weight: bold;
   font-style: normal;
 }
@@ -73,8 +98,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black !important;
-  margin-bottom: 20px;
+  color: white;
+  margin-bottom: 30px;
 }
 
 nav ul {
@@ -82,7 +107,7 @@ nav ul {
   display: flex;
   list-style-type: none;
   margin: 0;
-  margin-right: 30px;
+  /* margin-right: 30px; */
   margin-top: 30px;
 }
 
@@ -359,7 +384,7 @@ a:hover {
 
   nav {
     flex-direction: column;
-    align-items: left;
+    align-items: center;
   }
 
   nav ul {
@@ -659,6 +684,23 @@ a:hover {
   margin-top: 14px;
 }
 
+.product-content img {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.product-content .right-section ul li img {
+  max-width: 30px;
+  max-height: 30px;
+  color: white;
+}
+
+.icon-white {
+  filter: brightness(0) invert(1);
+}
+      
+      
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .call-time-options {
@@ -687,5 +729,116 @@ a:hover {
     /* Adjusts to fit the new column layout */
     width: auto;
     /* Adjust width for better fitting */
+  }
+}
+
+/* ==================================================== */
+/* === NEW STYLES FOR LANDING PAGE HERO SECTIONS  === */
+/* ==================================================== */
+
+/* Base style for the full-screen product sections */
+.product-hero {
+  min-height: 100vh; /* Make section at least the height of the viewport */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  position: relative; /* Needed for the overlay */
+}
+
+/* This creates a semi-transparent dark layer over the background image,
+   making the white text much easier to read. */
+.product-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 20, 0.6); /* A slightly blue-tinted dark overlay */
+  z-index: 1;
+}
+
+/* This container holds the text and button, and sits on top of the overlay */
+.product-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px; /* Match your existing .container width for consistency */
+}
+
+/* Unique background images for each product section */
+.coffee-hero {
+  /* IMPORTANT: Replace with the actual path to your image */
+  /*background-image: url('archive/images/coffee_grounds.jpg'); */
+  background-color: black;
+  color: white;
+}
+
+.mower-hero {
+  /* IMPORTANT: Replace with the actual path to your image */
+  background-image: url('archive/images/mower_sketch.png');
+}
+
+/* Override default text colors and sizes for hero sections */
+.product-hero h1,
+.product-hero p {
+  color: white; /* Make text white to stand out on the dark background */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds depth and readability */
+}
+
+.product-hero h1 {
+  font-size: 3.5rem; /* Larger, more impactful headline */
+  margin: 0 0 1rem 0; /* Adjust margin for this context */
+}
+
+.product-hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem; /* More space before the button */
+}
+
+/* In the hero, the CTA button needs its margin adjusted */
+.product-hero .cta-button {
+    margin-bottom: 0;
+}
+
+/* Styles for the mission section at the bottom of the page */
+.mission-section {
+  padding: 5rem 2rem;
+  /* Using the same dark blue from your footer and CTA for brand consistency */
+  background-color: rgb(0, 0, 42); 
+  color: white;
+  text-align: center;
+}
+
+/* Override default text colors for mission section */
+.mission-section h2,
+.mission-section p {
+  color: white;
+}
+
+.mission-section p {
+  max-width: 900px; /* Match your .container width */
+  margin: 1rem auto 0 auto;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Responsive adjustments for the new hero sections */
+@media (max-width: 900px) {
+  .product-hero h1 {
+    font-size: 2.5rem; /* Reduce font size on smaller screens */
+  }
+
+  .product-hero p {
+    font-size: 1.1rem;
+  }
+
+  .mission-section {
+    padding: 4rem 1rem;
   }
 }
