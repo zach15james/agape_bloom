@@ -32,10 +32,7 @@ class myFooter extends HTMLElement {
       <footer>
         <div class="footer-content">
           <div class="footer-description">
-            <p>Agape Bloom (AB) is a Louisiana-based development and application consultancy that helps companies adapt with
-              and leverage technology in a rapidly changing ecosystem. We help you build LLM-driven tools for both internal
-              and external products that leverage smaller, open-source models, scratch regression and classification models,
-              and traditional software.</p>
+            <p>Agape Bloom (AB) is a Louisiana-forged firm</p>
           </div>
           <div class="footer-articles">
             <h4>Recent Articles</h4>
