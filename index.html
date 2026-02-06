@@ -10,16 +10,58 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <style>
+    /* Minimal inline overrides to enhance archive-like aesthetic if needed (e.g., more padding, centering) */
+    .archive-sect {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 1rem; /* Boost padding slightly for readability, but keep archive's light touch */
+      border-radius: 0 0 12px 12px; /* Matches Gemini's rounded bottom, aligns with your CSS's 5px */
+    }
+    h2 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #333;
+      white-space: pre-line; /* Preserves newlines from C++ */
+    }
+    #loading {
+      color: #888;
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+  </style>
 </head>
-
 <body>
   <my-header></my-header>
-  <section class="product_hero">
-    <p>Agape Bloom is a Louisiana-bred product firm, focused on delivering unique, assymetric dual-benefit products.      
-    We are relentlessly commited to excellence and honoring Christ in everything we do.  We promote a lean, open, and reward anormative thinking.  
-    </p>    
-
-  </section>
+  <div class="container"> <!-- From your styles.css for max-width: 900px and centering -->
+    <section class="archive-sect"> <!-- Uses your archive class for consistency -->
+      <h2>What We Do</h2>
+      <div id="content">
+        <span id="loading">Initializing Wasm module...</span>
+      </div>
+    </section>
+  </div>
   <my-footer></my-footer>
+
+  <script src="agape.js"></script> <!-- Emscripten-generated JS glue for WASM -->
+
+  <script>
+    // Wait for the WASM module to initialize, then fetch and inject the statement
+    Module.onRuntimeInitialized = () => {
+      const ptr = Module._get_manifesto(); // Calls C++ function, gets pointer to string in WASM memory
+      const text = Module.UTF8ToString(ptr); // Reads from WASM heap and decodes to JS string
+      document.getElementById('content').innerHTML = `<p>${text}</p>`; // Inject into DOM
+    };
+  </script>
 </body>
 </html>
