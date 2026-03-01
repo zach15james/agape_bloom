@@ -733,7 +733,176 @@ a:hover {
 }
 
 /* ==================================================== */
-/* === NEW STYLES FOR LANDING PAGE HERO SECTIONS  === */
+/* === LANDING PAGE                                 === */
+/* ==================================================== */
+
+.landing-intro {
+  padding: 3rem 1rem 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.landing-intro h1 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.03em;
+}
+
+.landing-intro .tagline {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.landing-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+.landing-section h2 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.landing-card {
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  transition: border-color 0.2s;
+}
+
+.landing-card:hover {
+  border-color: rgb(0, 0, 42);
+  color: black;
+}
+
+.landing-card h3 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.landing-card p {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.landing-section .cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .landing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==================================================== */
+/* === PRODUCT PAGES                                === */
+/* ==================================================== */
+
+.product-intro {
+  padding: 3rem 1rem 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.product-intro h1 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.03em;
+}
+
+.product-tagline {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.product-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+.product-section h2 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.feature h3 {
+  font-family: 'GeorgiaPro', 'Georgia', serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem 0;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.principles-list {
+  padding-left: 1.25rem;
+}
+
+.principles-list li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.product-pricing {
+  background-color: rgb(0, 0, 42);
+  color: white;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.product-pricing p {
+  color: white;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .product-intro h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ==================================================== */
+/* === PRODUCT HERO SECTIONS (legacy)               === */
 /* ==================================================== */
 
 /* Base style for the full-screen product sections */

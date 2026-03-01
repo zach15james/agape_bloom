@@ -1,1 +1,299 @@
-My ML library in pure C with a category-theoretic-inspired design, arena memory allocation, multithreading, and simd intrinsics... just a fun project to enhance my skills and I hope someone finds it useful.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>θ thymos</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    ::selection { background: #e2a04a; color: #0a0a0a; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      background: #0a0a0a;
+      color: #d4d4d4;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- Header --- */
+    .thy-header {
+      padding: 3rem 0 1rem;
+      border-bottom: 1px solid #222;
+      margin-bottom: 3rem;
+    }
+
+    .thy-header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #f0f0f0;
+      margin-bottom: 0.3rem;
+    }
+
+    .thy-header .oneliner {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .thy-nav {
+      font-size: 0.85rem;
+    }
+
+    .thy-nav a {
+      color: #e2a04a;
+      text-decoration: none;
+    }
+
+    .thy-nav a:hover { text-decoration: underline; }
+
+    .thy-nav .sep { color: #444; margin: 0 0.3rem; }
+
+    /* --- Sections --- */
+    .thy-section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .thy-section:last-of-type { border-bottom: none; }
+
+    .thy-section h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f0f0f0;
+      margin-bottom: 1.25rem;
+    }
+
+    .thy-section p {
+      margin-bottom: 1rem;
+    }
+
+    .thy-section p:last-child { margin-bottom: 0; }
+
+    a { color: #e2a04a; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- Code --- */
+    pre {
+      background: #1a1a1a;
+      border-left: 3px solid #e2a04a;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      border-radius: 2px;
+    }
+
+    code {
+      font-family: inherit;
+      font-size: 0.9em;
+    }
+
+    p code {
+      background: #1a1a1a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+    }
+
+    /* --- Module grid --- */
+    .thy-module {
+      margin-bottom: 2.5rem;
+    }
+
+    .thy-module:last-child { margin-bottom: 0; }
+
+    .thy-module h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e2a04a;
+      margin-bottom: 0.4rem;
+    }
+
+    .thy-module .desc {
+      color: #999;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* --- ASCII diagram --- */
+    .ascii-diagram {
+      background: #111;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: #888;
+      border-radius: 2px;
+    }
+
+    /* --- Benchmark table --- */
+    .bench {
+      background: #111;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      border-radius: 2px;
+    }
+
+    /* --- Footer --- */
+    .thy-footer {
+      padding: 3rem 0;
+      border-top: 1px solid #222;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .thy-footer a { color: #777; }
+    .thy-footer a:hover { color: #e2a04a; }
+
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      .page { padding: 0 1.25rem; }
+      .thy-header h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="thy-header">
+    <h1>θ thymos</h1>
+    <p class="oneliner">zero-dependency C/CUDA machine learning library</p>
+    <nav class="thy-nav">
+      <a href="#intro">intro</a>
+      <span class="sep">·</span>
+      <a href="#library">library</a>
+      <span class="sep">·</span>
+      <a href="#inference">inference</a>
+      <span class="sep">·</span>
+      <a href="#build">build</a>
+      <span class="sep">·</span>
+      <a href="#benchmarks">benchmarks</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/zach15james" target="_blank">github</a>
+    </nav>
+  </header>
+
+  <section class="thy-section" id="intro">
+    <p>Thymos is a machine learning library written in C with CUDA backends. No Python. No PyTorch. No dependencies. Designed to run LLM inference on memory-constrained hardware (Jetson Orin Nano, 8GB) where the Python ecosystem can't fit.</p>
+    <p>It includes classical ML models from published research, a GGUF-based inference engine with custom memory allocation, and optional cuBLAS integration. The architecture follows typed morphism patterns — every operation has explicit inputs, outputs, and context. No hidden state.</p>
+    <p>Also includes production implementations of SVR, Least-Squares SVR, and the p-Laplacian semi-supervised regression algorithm from published biomedical research.</p>
+  </section>
+
+  <section class="thy-section" id="library">
+    <h2>the library</h2>
+
+    <div class="thy-module">
+      <h3>ml.h — core runtime</h3>
+      <p class="desc">Arena allocator, context management, tensor primitives.</p>
+<pre>ThymosArena *arena = thymos_arena_create(512 * MB);
+ThymosCtx   *ctx   = thymos_ctx_init(arena);
+
+ThymosTensor *a = thymos_tensor_alloc(ctx, THYMOS_F32, (int[]){4, 4}, 2);
+ThymosTensor *b = thymos_tensor_alloc(ctx, THYMOS_F32, (int[]){4, 4}, 2);
+ThymosTensor *c = thymos_matmul(ctx, a, b);
+
+thymos_arena_destroy(arena);  // single free</pre>
+    </div>
+
+    <div class="thy-module">
+      <h3>la.h — linear algebra</h3>
+      <p class="desc">BLAS-style operations, matrix decomposition.</p>
+<pre>thymos_gemm(ctx, CblasNoTrans, CblasNoTrans,
+            m, n, k, 1.0f, A, B, 0.0f, C);</pre>
+    </div>
+
+    <div class="thy-module">
+      <h3>opt.h — optimization</h3>
+      <p class="desc">Primal-dual solvers, convergence criteria.</p>
+<pre>ThymosSolver solver = thymos_solver_init(ctx, THYMOS_PRIMAL_DUAL);
+thymos_solver_set_tol(&amp;solver, 1e-8);
+thymos_solver_run(&amp;solver, &amp;problem);</pre>
+    </div>
+
+    <div class="thy-module">
+      <h3>act.h — category theory foundations</h3>
+      <p class="desc">Morphism types, composition, typed operation signatures.</p>
+<pre>ThymosMorphism f = thymos_morph(ctx, domain_A, codomain_B, transform_fn);
+ThymosMorphism g = thymos_morph(ctx, domain_B, codomain_C, transform_fn2);
+ThymosMorphism h = thymos_compose(ctx, g, f);  // h = g ∘ f</pre>
+    </div>
+
+    <div class="thy-module">
+      <h3>models/ — classical ML</h3>
+      <p class="desc">SVR, LS-SVR, p-Laplacian semi-supervised regression.</p>
+<pre>ThymosModel *svr = thymos_svr_train(ctx, X_train, y_train, &amp;params);
+thymos_predict(ctx, svr, X_test, y_pred);</pre>
+    </div>
+  </section>
+
+  <section class="thy-section" id="inference">
+    <h2>inference engine</h2>
+    <p>GGUF model loading (Llama-family, Qwen). Custom arena-based memory management — no malloc/free churn. Quantized inference (Q4_0, Q4_1, Q8_0). KV-cache with explicit lifetime management. Transformer forward pass in ~1500 lines of C. Optional CUDA backend with custom kernels + cuBLAS.</p>
+
+<pre class="ascii-diagram">┌─────────────┐    ┌──────────────┐    ┌──────────────┐
+│  GGUF Parse  │───▶│  Arena Alloc  │───▶│  Forward Pass │
+│  (model.c)   │    │  (ml.h)       │    │  (infer.c)    │
+└─────────────┘    └──────────────┘    └──────────────┘
+        │                                       │
+        ▼                                       ▼
+┌─────────────┐                        ┌──────────────┐
+│  Quantized   │                        │   KV Cache    │
+│  Weights     │                        │  (arena-mgd)  │
+└─────────────┘                        └──────────────┘</pre>
+
+<pre>ThymosCtx *ctx = thymos_init(&amp;(ThymosConfig){
+    .arena_size = 512 * 1024 * 1024,  // 512MB arena
+    .n_threads  = 4,
+    .use_cuda   = true,
+});
+
+ThymosModel  *model = thymos_load_gguf(ctx, "qwen2.5-3b-q4_0.gguf");
+ThymosResult  res   = thymos_generate(ctx, model, "explain arena allocation", 256);
+
+printf("%s\n", res.text);
+thymos_free(ctx);  // single free, entire arena</pre>
+  </section>
+
+  <section class="thy-section" id="build">
+    <h2>build</h2>
+<pre>git clone https://github.com/zach15james/thymos
+cd thymos
+make            # CPU-only build
+make cuda=1     # with CUDA backends
+make test       # run test suite</pre>
+    <p>Target platforms: Linux x86_64, aarch64 (Jetson).</p>
+  </section>
+
+  <section class="thy-section" id="benchmarks">
+    <h2>benchmarks</h2>
+    <p>In progress. Target numbers on real hardware:</p>
+<pre class="bench">model                    device          tok/s    memory
+─────────────────────────────────────────────────────────
+qwen2.5-3b-q4_0         Jetson Orin 8GB   —       —
+qwen2.5-3b-q4_0         RTX 3090          —       —
+llama-3.2-1b-q8_0       CPU (i7-12700)    —       —</pre>
+  </section>
+
+  <footer class="thy-footer">
+    Zach James <span class="sep">·</span> <a href="https://github.com/zach15james" target="_blank">github</a> <span class="sep">·</span> <a href="/">agapebloom.com</a> <span class="sep">·</span> thymos is θυμός — spiritedness
+  </footer>
+
+</div>
+</body>
+</html>

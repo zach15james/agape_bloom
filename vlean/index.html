@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Lean</title>
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #111;
+      background: #fff;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Nav --- */
+    .vl-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .vl-nav .wordmark {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .vl-nav nav a {
+      font-size: 0.9rem;
+      color: #666;
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.15s;
+    }
+
+    .vl-nav nav a:hover { color: #111; }
+
+    /* --- Hero --- */
+    .vl-hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+    }
+
+    .vl-hero h1 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .vl-hero .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+
+    .vl-cta {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #111;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.15s;
+    }
+
+    .vl-cta:hover { background: #333; color: #fff; }
+
+    .vl-cta-outline {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: #111;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      letter-spacing: 0.02em;
+      margin-left: 0.75rem;
+      transition: border-color 0.15s;
+    }
+
+    .vl-cta-outline:hover { border-color: #111; color: #111; }
+
+    /* --- Divider --- */
+    .vl-divider {
+      width: 60px;
+      height: 1px;
+      background: #ddd;
+      margin: 0 auto;
+    }
+
+    /* --- Sections --- */
+    .vl-section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .vl-section h2 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .vl-section p {
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    .vl-section p:last-child { margin-bottom: 0; }
+
+    /* --- Comparison --- */
+    .vl-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .vl-compare-col h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #111;
+    }
+
+    .vl-compare-col p {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .vl-compare-col.dim h3 { color: #999; }
+    .vl-compare-col.dim p { color: #999; }
+
+    /* --- Features --- */
+    .vl-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .vl-feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .vl-feature p {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* --- Roadmap --- */
+    .vl-roadmap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .vl-roadmap h2 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .vl-phase {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: baseline;
+    }
+
+    .vl-phase .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      flex-shrink: 0;
+      width: 5rem;
+    }
+
+    .vl-phase .label.current { color: #111; }
+
+    .vl-phase-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .vl-phase-content p {
+      color: #444;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* --- Team --- */
+    .vl-team {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .vl-team p {
+      max-width: 480px;
+      margin: 0 auto;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .vl-team p + p { margin-top: 0.5rem; }
+
+    /* --- Footer --- */
+    .vl-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .vl-footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .vl-footer a:hover { color: #666; }
+
+    /* --- Responsive --- */
+    @media (max-width: 700px) {
+      .vl-hero { padding: 5rem 1.5rem 4rem; }
+      .vl-hero h1 { font-size: 2.2rem; }
+      .vl-features, .vl-compare { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .vl-nav { padding: 1.25rem 1.5rem; }
+      .vl-nav nav a { margin-left: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vl-nav">
+    <a href="/vlean/" class="wordmark">Visual Lean</a>
+    <nav>
+      <a href="#why">Why</a>
+      <a href="#how">How it works</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </div>
+
+  <div class="vl-hero">
+    <h1>Mathematics you can see.</h1>
+    <p class="subtitle">A visual proof assistant that turns formal reasoning into an interactive node graph — making type theory navigable, intuitive, and collaborative.</p>
+    <a href="#roadmap" class="vl-cta">Follow development</a>
+    <a href="https://github.com/zach15james" class="vl-cta-outline" target="_blank">GitHub</a>
+  </div>
+
+  <div class="vl-divider"></div>
+
+  <section class="vl-section" id="why">
+    <h2>Proofs shouldn't be linear</h2>
+    <p>Traditional theorem provers ask you to write sequential tactic scripts where the logical structure is implicit and the learning curve is steep. The reasoning is there — but it's buried in syntax.</p>
+    <p>Visual Lean makes the structure explicit. Hypotheses, types, contexts, and dependencies become visible, navigable nodes in a graph. You build proofs by connecting them.</p>
+    <p style="font-size: 0.9rem; color: #888; margin-top: 1.5rem;">The idea for Visual Lean came from my friend David, who I met in the LSU math department. This is an experimental prototype exploring his concept — built as a side project to see how far the visual inference model can go.</p>
+  </section>
+
+  <div class="vl-divider"></div>
+
+  <div class="vl-compare" id="how">
+    <div class="vl-compare-col dim">
+      <h3>Traditional Lean</h3>
+      <p>Linear text scripts. Structure is implicit. You read tactics left-to-right and reconstruct the proof tree in your head.</p>
+    </div>
+    <div class="vl-compare-col">
+      <h3>Visual Lean</h3>
+      <p>An explicit graph of inference. Contexts, types, and dependencies are visible and navigable. Drag, connect, reason.</p>
+    </div>
+  </div>
+
+  <div class="vl-divider"></div>
+
+  <div class="vl-features">
+    <div class="vl-feature">
+      <h3>Node graph</h3>
+      <p>Each node is a formal judgment from type theory. Edges capture how hypotheses flow into conclusions.</p>
+    </div>
+    <div class="vl-feature">
+      <h3>Type-safe core</h3>
+      <p>Strongly typed C++ data model. Four thesis kinds: type declarations, type equivalences, element relations, element equivalences.</p>
+    </div>
+    <div class="vl-feature">
+      <h3>Runs in the browser</h3>
+      <p>C++ compiled to WebAssembly via Emscripten. Dear ImGui + ImNodes for the visual interface. No backend required.</p>
+    </div>
+  </div>
+
+  <div class="vl-divider"></div>
+
+  <div class="vl-roadmap" id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="vl-phase">
+      <span class="label current">Now</span>
+      <div class="vl-phase-content">
+        <h3>Local prototype</h3>
+        <p>In-memory graph in C++. Zero dependencies. Proving that the inference graph model works.</p>
+      </div>
+    </div>
+    <div class="vl-phase">
+      <span class="label">Next</span>
+      <div class="vl-phase-content">
+        <h3>Local workspace</h3>
+        <p>Persistent state with local PostgreSQL. Save, load, and reuse structured knowledge across sessions.</p>
+      </div>
+    </div>
+    <div class="vl-phase">
+      <span class="label">Future</span>
+      <div class="vl-phase-content">
+        <h3>Cloud wiki</h3>
+        <p>A shared map of all mathematics. Pull from communal knowledge to build proofs in your own workspace. Contribute back. The platform grows more valuable as more people use it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vl-team">
+    <p><strong>Zach</strong> — Architecture, WASM/frontend pipeline, product vision</p>
+    <p><strong>David</strong> — Core logic, C++ type theory data structures</p>
+  </div>
+
+  <footer class="vl-footer">
+    <p>&copy; <a href="/">Agape Bloom</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

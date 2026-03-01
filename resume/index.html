@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zach James</title>
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #111;
+      background: #fff;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* --- Header --- */
+    .r-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .r-header h1 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+
+    .r-header .links {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .r-header .links a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    .r-header .links a:hover { color: #111; text-decoration: underline; }
+    .r-header .links .sep { margin: 0 0.4rem; color: #ccc; }
+
+    /* --- Intro --- */
+    .r-intro {
+      margin-bottom: 3rem;
+    }
+
+    .r-intro p {
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .r-intro p:last-child { margin-bottom: 0; }
+
+    .r-seeking {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: #fafafa;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* --- Sections --- */
+    .r-section {
+      margin-bottom: 3rem;
+    }
+
+    .r-section h2 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .r-section p {
+      color: #444;
+      margin-bottom: 0.75rem;
+    }
+
+    /* --- Problem solutions --- */
+    .r-problem {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .r-problem:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .r-problem h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .r-problem .tags {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 0.6rem;
+    }
+
+    .r-problem .tags span {
+      background: #f5f5f5;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.4rem;
+    }
+
+    .r-problem p {
+      font-size: 0.92rem;
+      color: #444;
+      margin-bottom: 0.5rem;
+    }
+
+    .r-problem pre {
+      background: #fafafa;
+      border-left: 2px solid #ddd;
+      padding: 0.75rem 1rem;
+      margin: 0.75rem 0;
+      overflow-x: auto;
+      font-family: 'IBM Plex Mono', 'Consolas', monospace;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .r-problem .notes {
+      font-size: 0.85rem;
+      color: #888;
+      font-style: italic;
+    }
+
+    .r-problem .notes img {
+      display: block;
+      max-width: 100%;
+      margin: 0.75rem 0;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+
+    /* --- Project / archive links --- */
+    .r-project {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+
+    .r-project a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .r-project a:hover { text-decoration: underline; }
+
+    .r-project .desc {
+      font-size: 0.82rem;
+      color: #999;
+      text-align: right;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* --- Callout link --- */
+    .r-callout {
+      display: block;
+      padding: 1.25rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #111;
+      margin-bottom: 1rem;
+      transition: border-color 0.15s;
+    }
+
+    .r-callout:hover { border-color: #111; color: #111; }
+
+    .r-callout h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .r-callout p {
+      font-size: 0.85rem;
+      color: #888;
+      margin: 0;
+    }
+
+    /* --- Footer --- */
+    .r-footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.8rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .r-footer a { color: #aaa; text-decoration: none; }
+    .r-footer a:hover { color: #666; }
+
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      .page { padding: 2rem 1.25rem 3rem; }
+      .r-header h1 { font-size: 1.5rem; }
+      .r-project { flex-direction: column; }
+      .r-project .desc { text-align: left; margin-left: 0; margin-top: 0.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="r-header">
+    <h1>Zach James</h1>
+    <p class="links"><a href="mailto:zach15james@proton.me">zach15james@proton.me</a></p>
+    <p class="links"><a href="https://www.linkedin.com/in/zrjames/" target="_blank">linkedin.com/in/zrjames</a></p>
+    <p class="links"><a href="https://github.com/zach15james" target="_blank">github.com/zach15james</a></p>
+    <p class="links"><a href="https://gitlab.com/zach15james" target="_blank">gitlab.com/zach15james</a></p>
+  </header>
+
+  <!-- ==================== INTRO ==================== -->
+  <div class="r-intro">
+    <p>I'm a math/cs dual-degree LSU senior who minored in psychology. I'm actively applying to SWE, embedded, RE, defense, and ML roles, but open to quant, policy, actuarial, and risk roles — or any position where I can apply technical depth to solve problems that matter.</p>
+    <p style="margin-top: 1rem;"><a href="https://arxiv.org/pdf/2506.14815" target="_blank">p-Laplacian semi-supervised regression</a> — accepted by <em>Frontiers</em>, in process of publication.</p>
+    <p style="color: #999; font-size: 0.85rem; margin-top: 1.5rem; line-height: 1.8;"><strong style="color: #888;">Relevant coursework:</strong> malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), AI policy (PADM 4000), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056), intro to I/O psychology (PSYC 3050), cognition (PSYC 3030), applied behavior analysis (PSYC 4080), principles of microeconomics (honors) (ECON 2001), critical analysis: Paradise Lost (HNRS 2000), modern Europe (HNRS 2408), intro to Buddhist philosophy (honors) (PHIL 1001), elementary German I/II (GERM 1101/2)</p>
+  </div>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section class="r-section" id="projects">
+    <h2>Projects</h2>
+    <div class="r-project">
+      <a href="/orient/">Orient</a>
+      <span class="desc">Context-switching reduction engine</span>
+    </div>
+    <div class="r-project">
+      <a href="/vlean/">Visual Lean</a>
+      <span class="desc">Graph-based proof assistant</span>
+    </div>
+    <div class="r-project">
+      <a href="/thymos/">Thymos</a>
+      <span class="desc">C/CUDA ML library for edge inference</span>
+    </div>
+    <div class="r-project">
+      <a href="/sola/coffee.html">Terra</a>
+      <span class="desc">Pure-material coffee equipment</span>
+    </div>
+    <div class="r-project">
+      <a href="/nomos/mow.html">Steward</a>
+      <span class="desc">Autonomous lawn mowing (Jetson Orin)</span>
+    </div>
+  </section>
+
+  <!-- ==================== DISASSEMBLY ==================== -->
+  <section class="r-section" id="re">
+    <h2>Disassembly</h2>
+    <a href="/resume/michelangelo/" class="r-callout">
+      <h3>Michelangelo.DOS</h3>
+      <p>Full walkthrough of the Michelangelo DOS virus.</p>
+    </a>
+    <a href="/resume/xorpd/" class="r-callout">
+      <h3>xorpd x86 Assembly Puzzles</h3>
+      <p>My notes on all 64 exercises from the "little black book."</p>
+    </a>
+  </section>
+
+  <!-- ==================== UVA ==================== -->
+  <section class="r-section" id="oj">
+    <h2>UVA Problems</h2>
+    <div style="width: 100%; height: 450px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-bottom: 1rem; position: relative;">
+      <iframe src="https://uhunt.onlinejudge.org/id/1641288" style="width: 100%; height: 1200px; border: none; margin-top: -420px;" loading="lazy"></iframe>
+    </div>
+    <p style="font-size: 0.9rem; color: #555;"><a href="https://github.com/zach15james/uva" target="_blank">View my solutions on GitHub</a></p>
+  </section>
+
+  <!-- ==================== ARCHIVE ==================== -->
+  <section class="r-section" id="archive">
+    <h2>Archive</h2>
+    <p style="color: #555; font-size: 0.9rem; margin-bottom: 1rem;">Book notes, course notes, and essays from the <a href="/archive/">Agape Bloom archive</a>.</p>
+    <div class="r-project">
+      <a href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
+      <span class="desc">Lencioni</span>
+    </div>
+    <div class="r-project">
+      <a href="/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
+      <span class="desc">Dostoevsky</span>
+    </div>
+    <div class="r-project">
+      <a href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
+      <span class="desc">Watts</span>
+    </div>
+    <div class="r-project">
+      <a href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations</a>
+      <span class="desc">Simon et al.</span>
+    </div>
+    <div class="r-project">
+      <a href="/archive/course-notes/operating_systems.html">Operating Systems Notes</a>
+      <span class="desc">Course notes</span>
+    </div>
+  </section>
+
+  <footer class="r-footer">
+    <p>&copy; <a href="/">Agape Bloom</a>. All rights reserved.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

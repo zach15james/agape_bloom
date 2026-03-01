@@ -1,25 +1,11 @@
-// hugging face login:
-
-// email: info@agapebloom.customElements
-// password: Eatrealfood!1
-
-
 // Defines my-header for the template header
 class myHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header class="header">
-        <div class="header-container">
-          <a href="/index.html"><img class="signature-image" src="/archive/images/ab_black_center.png"
+        <div class="header-container" style="justify-content: center;">
+          <a href="/"><img class="signature-image" src="/archive/images/ab_black_center.png"
               alt="Agape Bloom" /></a>
-          <nav>
-            <ul>
-              <li><a href="/index.html">Home</a></li>
-              <li><a href="/coffee.html">Terra</a></li>
-              <li><a href="/mow.html">Steward</a></li>
-              <li><a href="/archive.html">Archive</a></li>
-            </ul>
-          </nav>
         </div>
       </header>
     `;
@@ -32,18 +18,16 @@ class myFooter extends HTMLElement {
       <footer>
         <div class="footer-content">
           <div class="footer-description">
-            <p>Agape Bloom (AB) is a Louisiana-forged firm</p>
+            <p>Agape Bloom (AB) is a Louisiana-forged firm.</p>
           </div>
           <div class="footer-articles">
             <h4>Recent Articles</h4>
             <div class="articles_cont">
               <a href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
-              <a href="/archive/literary-synthesis/deep-work.html">Depth Necessity: Cal Newport's Deep Work</a>
+              <a href="/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
               <a href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations for an
                 Information-Rich World</a>
-              <a href="/archive/literary-synthesis/article4.html">Article 4</a>
-              <a href="/archive/literary-synthesis/article5.html">Article 5</a>
-              <a href="/archive/literary-synthesis/article6.html">Article 6</a>
+              <a href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
             </div>
           </div>
           <div class="footer-links">
@@ -58,7 +42,7 @@ class myFooter extends HTMLElement {
             </a>
           </div>
         </div>
-        <p id="copywright">© Agape Bloom. All rights reserved.</p>
+        <p id="copywright">&copy; Agape Bloom. All rights reserved.</p>
       </footer>
     `;
   }
@@ -67,39 +51,7 @@ class myFooter extends HTMLElement {
 customElements.define('my-header', myHeader);
 customElements.define('my-footer', myFooter);
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Your existing code
-  const storedImageUrl = localStorage.getItem("lastArtImageUrl");
-  const storedImageTitle = localStorage.getItem("lastArtImageTitle");
-
-  if (storedImageUrl && storedImageTitle) {
-    displayArt(storedImageUrl, storedImageTitle);
-  } else {
-    loadRandomArt();
-  }
-
-  const button = document.querySelector("button");
-  if (button) {
-    button.addEventListener("click", loadRandomArt);
-  }
-});
-
-function displayArt(url, title) {
-  const artContainer = document.getElementById("art-container");
-  artContainer.innerHTML = `<img src="${url}" alt="${title}"><p>${title}</p>`;
-}
-
-function loadRandomArt() {
-  const randomArtUrl = "https://example.com/random-art.jpg";
-  const randomArtTitle = "Random Art Title";
-
-  displayArt(randomArtUrl, randomArtTitle);
-
-  localStorage.setItem("lastArtImageUrl", randomArtUrl);
-  localStorage.setItem("lastArtImageTitle", randomArtTitle);
-}
-
-// Your existing functions
+// Filter system for archive pages
 let activeFilters = [];
 
 function toggleFilter(button, category, parent) {
@@ -146,8 +98,4 @@ function resetFilters() {
     .forEach((button) => button.classList.remove("active"));
 
   filterAndSortLinks("apps-scripts-cont", "a");
-}
-
-function testButtonClick() {
-  alert("Button clicked!");
 }
