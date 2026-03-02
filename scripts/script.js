@@ -4,7 +4,7 @@ class myHeader extends HTMLElement {
     this.innerHTML = `
       <header class="header">
         <div class="header-container" style="justify-content: center;">
-          <a href="/"><img class="signature-image" src="/archive/images/ab_black_center.png"
+          <a href="https://agapebloom.com"><img class="signature-image" src="https://agapebloom.com/archive/images/ab_black_center.png"
               alt="Agape Bloom" /></a>
         </div>
       </header>
@@ -23,22 +23,22 @@ class myFooter extends HTMLElement {
           <div class="footer-articles">
             <h4>Recent Articles</h4>
             <div class="articles_cont">
-              <a href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
-              <a href="/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
-              <a href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations for an
+              <a href="https://agapebloom.com/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
+              <a href="https://agapebloom.com/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
+              <a href="https://agapebloom.com/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations for an
                 Information-Rich World</a>
-              <a href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
+              <a href="https://agapebloom.com/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
             </div>
           </div>
           <div class="footer-links">
             <a href="https://www.linkedin.com/company/agapebloom/" target="_blank">
-              <img src="/archive/images/yellow-linkedin-icon.png" alt="LinkedIn">
+              <img src="https://agapebloom.com/archive/images/yellow-linkedin-icon.png" alt="LinkedIn">
             </a>
             <a href="https://twitter.com" target="_blank">
-              <img src="/archive/images/yellow-x_twitter-icon.png" alt="Twitter">
+              <img src="https://agapebloom.com/archive/images/yellow-x_twitter-icon.png" alt="Twitter">
             </a>
             <a href="https://youtube.com" target="_blank">
-              <img src="/archive/images/yellow-youtube-icon.png" alt="YouTube">
+              <img src="https://agapebloom.com/archive/images/yellow-youtube-icon.png" alt="YouTube">
             </a>
           </div>
         </div>

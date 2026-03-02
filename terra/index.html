@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terra — microplastic-free coffee</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    ::selection { background: #8b4513; color: #f7f3ee; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      background: #f7f3ee;
+      color: #1a1208;
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    a { color: #8b4513; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- Header --- */
+    .sol-header {
+      padding: 4rem 0 2rem;
+      border-bottom: 1px solid #d4c5b0;
+      margin-bottom: 3.5rem;
+    }
+
+    .sol-header .wordmark {
+      font-size: 1.05rem;
+      font-weight: normal;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8b4513;
+      margin-bottom: 0.5rem;
+    }
+
+    .sol-header h1 {
+      font-size: 2.4rem;
+      font-weight: normal;
+      letter-spacing: -0.01em;
+      color: #1a1208;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .sol-header .oneliner {
+      color: #6b5744;
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .sol-nav {
+      font-size: 0.85rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      letter-spacing: 0.04em;
+    }
+
+    .sol-nav a {
+      color: #6b5744;
+      text-decoration: none;
+    }
+
+    .sol-nav a:hover { color: #8b4513; }
+
+    .sol-nav .sep { color: #c4b09a; margin: 0 0.4rem; }
+
+    /* --- Sections --- */
+    .sol-section {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid #ede5d8;
+    }
+
+    .sol-section:last-of-type { border-bottom: none; }
+
+    .sol-section h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8b4513;
+      margin-bottom: 1.5rem;
+    }
+
+    .sol-section p {
+      color: #2e1f0f;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .sol-section p:last-child { margin-bottom: 0; }
+
+    /* --- Material grid --- */
+    .material-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .material-card {
+      background: #ede5d8;
+      border-radius: 3px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .material-card h3 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8b4513;
+      margin-bottom: 0.4rem;
+    }
+
+    .material-card p {
+      font-size: 0.9rem;
+      color: #4a3322;
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    /* --- Equipment list --- */
+    .equipment-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .equipment-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #ede5d8;
+      font-size: 0.97rem;
+    }
+
+    .equipment-list li:last-child { border-bottom: none; }
+
+    .equipment-list .item-name {
+      color: #1a1208;
+    }
+
+    .equipment-list .item-material {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: #8b9e78;
+      white-space: nowrap;
+    }
+
+    /* --- Pull quote --- */
+    .pull-quote {
+      border-left: 3px solid #8b4513;
+      margin: 2rem 0;
+      padding: 0.75rem 1.5rem;
+      background: #ede5d8;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .pull-quote p {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #3a2410;
+      margin-bottom: 0 !important;
+      line-height: 1.65;
+    }
+
+    /* --- Status badge --- */
+    .status-badge {
+      display: inline-block;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #8b9e78;
+      color: #f7f3ee;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+
+    .status-badge.wip { background: #c4a45a; }
+
+    /* --- Footer --- */
+    .sol-footer {
+      padding: 3rem 0 4rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      color: #a08060;
+      letter-spacing: 0.03em;
+    }
+
+    .sol-footer a { color: #8b4513; }
+    .sol-footer a:hover { text-decoration: underline; }
+    .sol-footer .sep { color: #c4b09a; margin: 0 0.4rem; }
+
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      .page { padding: 0 1.25rem; }
+      .sol-header h1 { font-size: 1.8rem; }
+      .material-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="sol-header">
+    <p class="wordmark">Sola / Terra</p>
+    <h1>Coffee without the plastic.</h1>
+    <p class="oneliner">Pure-material brewing equipment — zero plastic in your cup.</p>
+    <nav class="sol-nav">
+      <a href="#problem">the problem</a>
+      <span class="sep">·</span>
+      <a href="#materials">materials</a>
+      <span class="sep">·</span>
+      <a href="#equipment">equipment</a>
+      <span class="sep">·</span>
+      <a href="#ethos">ethos</a>
+      <span class="sep">·</span>
+      <a href="https://agapebloom.com">agapebloom.com</a>
+    </nav>
+  </header>
+
+  <section class="sol-section" id="problem">
+    <h2>The Problem</h2>
+    <p>Every plastic component your brewing water touches is a leaching point. Hot water extracts microplastics from HDPE carafes, ABS grinder hoppers, and silicone gaskets at rates that dwarf what's in tap water. Studies now consistently find nanoplastics in human blood, lung tissue, and brain matter — and the concentrations correlate with heat and turbulence.</p>
+    <p>You filter your water. You source single-origin beans. You spend real money on a grinder. Then you brew through plastic, pour into plastic, and wonder why the cup tastes flat.</p>
+    <div class="pull-quote">
+      <p>This is not a wellness trend. It is an engineering failure: materials chosen for cost, not contact suitability. We fix that.</p>
+    </div>
+  </section>
+
+  <section class="sol-section" id="materials">
+    <h2>Materials</h2>
+    <p>Four inert materials cover every brewing contact surface. Nothing else.</p>
+    <div class="material-grid">
+      <div class="material-card">
+        <h3>Borosilicate Glass</h3>
+        <p>Thermally stable to 500°C. Chemically inert. No coatings, no liners. What you see is what touches your water.</p>
+      </div>
+      <div class="material-card">
+        <h3>316L Stainless</h3>
+        <p>Surgical-grade alloy. Higher molybdenum content than 304 — zero off-flavors, no corrosion under acidic brew chemistry.</p>
+      </div>
+      <div class="material-card">
+        <h3>High-Fire Ceramic</h3>
+        <p>Fired above cone 10. No mid-range glazes, no lead, no cadmium. The raw mineral surface is the finish.</p>
+      </div>
+      <div class="material-card">
+        <h3>Natural Fiber</h3>
+        <p>Unbleached cotton and linen only. No chlorine treatment, no synthetic binders. Compostable after use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sol-section" id="equipment">
+    <h2>Equipment <span class="status-badge wip">v1 — in development</span></h2>
+    <p>A complete pour-over kit with no plastic anywhere in the brew path.</p>
+    <ul class="equipment-list">
+      <li>
+        <span class="item-name">Pour-over dripper</span>
+        <span class="item-material">High-fire ceramic</span>
+      </li>
+      <li>
+        <span class="item-name">Gooseneck kettle</span>
+        <span class="item-material">316L stainless</span>
+      </li>
+      <li>
+        <span class="item-name">Carafe / server</span>
+        <span class="item-material">Borosilicate glass</span>
+      </li>
+      <li>
+        <span class="item-name">Hand grinder</span>
+        <span class="item-material">Ceramic burrs · stainless body</span>
+      </li>
+      <li>
+        <span class="item-name">Brew filters</span>
+        <span class="item-material">Unbleached cotton</span>
+      </li>
+      <li>
+        <span class="item-name">Scale / timer</span>
+        <span class="item-material">Stainless platform · glass display</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="sol-section" id="ethos">
+    <h2>Ethos</h2>
+    <p>We are not selling wellness theater. We are solving a material selection problem that the coffee industry has ignored because HDPE is cheap and consumers can't see what leaches at 93°C.</p>
+    <p>Every design decision here starts with contact surface first. If a component can be made from an inert material without compromising function, it is. If it can't — if there's a structural reason plastic is necessary — we go back to the drawing board until there isn't.</p>
+    <p>A piece that runs for 20 years and gets passed on is a better environmental decision than one that ships in recyclable packaging and fails in two. We are building for longevity over repurchase, and we intend to price it that way.</p>
+    <p>Interested in early access or materials testing? <a href="mailto:info@agapebloom.com">Reach out.</a></p>
+  </section>
+
+  <footer class="sol-footer">
+    Terra by Agape Bloom
+    <span class="sep">·</span>
+    <a href="mailto:info@agapebloom.com">info@agapebloom.com</a>
+    <span class="sep">·</span>
+    <a href="/">agapebloom.com</a>
+    <span class="sep">·</span>
+    sola — of the sun
+  </footer>
+
+</div>
+</body>
+</html>

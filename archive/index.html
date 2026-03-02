@@ -1,127 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zachary Robert James</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-  <!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+  <title>Archive — Agape Bloom</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* ── archive-specific overrides ── */
+    .arc-page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .arc-header {
+      padding: 3rem 0 1.5rem;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .arc-header h1 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.6rem;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .arc-header .arc-nav {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      margin-left: auto;
+      flex-wrap: wrap;
+    }
+
+    .arc-header .arc-nav a {
+      color: #888;
+      text-decoration: none;
+    }
+
+    .arc-header .arc-nav a:hover { color: #111; }
+
+    .arc-notice {
+      font-size: 0.78rem;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+      font-style: italic;
+    }
+
+    /* ── section ── */
+    .arc-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .arc-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .arc-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .arc-section-head h2 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.05rem;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+
+    /* ── filter bar ── */
+    .arc-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-btn {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.65rem;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      background: #fff;
+      color: #666;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      font-family: inherit;
+      transition: background 0.1s, color 0.1s, border-color 0.1s;
+    }
+
+    .filter-btn:hover {
+      background: #f5f5f5;
+      border-color: #bbb;
+    }
+
+    .filter-btn.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    /* ── link lists ── */
+    .arc-links a {
+      display: block;
+      color: #111;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #f5f5f5;
+      line-height: 1.5;
+    }
+
+    .arc-links a:last-child { border-bottom: none; }
+
+    .arc-links a:hover { color: #555; }
+
+    .arc-section p.arc-desc {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── footer ── */
+    .arc-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+      font-size: 0.78rem;
+      color: #aaa;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .arc-footer a { color: #888; text-decoration: none; }
+    .arc-footer a:hover { color: #111; }
+
+    @media (max-width: 600px) {
+      .arc-page { padding: 0 1.25rem 3rem; }
+      .arc-header h1 { font-size: 1.3rem; }
+    }
+  </style>
 </head>
-
 <body>
-  <my-header></my-header>
+<div class="arc-page">
 
-  <div class="container">
-    <div class="services-section">
-      <h2>Archive</h2>
-				<p><i>Fair Use Notice: This material is made available for educational purposes, research, commentary, criticism, and scholarshiip, as provided for under Section 107 of the US Copyright Law. This site does not claim ownership of any third-party content referenced within, and such content is used under the fair use doctrine. If you believe any content infringes your copyright, please contact us, and the issue will be removed or resolved immediately.</i></p>
-      <div class="services-container">
-        <div class="archive-sect">
-          <div class="sort-cont">
-            <h3>Literary Synthesis</h3>
-            <div class="sort">
-              <p>Sort:
-                <button class="filter-btn" onclick="toggleFilter(this, 'io-psych', 'lit-syn-cont')">I/O Psyc.</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'marketing', 'lit-syn-cont')">Marketing</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'biography', 'lit-syn-cont')">Biography</button>
-                <button class="filter-btn"
-                  onclick="toggleFilter(this, 'philosophy', 'lit-syn-cont')">Philosophy</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'history', 'lit-syn-cont')">History</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'science', 'lit-syn-cont')">Science</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'political-theory', 'lit-syn-cont')">Political
-                  Theory</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'theology', 'lit-syn-cont')">Theology</button>
-              </p>
-            </div>
-          </div>
+  <header class="arc-header">
+    <h1>Archive</h1>
+    <nav class="arc-nav">
+      <a href="https://resume.agapebloom.com">Zach James</a>
+      <a href="https://agapebloom.com">agapebloom.com</a>
+    </nav>
+  </header>
 
-          <div class="lit-syn-cont">
-            <a target="_blank" href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player: Notes from Patrick
-              Lencioni's <i>Ideal Team Player</i></a>
-            <a target="_blank" href="/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning: Don't Live Underground</a>
-              <a target="_blank" href="https://docs.proton.me/doc?mode=open-url&token=1MH6J3R0QW#eT9y9ZZlTptd">Depth Necessity: Cal Newport's <i>Deep Work</i>
-              Hypothesis - in Light of the Exponential Advancement in Automation</a>
-            <a target="_blank" href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Thoughts on Herbert A. Simon, Karl
-              W. Deutsch, Martin Shubik, and Emilio Q. Daddario's discussion on Organizational Design in an
-              'Information-Rich World'</a>
-	    <a target="_blank" href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on <i>How to Think</i></a>
-					</div>
-        </div>
+  <p class="arc-notice">Fair Use Notice: This material is made available for educational purposes, research, commentary, criticism, and scholarship under Section 107 of the US Copyright Law. This site does not claim ownership of any third-party content referenced herein. If you believe content infringes your copyright, contact us and it will be resolved immediately.</p>
 
-        <div class="archive-sect">
-          <div class="sort-cont">
-            <h3>Writings</h3>
-            <div class="sort">
-              <p>Sort:
-                <button class="filter-btn" onclick="toggleFilter(this, 'ai-ethics', 'writings-cont')">AI Ethics</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'aba', 'writings-cont')">ABA</button>
-                <button class="filter-btn"
-                  onclick="toggleFilter(this, 'psychology', 'writings-cont')">Marketing</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'history', 'writings-cont')">History</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'science', 'writings-cont')">Science</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'political-theory', 'writings-cont')">Political
-                  Theory</button>
-                <button class="filter-btn" onclick="toggleFilter(this, 'theology', 'writings-cont')">Theology</button>
-              </p>
-            </div>
-          </div>
-
-          <div class="writings-cont">
-            <a href="/archive/essays/template.html">Template</a>
-          </div>
-        </div>
-
-        <div class="archive-sect">
-          <h3>Course Notes</h3>
-          <p>A resource to help me retain my knowledge and for others as well.</p>
-
-          <div class="sort">
-            <p>Sort:
-              <button class="filter-btn" onclick="toggleFilter(this, 'math', 'course-notes-cont')">Math</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'cs', 'course-notes-cont')">Computer
-                Science</button>
-              <button class="filter-btn"
-                onclick="toggleFilter(this, 'psychology', 'course-notes-cont')">Psychology</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'critical-analysis', 'course-notes-cont')">Critical
-                Analysis</button>
-            </p>
-          </div>
-          <div class="course-notes-cont">
-            <a class="math" href="/archive/course-notes/calculus.html">Calculus</a>
-            <a class="psychology" href="/archive/course-notes/io-psychology.html">Industrial Organizational
-              Psychology</a>
-            <a class="cs" href="/archive/course-notes/operating_systems.html">Operating Systems</a>
-          </div>
-        </div>
-
-        <div class="archive-sect">
-          <h3>Scripts & Software Projects</h3>
-          <p>Applications and scripts I have built that you may be able to get use from.</p>
-          <div class="sort">
-            <p>Sort:
-              <button class="filter-btn" onclick="toggleFilter(this, 'outputs_inputs', 'apps-scripts-cont')">Outputs > Inputs</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'script', 'apps-scripts-cont')">Scripts</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'application', 'apps-scripts-cont')">Applications</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'model', 'apps-scripts-cont')">Models</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'icpc-problem-solutions', 'apps-scripts-cont')">ICPC Problem Solutions</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'library', 'apps-scripts-cont')">Libraries</button>
-              <button class="filter-btn" onclick="toggleFilter(this, 'implementation', 'apps-scripts-cont')">Implementation</button>
-            </p>
-          </div>
-          <div class="apps-scripts-cont">
-            <a href="#" class="python script">More coming soon...</a>
-          </div>
-        </div>
-
-      </div>
+  <!-- ── Literary Synthesis ─────────────────────────── -->
+  <section class="arc-section">
+    <div class="arc-section-head">
+      <h2>Literary Synthesis</h2>
     </div>
-  </div>
+    <div class="arc-filters">
+      <button class="filter-btn" onclick="toggleFilter(this, 'io-psych', 'lit-syn-cont')">I/O Psyc.</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'marketing', 'lit-syn-cont')">Marketing</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'biography', 'lit-syn-cont')">Biography</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'philosophy', 'lit-syn-cont')">Philosophy</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'history', 'lit-syn-cont')">History</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'science', 'lit-syn-cont')">Science</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'political-theory', 'lit-syn-cont')">Political Theory</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'theology', 'lit-syn-cont')">Theology</button>
+    </div>
+    <div class="arc-links lit-syn-cont">
+      <a target="_blank" href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player: Notes from Patrick Lencioni's <em>Ideal Team Player</em></a>
+      <a target="_blank" href="/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning: Don't Live Underground</a>
+      <a target="_blank" href="https://docs.proton.me/doc?mode=open-url&token=1MH6J3R0QW#eT9y9ZZlTptd">Depth Necessity: Cal Newport's <em>Deep Work</em> Hypothesis — In Light of Exponential Automation</a>
+      <a target="_blank" href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Thoughts on Simon, Deutsch, Shubik, and Daddario on Organizational Design in an 'Information-Rich World'</a>
+      <a target="_blank" href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on <em>How to Think</em></a>
+    </div>
+  </section>
 
-  <my-footer></my-footer>
-  <script src="/scripts/script.js"></script>
+  <!-- ── Writings ──────────────────────────────────── -->
+  <section class="arc-section">
+    <div class="arc-section-head">
+      <h2>Writings</h2>
+    </div>
+    <div class="arc-filters">
+      <button class="filter-btn" onclick="toggleFilter(this, 'ai-ethics', 'writings-cont')">AI Ethics</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'aba', 'writings-cont')">ABA</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'psychology', 'writings-cont')">Psychology</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'history', 'writings-cont')">History</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'science', 'writings-cont')">Science</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'political-theory', 'writings-cont')">Political Theory</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'theology', 'writings-cont')">Theology</button>
+    </div>
+    <div class="arc-links writings-cont">
+      <a href="/archive/essays/template.html">Template</a>
+    </div>
+  </section>
+
+  <!-- ── Course Notes ───────────────────────────────── -->
+  <section class="arc-section">
+    <div class="arc-section-head">
+      <h2>Course Notes</h2>
+    </div>
+    <p class="arc-desc">Retained notes from coursework — a reference for myself and others.</p>
+    <div class="arc-filters">
+      <button class="filter-btn" onclick="toggleFilter(this, 'math', 'course-notes-cont')">Math</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'cs', 'course-notes-cont')">Computer Science</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'psychology', 'course-notes-cont')">Psychology</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'critical-analysis', 'course-notes-cont')">Critical Analysis</button>
+    </div>
+    <div class="arc-links course-notes-cont">
+      <a class="math" href="/archive/course-notes/calculus.html">Calculus</a>
+      <a class="psychology" href="/archive/course-notes/io-psychology.html">Industrial Organizational Psychology</a>
+      <a class="cs" href="/archive/course-notes/operating_systems.html">Operating Systems</a>
+    </div>
+  </section>
+
+  <!-- ── Scripts & Software ─────────────────────────── -->
+  <section class="arc-section">
+    <div class="arc-section-head">
+      <h2>Scripts &amp; Software</h2>
+    </div>
+    <p class="arc-desc">Applications and scripts — things you may actually be able to use.</p>
+    <div class="arc-filters">
+      <button class="filter-btn" onclick="toggleFilter(this, 'outputs_inputs', 'apps-scripts-cont')">Outputs &gt; Inputs</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'script', 'apps-scripts-cont')">Scripts</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'application', 'apps-scripts-cont')">Applications</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'model', 'apps-scripts-cont')">Models</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'icpc-problem-solutions', 'apps-scripts-cont')">ICPC Solutions</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'library', 'apps-scripts-cont')">Libraries</button>
+      <button class="filter-btn" onclick="toggleFilter(this, 'implementation', 'apps-scripts-cont')">Implementations</button>
+    </div>
+    <div class="arc-links apps-scripts-cont">
+      <a href="#" class="python script">More coming soon…</a>
+    </div>
+  </section>
+
+  <footer class="arc-footer">
+    <a href="https://agapebloom.com">Agape Bloom</a>
+    <a href="https://resume.agapebloom.com">Zach James</a>
+    <a href="mailto:info@agapebloom.com">info@agapebloom.com</a>
+  </footer>
+
+</div>
+<script src="/scripts/script.js"></script>
 </body>
-
 </html>

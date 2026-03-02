@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'GeorgiaPro';
-  src: url('/fonts/GeorgiaPro-Regular.ttf') format('truetype');
+  src: url('https://agapebloom.com/fonts/GeorgiaPro-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'GeorgiaPro';
-  src: url('/fonts/GeorgiaPro-Bold.ttf') format('truetype');
+  src: url('https://agapebloom.com/fonts/GeorgiaPro-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('https://agapebloom.com/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
 }
 
 @font-face {
@@ -25,5 +25,5 @@
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('https://agapebloom.com/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
 }
