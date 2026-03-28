@@ -18,9 +18,9 @@
     }
 
     .page {
-      max-width: 680px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 3rem 2rem 4rem;
+      padding: 3rem 2.5rem 4rem;
     }
 
     /* --- Header --- */
@@ -63,13 +63,19 @@
 
     .r-intro p:last-child { margin-bottom: 0; }
 
-    .r-seeking {
+    /* --- Coursework --- */
+    .cw-block {
       margin-top: 1.25rem;
-      padding: 1rem 1.25rem;
-      background: #fafafa;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      color: #555;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .cw-core {
+      color: #222;
+    }
+
+    .cw-ancillary {
+      color: #999;
     }
 
     /* --- Sections --- */
@@ -92,6 +98,57 @@
     .r-section p {
       color: #444;
       margin-bottom: 0.75rem;
+    }
+
+    /* --- Research entry --- */
+    .r-research-entry {
+      font-size: 0.93rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .r-research-entry .role {
+      font-weight: 600;
+      color: #111;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .r-research-entry .org {
+      color: #666;
+      font-size: 0.88rem;
+    }
+
+    .r-research-entry .detail {
+      margin-top: 0.4rem;
+      color: #444;
+    }
+
+    /* --- Problem entries --- */
+    .r-problem-entry {
+      margin-bottom: 1.5rem;
+    }
+
+    .r-problem-entry:last-child { margin-bottom: 0; }
+
+    .r-problem-entry .entry-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0.2rem;
+    }
+
+    .r-problem-entry .entry-title a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .r-problem-entry .entry-title a:hover { text-decoration: underline; }
+
+    .r-problem-entry .entry-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.55;
     }
 
     /* --- Problem solutions --- */
@@ -151,6 +208,53 @@
       margin: 0.75rem 0;
       border: 1px solid #eee;
       border-radius: 4px;
+    }
+
+    /* --- Projects inline format --- */
+    .r-project-inline {
+      font-size: 0.93rem;
+      color: #444;
+      margin-bottom: 0.6rem;
+      line-height: 1.55;
+    }
+
+    .r-project-inline a {
+      font-weight: 600;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .r-project-inline a:hover { text-decoration: underline; }
+
+    .r-project-inline .stack {
+      color: #999;
+      font-size: 0.85em;
+    }
+
+    /* --- CVE placeholder --- */
+    .r-cve-placeholder {
+      font-size: 0.88rem;
+      color: #888;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid #e0e0e0;
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .r-cve-placeholder .cve-id {
+      font-family: 'IBM Plex Mono', 'Consolas', monospace;
+      font-style: normal;
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    .r-cve-placeholder .cve-status {
+      font-style: normal;
+      font-size: 0.82em;
+      color: #bbb;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     /* --- Project / archive links --- */
@@ -223,6 +327,7 @@
       .r-header h1 { font-size: 1.5rem; }
       .r-project { flex-direction: column; }
       .r-project .desc { text-align: left; margin-left: 0; margin-top: 0.2rem; }
+      .cw-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -240,38 +345,69 @@
   <!-- ==================== INTRO ==================== -->
   <div class="r-intro">
     <p>I'm a math/cs dual-degree LSU senior who minored in psychology. I'm actively applying to SWE, embedded, RE, defense, and ML roles, but open to quant, policy, actuarial, and risk roles — or any position where I can apply technical depth to solve problems that matter.</p>
-    <p style="margin-top: 1rem;"><a href="https://arxiv.org/pdf/2506.14815" target="_blank">p-Laplacian semi-supervised regression</a> — accepted by <em>Frontiers</em>, in process of publication.</p>
-    <p style="color: #999; font-size: 0.85rem; margin-top: 1.5rem; line-height: 1.8;"><strong style="color: #888;">Relevant coursework:</strong> malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), AI policy (PADM 4000), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056), intro to I/O psychology (PSYC 3050), cognition (PSYC 3030), applied behavior analysis (PSYC 4080), principles of microeconomics (honors) (ECON 2001), critical analysis: Paradise Lost (HNRS 2000), modern Europe (HNRS 2408), intro to Buddhist philosophy (honors) (PHIL 1001), elementary German I/II (GERM 1101/2)</p>
+
+    <p class="cw-block"><strong style="color: #888; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;">Relevant coursework:</strong> <span class="cw-core">malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056)</span><span class="cw-ancillary">, AI policy (PADM 4000), intro to I/O psychology (PSYC 3050), cognition (PSYC 3030), applied behavior analysis (PSYC 4080), principles of microeconomics — honors (ECON 2001), intro to Buddhist philosophy — honors (PHIL 1001), elementary German I/II (GERM 1101/2)</span></p>
   </div>
 
   <!-- ==================== PROJECTS ==================== -->
   <section class="r-section" id="projects">
     <h2>Projects</h2>
-    <div class="r-project">
-      <a href="https://orient.agapebloom.com">Orient</a>
-      <span class="desc">Context-switching reduction engine</span>
+    <div class="r-project-inline">
+      <a href="https://orient.agapebloom.com">Orient</a>: Context-switching reduction engine <span class="stack">[Web]</span>
     </div>
-    <div class="r-project">
-      <a href="https://vlean.agapebloom.com">Visual Lean</a>
-      <span class="desc">Graph-based proof assistant</span>
+    <div class="r-project-inline">
+      <a href="https://vlean.agapebloom.com">Visual Lean</a>: Graph-based proof visualization engine powered by Lean/Coq <span class="stack">[C++, hpx::]</span>
     </div>
-    <div class="r-project">
-      <a href="https://thymos.agapebloom.com">Thymos</a>
-      <span class="desc">C/CUDA ML library for edge inference</span>
+    <div class="r-project-inline">
+      <a href="https://thymos.agapebloom.com">Thymos</a>: C/CUDA ML library built on category-theoretic design principles <span class="stack">[C, CUDA, Arch Linux]</span>
     </div>
-    <div class="r-project">
-      <a href="https://terra.agapebloom.com">Terra</a>
-      <span class="desc">Pure-material coffee equipment</span>
+    <div class="r-project-inline">
+      <a href="https://terra.agapebloom.com">Terra</a>: Pure-material coffee equipment <span class="stack">[Hardware]</span>
     </div>
-    <div class="r-project">
-      <a href="https://nomos.agapebloom.com">Steward</a>
-      <span class="desc">Autonomous lawn mowing (Jetson Orin)</span>
+    <div class="r-project-inline">
+      <a href="https://nomos.agapebloom.com">Steward</a>: Autonomous lawn mowing <span class="stack">[Jetson Orin, C++]</span>
     </div>
   </section>
 
-  <!-- ==================== DISASSEMBLY ==================== -->
+  <!-- ==================== RESEARCH ==================== -->
+  <section class="r-section" id="research">
+    <h2>Research</h2>
+    <p style="font-size: 0.93rem; color: #444; line-height: 1.6; margin: 0;">
+      <a href="https://arxiv.org/pdf/2506.14815" target="_blank"><em>p-Laplacian semi-supervised regression on graphs</em></a> — co-authored with the LSU Math department, accepted by <em>Frontiers in Applied Mathematics and Statistics</em>, in process of publication.
+    </p>
+  </section>
+
+  <!-- ==================== APPLIED PROBLEM SOLVING ==================== -->
+  <section class="r-section" id="problem-solving">
+    <h2>Applied Problem Solving</h2>
+
+    <div class="r-problem-entry" style="margin-bottom: 2rem;">
+      <div class="entry-title"><a href="https://github.com/zach15james/uva" target="_blank">UVA Online Judge</a></div>
+      <div class="entry-desc">ICPC competitive programming — solutions across graph theory, dynamic programming, combinatorics, and number theory.</div>
+      <div style="width: 100%; height: 450px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-top: 0.75rem; position: relative;">
+        <iframe src="https://uhunt.onlinejudge.org/id/1641288" style="width: 100%; height: 1200px; border: none; margin-top: -420px;" loading="lazy"></iframe>
+      </div>
+      <p style="font-size: 0.88rem; color: #888; margin-top: 0.6rem;"><a href="https://github.com/zach15james/uva" target="_blank">View solutions on GitHub</a></p>
+    </div>
+
+    <div class="r-problem-entry">
+      <div class="entry-title"><a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a></div>
+      <div class="entry-desc">Grinding low-level memory exploitation and assembly — heap/stack pwn, shellcoding, ROP chains, format string attacks, and kernel exploitation primitives.</div>
+      <div style="width: 100%; height: 380px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-top: 0.75rem; position: relative;">
+        <iframe src="https://pwn.college/hacker/zach15james" style="width: 100%; height: 900px; border: none; margin-top: -120px;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VULNERABILITY RESEARCH & RE ==================== -->
   <section class="r-section" id="re">
-    <h2>Disassembly</h2>
+    <h2>Vulnerability Research &amp; Reverse Engineering</h2>
+
+    <!-- TODO: Fill in when ready for disclosure. Replace CVE-202X-XXXX with real ID, [Target] with target name/version, and expand description. -->
+    <div class="r-cve-placeholder">
+      <span class="cve-id">CVE-202X-XXXX</span> <span class="cve-status">[Pending Disclosure]</span> — Discovered and exploited a novel vulnerability in [Target]. [Brief description of vulnerability class, root cause, and impact.]
+    </div>
+
     <a href="michelangelo/" class="r-callout">
       <h3>Michelangelo.DOS</h3>
       <p>Full walkthrough of the Michelangelo DOS virus.</p>
@@ -280,15 +416,6 @@
       <h3>xorpd x86 Assembly Puzzles</h3>
       <p>My notes on all 64 exercises from the "little black book."</p>
     </a>
-  </section>
-
-  <!-- ==================== UVA ==================== -->
-  <section class="r-section" id="oj">
-    <h2>UVA Problems</h2>
-    <div style="width: 100%; height: 450px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-bottom: 1rem; position: relative;">
-      <iframe src="https://uhunt.onlinejudge.org/id/1641288" style="width: 100%; height: 1200px; border: none; margin-top: -420px;" loading="lazy"></iframe>
-    </div>
-    <p style="font-size: 0.9rem; color: #555;"><a href="https://github.com/zach15james/uva" target="_blank">View my solutions on GitHub</a></p>
   </section>
 
   <!-- ==================== ARCHIVE ==================== -->
