@@ -1,0 +1,280 @@
+{
+  "updated": "2026-03-28T21:07:23.928786+00:00",
+  "profile": "https://pwn.college/hacker/zach15james",
+  "dojos": [
+    {
+      "name": "Intro to Programming Languages",
+      "url": "https://pwn.college/intro-to-programming-languages/",
+      "solves": "12 / 234",
+      "rank": "18562 / 31651",
+      "modules": [
+        {
+          "name": "LecLabs 1.0 Intro and Linux",
+          "solves": "/ 14",
+          "rank": "- / 920"
+        },
+        {
+          "name": "Project 1.0 Intro and Linux",
+          "solves": "12 / 29",
+          "rank": "18493 / 31510"
+        },
+        {
+          "name": "LecLabs 2.1 C Intro and Vars",
+          "solves": "/ 16",
+          "rank": "- / 700"
+        },
+        {
+          "name": "Project 2.1 C Intro and Variables",
+          "solves": "/ 6",
+          "rank": "- / 632"
+        },
+        {
+          "name": "LecLabs 2.2 on Arrays and Strings",
+          "solves": "/ 19",
+          "rank": "- / 581"
+        },
+        {
+          "name": "Project 2.2 on Arrays and C-Strings",
+          "solves": "/ 9",
+          "rank": "- / 566"
+        },
+        {
+          "name": "LecLabs 2.3 on Pointers",
+          "solves": "/ 14",
+          "rank": "- / 539"
+        },
+        {
+          "name": "Project 2.3 Pig Latin & Pointers",
+          "solves": "/ 4",
+          "rank": "- / 458"
+        },
+        {
+          "name": "LecLabs 2.4 Structures and Makefiles",
+          "solves": "/ 14",
+          "rank": "- / 500"
+        },
+        {
+          "name": "LecLabs 2.5 Heaps and Paging",
+          "solves": "/ 12",
+          "rank": "- / 483"
+        },
+        {
+          "name": "Project 2.5 MUD (heaps/structs)",
+          "solves": "/ 8",
+          "rank": "- / 420"
+        },
+        {
+          "name": "LecLabs 2.6/7 - Advanced Memory",
+          "solves": "/ 15",
+          "rank": "- / 434"
+        },
+        {
+          "name": "LecLabs 3.1/2 - C++ Intro",
+          "solves": "/ 6",
+          "rank": "- / 437"
+        },
+        {
+          "name": "LecLabs 3.2 - OO Programming",
+          "solves": "/ 6",
+          "rank": "- / 412"
+        },
+        {
+          "name": "Project 3.2 MUD Shop",
+          "solves": "/ 7",
+          "rank": "- / 330"
+        },
+        {
+          "name": "LecLabs 3.3 Advanced topics in C++",
+          "solves": "/ 7",
+          "rank": "- / 339"
+        },
+        {
+          "name": "Project 3.3 Pokemon Battle",
+          "solves": "/ 5",
+          "rank": "- / 199"
+        },
+        {
+          "name": "EC Challenge Beat Pokemon Coaches",
+          "solves": "/ 12",
+          "rank": "- / 68"
+        },
+        {
+          "name": "LecLabs 3.4 - Search and Heap",
+          "solves": "/ 8",
+          "rank": "- / 281"
+        },
+        {
+          "name": "EC Challenge 3.4 BFS MUD Driver",
+          "solves": "/ 2",
+          "rank": "- / 43"
+        },
+        {
+          "name": "LecLabs 4.1 - Scheme Intro",
+          "solves": "/ 8",
+          "rank": "- / 282"
+        },
+        {
+          "name": "LecLabs 4.2 - functions and lists",
+          "solves": "/ 7",
+          "rank": "- / 272"
+        },
+        {
+          "name": "Project 4.2 Scheme Scripts",
+          "solves": "/ 6",
+          "rank": "- / 260"
+        }
+      ]
+    },
+    {
+      "name": "Linux Luminarium",
+      "url": "https://pwn.college/linux-luminarium/",
+      "solves": "26 / 128",
+      "rank": "18968 / 32056",
+      "modules": [
+        {
+          "name": "Hello Hackers",
+          "solves": "3 / 3",
+          "rank": "17741 / 29494"
+        },
+        {
+          "name": "Pondering Paths",
+          "solves": "8 / 8",
+          "rank": "22388 / 27410"
+        },
+        {
+          "name": "Comprehending Commands",
+          "solves": "15 / 15",
+          "rank": "6336 / 22835"
+        },
+        {
+          "name": "Digesting Documentation",
+          "solves": "/ 7",
+          "rank": "- / 18685"
+        },
+        {
+          "name": "File Globbing",
+          "solves": "/ 10",
+          "rank": "- / 17158"
+        },
+        {
+          "name": "Practicing Piping",
+          "solves": "/ 15",
+          "rank": "- / 16661"
+        },
+        {
+          "name": "Shell Variables",
+          "solves": "/ 8",
+          "rank": "- / 14132"
+        },
+        {
+          "name": "Data Manipulation",
+          "solves": "/ 6",
+          "rank": "- / 7865"
+        },
+        {
+          "name": "Processes and Jobs",
+          "solves": "/ 10",
+          "rank": "- / 13182"
+        },
+        {
+          "name": "Untangling Users",
+          "solves": "/ 4",
+          "rank": "- / 12362"
+        },
+        {
+          "name": "Perceiving Permissions",
+          "solves": "/ 8",
+          "rank": "- / 12758"
+        },
+        {
+          "name": "Chaining Commands",
+          "solves": "/ 12",
+          "rank": "- / 12174"
+        },
+        {
+          "name": "Terminal Multiplexing",
+          "solves": "/ 6",
+          "rank": "- / 5890"
+        },
+        {
+          "name": "Pondering PATH",
+          "solves": "/ 5",
+          "rank": "- / 11613"
+        },
+        {
+          "name": "Silly Shenanigans",
+          "solves": "/ 6",
+          "rank": "- / 6241"
+        },
+        {
+          "name": "Daring Destruction",
+          "solves": "/ 5",
+          "rank": "- / 5447"
+        },
+        {
+          "name": "Further Learning",
+          "solves": "/ 0",
+          "rank": "- / -"
+        }
+      ]
+    },
+    {
+      "name": "Computing 101",
+      "url": "https://pwn.college/computing-101/",
+      "solves": "21 / 94",
+      "rank": "14406 / 21377",
+      "modules": [
+        {
+          "name": "Your First Program",
+          "solves": "/ 5",
+          "rank": "- / 12282"
+        },
+        {
+          "name": "Computer Memory",
+          "solves": "/ 7",
+          "rank": "- / 10228"
+        },
+        {
+          "name": "The Stack",
+          "solves": "/ 4",
+          "rank": "- / 1485"
+        },
+        {
+          "name": "Software Introspection",
+          "solves": "/ 12",
+          "rank": "- / 10659"
+        },
+        {
+          "name": "Output and Input",
+          "solves": "/ 6",
+          "rank": "- / 9223"
+        },
+        {
+          "name": "Control Flow",
+          "solves": "/ 7",
+          "rank": "- / 1092"
+        },
+        {
+          "name": "Assembly Assortment",
+          "solves": "/ 4",
+          "rank": "- / 948"
+        },
+        {
+          "name": "Assembly Crash Course",
+          "solves": "22 / 30",
+          "rank": "11759 / 16345"
+        },
+        {
+          "name": "Building a Web Server",
+          "solves": "/ 11",
+          "rank": "- / 9083"
+        },
+        {
+          "name": "Debugging Refresher",
+          "solves": "/ 8",
+          "rank": "- / 11779"
+        }
+      ]
+    }
+  ]
+}

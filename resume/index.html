@@ -351,7 +351,87 @@
       .r-project .desc { text-align: left; margin-left: 0; margin-top: 0.2rem; }
       .cw-list { grid-template-columns: 1fr; }
     }
+
+    /* --- pwn.college display --- */
+    #pwn-college-display {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 0.75rem 1.1rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .pwn-loading {
+      color: #aaa;
+      padding: 0.5rem 0;
+      text-align: center;
+    }
+
+    .pwn-dojo {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .pwn-dojo:last-child { border-bottom: none; }
+
+    .pwn-dojo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .pwn-dojo-name {
+      font-weight: 600;
+      color: #111;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .pwn-dojo-name:hover { text-decoration: underline; }
+
+    .pwn-stats {
+      display: flex;
+      gap: 1rem;
+      color: #888;
+      white-space: nowrap;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .pwn-stat { display: flex; align-items: center; gap: 0.3rem; }
+
+    .pwn-modules {
+      margin-top: 0.35rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid #f0f0f0;
+    }
+
+    .pwn-module {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.15rem 0;
+    }
+
+    .pwn-module-name {
+      color: #444;
+      font-size: 0.81rem;
+    }
+
+    .pwn-stats-sm {
+      display: flex;
+      gap: 0.65rem;
+      color: #bbb;
+      white-space: nowrap;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .pwn-stat-sm { display: flex; align-items: center; gap: 0.25rem; }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
 </head>
 <body>
 <div class="page">
@@ -419,9 +499,7 @@
     <div class="r-problem-entry">
       <div class="entry-title"><a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a></div>
       <div class="entry-desc">Grinding low-level memory exploitation and assembly — heap/stack pwn, shellcoding, ROP chains, format string attacks, and kernel exploitation primitives.</div>
-      <div style="width: 100%; height: 380px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-top: 0.75rem; position: relative;">
-        <iframe src="https://pwn.college/hacker/zach15james" style="width: 100%; height: 900px; border: none; margin-top: -120px;" loading="lazy"></iframe>
-      </div>
+      <div id="pwn-college-display"><div class="pwn-loading">Loading...</div></div>
     </div>
   </section>
 
@@ -476,5 +554,42 @@
 
 </div>
 
+<script>
+(async function loadPwnCollege() {
+  const container = document.getElementById('pwn-college-display');
+  if (!container) return;
+  try {
+    const data = await fetch('pwn-proxy.php').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    let out = '';
+    for (const dojo of data.dojos) {
+      out += `<div class="pwn-dojo">
+        <div class="pwn-dojo-header">
+          <a class="pwn-dojo-name" href="${dojo.url}" target="_blank">${dojo.name}</a>
+          <div class="pwn-stats">
+            ${dojo.solves ? `<span class="pwn-stat"><i class="fas fa-flag"></i> ${dojo.solves}</span>` : ''}
+            ${dojo.rank   ? `<span class="pwn-stat"><i class="fas fa-trophy"></i> ${dojo.rank}</span>` : ''}
+          </div>
+        </div>`;
+      if (dojo.modules && dojo.modules.length) {
+        out += `<div class="pwn-modules">`;
+        for (const mod of dojo.modules) {
+          out += `<div class="pwn-module">
+            <span class="pwn-module-name">${mod.name}</span>
+            <div class="pwn-stats-sm">
+              ${mod.solves ? `<span class="pwn-stat-sm"><i class="fas fa-flag"></i> ${mod.solves}</span>` : ''}
+              ${mod.rank   ? `<span class="pwn-stat-sm"><i class="fas fa-trophy"></i> ${mod.rank}</span>` : ''}
+            </div>
+          </div>`;
+        }
+        out += `</div>`;
+      }
+      out += `</div>`;
+    }
+    container.innerHTML = out || `<p style="color:#aaa;font-size:0.82rem">No data yet.</p>`;
+  } catch (e) {
+    container.innerHTML = `<p style="color:#aaa;font-size:0.82rem;padding:0.5rem 0">Could not load data. <a href="https://pwn.college/hacker/zach15james" target="_blank">View profile →</a></p>`;
+  }
+})();
+</script>
 </body>
 </html>
