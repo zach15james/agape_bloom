@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writeups — Zach James</title>
+  <link rel="icon" type="image/x-icon" href="../../archive/images/favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="../../archive/images/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="../../archive/images/favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://agapebloom.com/fonts/fonts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #111;
+      background: #fff;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 4rem;
+    }
+
+    .r-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .r-back {
+      font-size: 0.83rem;
+      color: #888;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .r-back:hover { color: #111; text-decoration: underline; }
+
+    .r-header h1 {
+      font-family: 'GeorgiaPro', 'Georgia', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .r-header .subtitle {
+      font-size: 0.88rem;
+      color: #888;
+    }
+
+    /* --- Writeup entries --- */
+    .writeup-list {
+      margin-top: 0.5rem;
+    }
+
+    .writeup-entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .writeup-entry:first-child { padding-top: 0; }
+    .writeup-entry:last-child { border-bottom: none; }
+
+    .entry-meta {
+      font-size: 0.78rem;
+      color: #bbb;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.3rem;
+      font-family: 'IBM Plex Mono', 'Consolas', monospace;
+    }
+
+    .entry-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .entry-title a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .entry-title a:hover { text-decoration: underline; }
+
+    .entry-desc {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.55;
+    }
+
+    .entry-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: #999;
+      background: #f5f5f5;
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .entry-placeholder {
+      font-size: 0.78rem;
+      color: #ccc;
+      font-style: italic;
+      margin-top: 0.4rem;
+    }
+
+    /* --- Footer --- */
+    .r-footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.8rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .r-footer a { color: #aaa; text-decoration: none; }
+    .r-footer a:hover { color: #666; }
+
+    @media (max-width: 600px) {
+      .page { padding: 2rem 1.25rem 3rem; }
+      .r-header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="r-header">
+    <a href="../" class="r-back">← Zach James</a>
+    <h1>Writeups</h1>
+    <p class="subtitle">Static and dynamic analysis of malware, x86 assembly deep-dives, and vulnerability research.</p>
+  </header>
+
+  <div class="writeup-list">
+
+    <div class="writeup-entry">
+      <div class="entry-meta">— · RE · malware</div>
+      <div class="entry-title"><a href="sql-slammer.html">SQL Slammer: Static Shellcode Analysis</a></div>
+      <div class="entry-desc">Reverse engineering the worm payload via IAT resolution through sqlsort.dll — tracing the propagation logic from the UDP spray to the shellcode entry point.</div>
+      <div class="entry-placeholder">Full writeup coming soon.</div>
+    </div>
+
+    <div class="writeup-entry">
+      <div class="entry-meta">— · RE · DOS · malware</div>
+      <div class="entry-title"><a href="michelangelo.html">Michelangelo.DOS: Full Walkthrough</a></div>
+      <div class="entry-desc">Complete reverse engineering walkthrough of the Michelangelo DOS virus — boot sector infection, payload trigger logic, and disk overwrite mechanics.</div>
+      <div class="entry-placeholder">Full writeup coming soon.</div>
+    </div>
+
+    <div class="writeup-entry">
+      <div class="entry-meta">— · x86 ASM · puzzles</div>
+      <div class="entry-title"><a href="../xchg/xchg.html">xorpd x86 Puzzles: Notes on all 64 exercises</a></div>
+      <div class="entry-desc">Working through every exercise in xorpd's "little black book" — annotated reasoning for each snippet, patterns in bit manipulation, loop invariants, and obfuscation primitives.</div>
+    </div>
+
+  </div>
+
+  <footer class="r-footer">
+    <p><a href="../">Zach James</a> · <a href="https://agapebloom.com">Agape Bloom</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

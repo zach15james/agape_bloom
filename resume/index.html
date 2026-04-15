@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zach James</title>
+  <link rel="icon" type="image/x-icon" href="../archive/images/favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="../archive/images/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="../archive/images/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../archive/images/favicon/site.webmanifest">
   <link rel="stylesheet" href="https://agapebloom.com/fonts/fonts.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,7 +29,7 @@
 
     /* --- Header --- */
     .r-header {
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.25rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid #ddd;
     }
@@ -73,9 +77,32 @@
       color: #111;
     }
 
+    /* --- Nav --- */
+    .r-nav {
+      margin-bottom: 2.5rem;
+      padding-top: 0.9rem;
+      font-size: 0.83rem;
+    }
+
+    .r-nav a {
+      color: #888;
+      text-decoration: none;
+      margin-right: 1.5rem;
+    }
+
+    .r-nav a:hover { color: #111; text-decoration: underline; }
+
     /* --- Intro --- */
     .r-intro {
       margin-bottom: 3rem;
+    }
+
+    .r-throughline {
+      font-size: 1rem;
+      color: #111;
+      font-style: italic;
+      margin-bottom: 1rem;
+      line-height: 1.5;
     }
 
     .r-intro p {
@@ -94,10 +121,6 @@
 
     .cw-core {
       color: #222;
-    }
-
-    .cw-ancillary {
-      color: #999;
     }
 
     /* --- Sections --- */
@@ -122,121 +145,32 @@
       margin-bottom: 0.75rem;
     }
 
-    /* --- Research entry --- */
-    .r-research-entry {
-      font-size: 0.93rem;
-      color: #444;
-      line-height: 1.6;
+    /* --- Project tiers --- */
+    .r-tier {
+      margin-bottom: 1.75rem;
     }
 
-    .r-research-entry .role {
+    .r-tier:last-child { margin-bottom: 0; }
+
+    .r-tier-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #bbb;
       font-weight: 600;
-      color: #111;
-      display: block;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.65rem;
     }
 
-    .r-research-entry .org {
-      color: #666;
-      font-size: 0.88rem;
-    }
-
-    .r-research-entry .detail {
-      margin-top: 0.4rem;
-      color: #444;
-    }
-
-    /* --- Problem entries --- */
-    .r-problem-entry {
-      margin-bottom: 1.5rem;
-    }
-
-    .r-problem-entry:last-child { margin-bottom: 0; }
-
-    .r-problem-entry .entry-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #111;
-      margin-bottom: 0.2rem;
-    }
-
-    .r-problem-entry .entry-title a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    .r-problem-entry .entry-title a:hover { text-decoration: underline; }
-
-    .r-problem-entry .entry-desc {
-      font-size: 0.88rem;
-      color: #555;
-      line-height: 1.55;
-    }
-
-    /* --- Problem solutions --- */
-    .r-problem {
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .r-problem:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .r-problem h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .r-problem .tags {
-      font-size: 0.8rem;
-      color: #999;
-      margin-bottom: 0.6rem;
-    }
-
-    .r-problem .tags span {
-      background: #f5f5f5;
-      padding: 0.15rem 0.5rem;
-      border-radius: 3px;
-      margin-right: 0.4rem;
-    }
-
-    .r-problem p {
-      font-size: 0.92rem;
-      color: #444;
-      margin-bottom: 0.5rem;
-    }
-
-    .r-problem pre {
-      background: #fafafa;
-      border-left: 2px solid #ddd;
-      padding: 0.75rem 1rem;
-      margin: 0.75rem 0;
-      overflow-x: auto;
-      font-family: 'IBM Plex Mono', 'Consolas', monospace;
-      font-size: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .r-problem .notes {
-      font-size: 0.85rem;
-      color: #888;
-      font-style: italic;
-    }
-
-    .r-problem .notes img {
-      display: block;
-      max-width: 100%;
-      margin: 0.75rem 0;
-      border: 1px solid #eee;
-      border-radius: 4px;
-    }
+    .r-tier-dim .r-tier-label { color: #d8d8d8; }
+    .r-tier-dim .r-project-inline { color: #c0c0c0; }
+    .r-tier-dim .r-project-inline a { color: #c0c0c0; font-weight: 400; }
+    .r-tier-dim .r-project-inline .stack { color: #d8d8d8; }
 
     /* --- Projects inline format --- */
     .r-project-inline {
       font-size: 0.93rem;
       color: #444;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
       line-height: 1.55;
     }
 
@@ -257,9 +191,10 @@
     .r-cve-placeholder {
       font-size: 0.88rem;
       color: #888;
-      padding: 0.75rem 1rem;
-      border-left: 2px solid #e0e0e0;
-      margin-bottom: 1.25rem;
+      padding: 0.6rem 0.9rem;
+      border-left: 2px solid #e8e8e8;
+      margin-top: 0.4rem;
+      margin-bottom: 0.55rem;
       line-height: 1.55;
       font-style: italic;
     }
@@ -268,39 +203,37 @@
       font-family: 'IBM Plex Mono', 'Consolas', monospace;
       font-style: normal;
       font-weight: 600;
-      color: #aaa;
+      color: #bbb;
     }
 
     .r-cve-placeholder .cve-status {
       font-style: normal;
       font-size: 0.82em;
-      color: #bbb;
+      color: #ccc;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    /* --- Project / archive links --- */
-    .r-project {
+    /* --- Skills block --- */
+    .skills-block {
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.95;
+    }
+
+    .skill-row {
       display: flex;
-      justify-content: space-between;
+      gap: 0.75rem;
       align-items: baseline;
-      margin-bottom: 0.75rem;
     }
 
-    .r-project a {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #111;
-      text-decoration: none;
-    }
-
-    .r-project a:hover { text-decoration: underline; }
-
-    .r-project .desc {
-      font-size: 0.82rem;
+    .skill-key {
       color: #999;
-      text-align: right;
-      margin-left: 1rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      min-width: 6.5rem;
       flex-shrink: 0;
     }
 
@@ -330,6 +263,31 @@
       margin: 0;
     }
 
+    /* --- Project / archive links --- */
+    .r-project {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+
+    .r-project a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .r-project a:hover { text-decoration: underline; }
+
+    .r-project .desc {
+      font-size: 0.82rem;
+      color: #999;
+      text-align: right;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+
     /* --- Footer --- */
     .r-footer {
       margin-top: 4rem;
@@ -343,13 +301,22 @@
     .r-footer a { color: #aaa; text-decoration: none; }
     .r-footer a:hover { color: #666; }
 
+    /* --- Print / PDF --- */
+    @media print {
+      .r-download, .r-nav { display: none; }
+      .page { padding: 1.5rem 1rem; max-width: 100%; }
+      .r-tier-dim { display: none; }
+      a { color: inherit; }
+    }
+
     /* --- Responsive --- */
     @media (max-width: 600px) {
       .page { padding: 2rem 1.25rem 3rem; }
       .r-header h1 { font-size: 1.5rem; }
       .r-project { flex-direction: column; }
       .r-project .desc { text-align: left; margin-left: 0; margin-top: 0.2rem; }
-      .cw-list { grid-template-columns: 1fr; }
+      .skill-row { flex-direction: column; gap: 0.1rem; }
+      .skill-key { min-width: auto; }
     }
   </style>
 </head>
@@ -358,105 +325,106 @@
 
   <header class="r-header">
     <h1>Zach James</h1>
-    <p class="links"><a href="mailto:zach15james@proton.me">zach15james@proton.me</a></p>
-    <p class="links"><a href="https://www.linkedin.com/in/zrjames/" target="_blank">linkedin.com/in/zrjames</a></p>
-    <p class="links"><a href="https://github.com/zach15james" target="_blank">github.com/zach15james</a></p>
-    <p class="links"><a href="https://gitlab.com/zach15james" target="_blank">gitlab.com/zach15james</a></p>
+    <p class="links">
+      <a href="mailto:zach15james@proton.me">zach15james@proton.me</a>
+      <span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/zrjames/" target="_blank">linkedin.com/in/zrjames</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/zach15james" target="_blank">github.com/zach15james</a>
+      <span class="sep">·</span>
+      <a href="https://gitlab.com/zach15james" target="_blank">gitlab.com/zach15james</a>
+    </p>
     <div class="r-download">
-      <!-- TODO: Replace href with Proton Docs URL when ready -->
       <a href="hiring_zach_james.pdf" class="r-download-btn" download>Download PDF ↓</a>
     </div>
   </header>
 
+  <nav class="r-nav">
+    <a href="writeups/">Writeups</a>
+    <a href="https://agapebloom.com">agapebloom.com</a>
+  </nav>
+
   <!-- ==================== INTRO ==================== -->
   <div class="r-intro">
+    <p class="r-throughline">I train adversarial reasoning across formal, computational, linguistic, and systems-level domains.</p>
+
     <p>I'm a math/cs dual-degree LSU senior who minored in psychology, with a peer-reviewed publication in applied ML and experience building production-grade low-level systems. I built Thymos, a zero-dependency C/CUDA ML library grounded in applied category theory targeting compute clusters and embedded hardware (Jetson Orin). Actively applying to SWE, embedded, RE, defense, and ML roles, but open to quant, policy, actuarial, and risk roles — or any position where I can apply technical depth to solve problems that matter.</p>
 
-    <p class="cw-block"><strong style="color: #888; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;">Relevant coursework:</strong> <span class="cw-core">malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056)</span><span class="cw-ancillary">, AI policy (PADM 4000), intro to I/O psychology (PSYC 3050), cognition (PSYC 3030), applied behavior analysis (PSYC 4080), principles of microeconomics — honors (ECON 2001), intro to Buddhist philosophy — honors (PHIL 1001), elementary German I/II (GERM 1101/2)</span></p>
+    <p class="cw-block"><strong style="color: #888; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;">Relevant coursework:</strong> <span class="cw-core">malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056)</span></p>
   </div>
+
+  <!-- ==================== SKILLS & TOOLS ==================== -->
+  <section class="r-section" id="skills">
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills-block">
+      <div class="skill-row"><span class="skill-key">Languages</span><span>C, C++, CUDA, Python, x86 ASM, Lean</span></div>
+      <div class="skill-row"><span class="skill-key">Systems</span><span>Linux (Arch), Jetson Orin, GDB, IDA Pro, Ghidra, Wireshark</span></div>
+      <div class="skill-row"><span class="skill-key">Math</span><span>numerical linear algebra, optimization, category theory, graph theory</span></div>
+      <div class="skill-row"><span class="skill-key">Clearance</span><span>US citizen — actively applying to cleared positions</span></div>
+    </div>
+  </section>
 
   <!-- ==================== PROJECTS ==================== -->
   <section class="r-section" id="projects">
     <h2>Projects</h2>
-    <div class="r-project-inline">
-      <a href="https://orient.agapebloom.com">Orient</a>: Context-switching reduction engine <span class="stack">[Web]</span>
-    </div>
-    <div class="r-project-inline">
-      <a href="https://vlean.agapebloom.com">Visual Lean</a>: Graph-based proof visualization engine powered by Lean/Coq <span class="stack">[C++, hpx::]</span>
-    </div>
-    <div class="r-project-inline">
-      <a href="https://thymos.agapebloom.com">Thymos</a>: C/CUDA ML library built on category-theoretic design principles <span class="stack">[C, CUDA, Arch Linux]</span>
-    </div>
-    <div class="r-project-inline">
-      <a href="https://terra.agapebloom.com">Terra</a>: Pure-material coffee equipment <span class="stack">[Hardware]</span>
-    </div>
-    <div class="r-project-inline">
-      <a href="https://nomos.agapebloom.com">Steward</a>: Autonomous lawn mowing <span class="stack">[Jetson Orin, C++]</span>
-    </div>
-  </section>
 
-  <!-- ==================== RESEARCH ==================== -->
-  <section class="r-section" id="research">
-    <h2>Research</h2>
-    <p style="font-size: 0.93rem; color: #444; line-height: 1.6; margin: 0;">
-      <a href="https://arxiv.org/pdf/2506.14815" target="_blank"><em>p-Laplacian semi-supervised regression on graphs</em></a> — co-authored with the LSU Math department, accepted by <em>Frontiers in Applied Mathematics and Statistics</em>, in process of publication.
-    </p>
-  </section>
-
-  <!-- ==================== APPLIED PROBLEM SOLVING ==================== -->
-  <section class="r-section" id="problem-solving">
-    <h2>Applied Problem Solving</h2>
-
-    <div class="r-problem-entry" style="margin-bottom: 2rem;">
-      <div class="entry-title"><a href="https://github.com/zach15james/uva" target="_blank">UVA Online Judge</a></div>
-      <div class="entry-desc">ICPC competitive programming — solutions across graph theory, dynamic programming, combinatorics, and number theory.</div>
-      <div style="width: 100%; height: 450px; overflow: hidden; border: 1px solid #eee; border-radius: 4px; margin-top: 0.75rem; position: relative;">
-        <iframe src="https://uhunt.onlinejudge.org/id/1641288" style="width: 100%; height: 1200px; border: none; margin-top: -420px;" loading="lazy"></iframe>
+    <!-- Tier 1: Systems & Security -->
+    <div class="r-tier">
+      <div class="r-tier-label">Systems &amp; Security</div>
+      <div class="r-project-inline">
+        <a href="https://thymos.agapebloom.com">Thymos</a>: Zero-dependency C/CUDA ML library built on category-theoretic design principles <span class="stack">[C, CUDA, Arch Linux, Jetson Orin]</span>
       </div>
-      <p style="font-size: 0.88rem; color: #888; margin-top: 0.6rem;"><a href="https://github.com/zach15james/uva" target="_blank">View solutions on GitHub</a></p>
+      <div class="r-project-inline">
+        <a href="https://nomos.agapebloom.com">Steward</a>: Autonomous lawn mowing robot <span class="stack">[Jetson Orin, C++]</span>
+      </div>
+      <div class="r-project-inline">
+        <a href="https://orient.agapebloom.com">Orient</a>: Context-switching reduction engine <span class="stack">[Web]</span>
+      </div>
+      <div class="r-project-inline">
+        <a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a>: Heap/stack exploitation, shellcoding, ROP chains, format string attacks, kernel primitives <span class="stack">[x86 ASM, C]</span>
+      </div>
+      <div class="r-cve-placeholder">
+        <span class="cve-id">CVE-202X-XXXX</span> <span class="cve-status">[Pending Disclosure]</span> — Discovered and exploited a novel vulnerability in [Target]. [Brief description of vulnerability class, root cause, and impact.]
+      </div>
     </div>
 
-    <div class="r-problem-entry">
-      <div class="entry-title"><a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a></div>
-      <div class="entry-desc">Grinding low-level memory exploitation and assembly — heap/stack pwn, shellcoding, ROP chains, format string attacks, and kernel exploitation primitives.</div>
-      <div style="width: 100%; height: 450px; overflow-y: scroll; border: 1px solid #eee; border-radius: 4px; margin-top: 0.75rem; position: relative;">
-        <a href="https://pwn.college/hacker/zach15james" target="_blank" style="position: absolute; inset: 0; z-index: 1;"></a>
-        <iframe src="https://pwn.college/hacker/zach15james" style="width: 100%; height: 2000px; border: none; margin-top: -120px;" loading="lazy"></iframe>
+    <!-- Tier 2: Formal Methods & Research -->
+    <div class="r-tier">
+      <div class="r-tier-label">Formal Methods &amp; Research</div>
+      <div class="r-project-inline">
+        <a href="https://vlean.agapebloom.com">Visual Lean</a>: Graph-based proof visualization engine powered by Lean/Coq <span class="stack">[C++, hpx::]</span>
+      </div>
+      <div class="r-project-inline">
+        <a href="https://arxiv.org/pdf/2506.14815" target="_blank"><em>p-Laplacian semi-supervised regression on graphs</em></a>: Co-authored with LSU Math dept., accepted by <em>Frontiers in Applied Mathematics and Statistics</em> <span class="stack">[research]</span>
+      </div>
+      <div class="r-project-inline">
+        <a href="https://github.com/zach15james/uva" target="_blank">UVA Online Judge / ICPC</a>: Competitive programming across graph theory, dynamic programming, combinatorics, and number theory <span class="stack">[competitive programming]</span>
+      </div>
+    </div>
+
+    <!-- Tier 3: Other -->
+    <div class="r-tier r-tier-dim">
+      <div class="r-tier-label">Other</div>
+      <div class="r-project-inline">
+        <a href="https://terra.agapebloom.com">Terra</a>: Pure-material coffee equipment <span class="stack">[Hardware]</span>
       </div>
     </div>
   </section>
 
-  <!-- ==================== VULNERABILITY RESEARCH & RE ==================== -->
-  <section class="r-section" id="re">
-    <h2>Vulnerability Research &amp; Reverse Engineering</h2>
-
-    <!-- TODO: Fill in when ready for disclosure. Replace CVE-202X-XXXX with real ID, [Target] with target name/version, and expand description. -->
-    <div class="r-cve-placeholder">
-      <span class="cve-id">CVE-202X-XXXX</span> <span class="cve-status">[Pending Disclosure]</span> — Discovered and exploited a novel vulnerability in [Target]. [Brief description of vulnerability class, root cause, and impact.]
-    </div>
-
-    <a href="michelangelo/" class="r-callout">
-      <h3>Michelangelo.DOS</h3>
-      <p>Full walkthrough of the Michelangelo DOS virus.</p>
-    </a>
-    <a href="xchg/xchg.html" class="r-callout">
-      <h3>xorpd x86 Assembly Puzzles</h3>
-      <p>My notes on all 64 exercises from the "little black book."</p>
+  <!-- ==================== WRITEUPS ==================== -->
+  <section class="r-section" id="writeups">
+    <h2>Writeups</h2>
+    <p style="font-size: 0.93rem; color: #444; margin-bottom: 1rem;">Static and dynamic analysis of malware, x86 assembly deep-dives, and vulnerability research. The proof-of-work behind the projects above.</p>
+    <a href="writeups/" class="r-callout">
+      <h3>View all writeups →</h3>
+      <p>SQL Slammer shellcode · Michelangelo.DOS walkthrough · xorpd x86 Puzzles</p>
     </a>
   </section>
 
   <!-- ==================== ARCHIVE ==================== -->
   <section class="r-section" id="archive">
     <h2>Archive</h2>
-    <p style="color: #555; font-size: 0.9rem; margin-bottom: 1rem;">Book notes, course notes, and essays from the <a href="https://agapebloom.com/archive/">Agape Bloom archive</a>.</p>
-    <div class="r-project">
-      <a href="https://agapebloom.com/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
-      <span class="desc">Lencioni</span>
-    </div>
-    <div class="r-project">
-      <a href="https://agapebloom.com/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
-      <span class="desc">Dostoevsky</span>
-    </div>
+    <p style="color: #555; font-size: 0.9rem; margin-bottom: 1rem;">Selected notes from ongoing reading across philosophy, organizational theory, and literature — a signal of intellectual range, not a reading list. From the <a href="https://agapebloom.com/archive/">Agape Bloom archive</a>.</p>
     <div class="r-project">
       <a href="https://agapebloom.com/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
       <span class="desc">Watts</span>
@@ -466,6 +434,10 @@
       <span class="desc">Simon et al.</span>
     </div>
     <div class="r-project">
+      <a href="https://agapebloom.com/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
+      <span class="desc">Lencioni</span>
+    </div>
+    <div class="r-project">
       <a href="https://agapebloom.com/archive/course-notes/operating_systems.html">Operating Systems Notes</a>
       <span class="desc">Course notes</span>
     </div>
@@ -473,10 +445,9 @@
 
   <footer class="r-footer">
     <p>&copy; <a href="https://agapebloom.com">Agape Bloom</a>. All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-style: italic;">Site in active development — some pages may be templates or non-functional. <a href="mailto:zach15james@proton.me">Email me</a> if something looks off.</p>
   </footer>
 
 </div>
-
-
 </body>
 </html>
