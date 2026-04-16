@@ -187,33 +187,6 @@
       font-size: 0.85em;
     }
 
-    /* --- CVE placeholder --- */
-    .r-cve-placeholder {
-      font-size: 0.88rem;
-      color: #888;
-      padding: 0.6rem 0.9rem;
-      border-left: 2px solid #e8e8e8;
-      margin-top: 0.4rem;
-      margin-bottom: 0.55rem;
-      line-height: 1.55;
-      font-style: italic;
-    }
-
-    .r-cve-placeholder .cve-id {
-      font-family: 'IBM Plex Mono', 'Consolas', monospace;
-      font-style: normal;
-      font-weight: 600;
-      color: #bbb;
-    }
-
-    .r-cve-placeholder .cve-status {
-      font-style: normal;
-      font-size: 0.82em;
-      color: #ccc;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
     /* --- Skills block --- */
     .skills-block {
       font-size: 0.88rem;
@@ -347,11 +320,17 @@
   <!-- ==================== INTRO ==================== -->
   <div class="r-intro">
     <p class="r-throughline">I train adversarial reasoning across formal, computational, linguistic, and systems-level domains.</p>
-
-    <p>I'm a math/cs dual-degree LSU senior who minored in psychology, with a peer-reviewed publication in applied ML and experience building production-grade low-level systems. I built Thymos, a zero-dependency C/CUDA ML library grounded in applied category theory targeting compute clusters and embedded hardware (Jetson Orin). Actively applying to SWE, embedded, RE, defense, and ML roles, but open to quant, policy, actuarial, and risk roles — or any position where I can apply technical depth to solve problems that matter.</p>
-
-    <p class="cw-block"><strong style="color: #888; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;">Relevant coursework:</strong> <span class="cw-core">malware analysis &amp; reverse engineering (CSC 4560), operating systems (CSC 4103), computer networks (CSC 4501), competitive programming (CSC 2700), applied optimization theory (MATH 4025), numerical linear algebra (MATH 4064), abstract algebra II (MATH 4201), advanced calculus of several variables (MATH 4035), mathematical statistics (MATH 4056)</span></p>
+    <p>I build production-grade low-level systems and have a peer-reviewed publication in applied ML. Applying to SWE, embedded, RE, defense, and ML roles — open to any position where technical depth matters.</p>
   </div>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <section class="r-section" id="education">
+    <h2>Education</h2>
+    <div class="r-project-inline">
+      <strong>Louisiana State University</strong> — B.S. Mathematics &amp; B.S. Computer Science, Psychology minor
+    </div>
+    <p class="cw-block"><strong style="color: #888; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;">Coursework:</strong> <span class="cw-core">malware analysis &amp; reverse engineering · operating systems · computer networks · competitive programming · applied optimization · numerical linear algebra · abstract algebra II · advanced calculus of several variables · mathematical statistics</span></p>
+  </section>
 
   <!-- ==================== SKILLS & TOOLS ==================== -->
   <section class="r-section" id="skills">
@@ -375,16 +354,10 @@
         <a href="https://thymos.agapebloom.com">Thymos</a>: Zero-dependency C/CUDA ML library built on category-theoretic design principles <span class="stack">[C, CUDA, Arch Linux, Jetson Orin]</span>
       </div>
       <div class="r-project-inline">
-        <a href="https://nomos.agapebloom.com">Steward</a>: Autonomous lawn mowing robot <span class="stack">[Jetson Orin, C++]</span>
-      </div>
-      <div class="r-project-inline">
         <a href="https://orient.agapebloom.com">Orient</a>: Context-switching reduction engine <span class="stack">[Web]</span>
       </div>
       <div class="r-project-inline">
         <a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a>: Heap/stack exploitation, shellcoding, ROP chains, format string attacks, kernel primitives <span class="stack">[x86 ASM, C]</span>
-      </div>
-      <div class="r-cve-placeholder">
-        <span class="cve-id">CVE-202X-XXXX</span> <span class="cve-status">[Pending Disclosure]</span> — Discovered and exploited a novel vulnerability in [Target]. [Brief description of vulnerability class, root cause, and impact.]
       </div>
     </div>
 
@@ -402,22 +375,27 @@
       </div>
     </div>
 
-    <!-- Tier 3: Other -->
-    <div class="r-tier r-tier-dim">
-      <div class="r-tier-label">Other</div>
-      <div class="r-project-inline">
-        <a href="https://terra.agapebloom.com">Terra</a>: Pure-material coffee equipment <span class="stack">[Hardware]</span>
-      </div>
-    </div>
   </section>
 
   <!-- ==================== WRITEUPS ==================== -->
   <section class="r-section" id="writeups">
     <h2>Writeups</h2>
     <p style="font-size: 0.93rem; color: #444; margin-bottom: 1rem;">Static and dynamic analysis of malware, x86 assembly deep-dives, and vulnerability research. The proof-of-work behind the projects above.</p>
-    <a href="writeups/" class="r-callout">
-      <h3>View all writeups →</h3>
-      <p>SQL Slammer shellcode · Michelangelo.DOS walkthrough · xorpd x86 Puzzles</p>
+    <a href="https://agapebloom.com/archive/documents/sqlslammer.txt" target="_blank" class="r-callout">
+      <h3>SQL Slammer: Static Shellcode Analysis →</h3>
+      <p>Reverse engineering the worm payload via IAT resolution through sqlsort.dll.</p>
+    </a>
+    <a href="https://agapebloom.com/archive/documents/michelangelo.html" target="_blank" class="r-callout">
+      <h3>Michelangelo.DOS: Full Walkthrough →</h3>
+      <p>Boot sector infection, payload trigger logic, and disk overwrite mechanics.</p>
+    </a>
+    <a href="https://agapebloom.com/archive/documents/dos7.pdf" target="_blank" class="r-callout">
+      <h3>DOS7: Reverse Engineering Notes →</h3>
+      <p>Disassembly, infection mechanics, and payload analysis of the DOS7 sample.</p>
+    </a>
+    <a href="https://github.com/zach15james/xchg-rax-rax" target="_blank" class="r-callout">
+      <h3>xorpd x86 Puzzles: All 64 Exercises →</h3>
+      <p>Scanned handwritten notes for every exercise in xorpd's "little black book".</p>
     </a>
   </section>
 
@@ -445,7 +423,6 @@
 
   <footer class="r-footer">
     <p>&copy; <a href="https://agapebloom.com">Agape Bloom</a>. All rights reserved.</p>
-    <p style="margin-top: 0.5rem; font-style: italic;">Site in active development — some pages may be templates or non-functional. <a href="mailto:zach15james@proton.me">Email me</a> if something looks off.</p>
   </footer>
 
 </div>

