@@ -368,19 +368,19 @@
     <p style="font-size: 0.93rem; color: #444; margin-bottom: 1rem;">Static and dynamic analysis of malware, x86 assembly deep-dives, and vulnerability research. The proof-of-work behind the projects above.</p>
     <a href="https://agapebloom.com/archive/documents/sqlslammer.txt" target="_blank" class="r-callout">
       <h3>SQL Slammer: Static Shellcode Analysis →</h3>
-      <p>Reverse engineering the worm payload via IAT resolution through sqlsort.dll.</p>
+      <p>376-byte UDP/1434 worm (CVE-2002-0649). Returns into a sqlsort.dll trampoline at 0x42B0C9DC, walks that DLL's IAT for LoadLibraryA / GetProcAddress, builds API names on the stack, then infinite-loops sendto() against a GetTickCount-seeded LCG. Memory-only, no persistence.</p>
     </a>
     <a href="https://agapebloom.com/archive/documents/michelangelo.html" target="_blank" class="r-callout">
-      <h3>Michelangelo.DOS: Full Walkthrough →</h3>
-      <p>Boot sector infection, payload trigger logic, and disk overwrite mechanics.</p>
+      <h3>Michelangelo: Full Walkthrough →</h3>
+      <p>1991 MBR/floppy boot virus, Stoned-family. Hooks INT 13h, steals 2&nbsp;KB of conventional memory by decrementing the BIOS memory-size word at 0x413, and hides the original boot sector on an unused track. On March 6 (Michelangelo's birthday) overwrites successive sectors across every head.</p>
     </a>
     <a href="https://agapebloom.com/archive/documents/dos7.pdf" target="_blank" class="r-callout">
       <h3>DOS7: Reverse Engineering Notes →</h3>
-      <p>Disassembly, infection mechanics, and payload analysis of the DOS7 sample.</p>
+      <p>419-byte DOS .COM infector by Lucifer Messiah / Anarkick Systems (1993). On entry, swaps the INT 3 and INT 21h IVT entries — every 1-byte 0xCC opcode now invokes a DOS service, saving bytes and tripping debuggers that breakpoint via INT 3. FindFirst/Next over *.C?M targets, taunt strings on completion.</p>
     </a>
     <a href="https://agapebloom.com/archive/documents/mystery64.txt" target="_blank" class="r-callout">
       <h3>mystery64: Decompiled Malware Analysis →</h3>
-      <p>Annotated Hex-Rays output of an x86_64 bot — beacon construction, anti-debug timing checks, and obfuscation stripped down to intent.</p>
+      <p>Linux x86_64 ELF beacon (course sample, co-analyzed). HTTP-POSTs hostname, username, and a byte-XOR rolling-hash bot ID to an XOR-decoded C2; clock() timing check for debuggers; falls back to a glibc-LCG DGA — three date-keyed .com candidates per day. Most of the binary is dead-stub obfuscation around a small real code surface.</p>
     </a>
     <a href="https://github.com/zach15james/xorpd" target="_blank" rel="noopener noreferrer" class="r-callout">
       <h3>xorpd x86 Puzzles: All 64 Exercises →</h3>
