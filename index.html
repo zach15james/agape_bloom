@@ -16,23 +16,27 @@
   <div class="container">
 
     <section class="landing-intro">
-      <p class="tagline">Low-level systems. Reverse engineering. Applied research.</p>
-      <p>Low-level software, reverse engineering, and applied research. We build what we use, and we use what we build.</p>
+      <p class="tagline">AI-native software development. Forward Deployed Engineering Solutions. Low-Level Development. Reverse engineering. Applied research.</p>
+      <p>Discuss your needs and let's plan a time to meet — schedule a time with my assistant.</p>
     </section>
 
-    <section class="landing-section">
-      <h2>Projects</h2>
-      <div class="landing-grid">
-        <a href="/thymos/" class="landing-card">
-          <h3>Thymos <span style="font-size: 0.85rem; color: #888; font-weight: normal;">(in progress)</span></h3>
-          <p>Zero-dependency C runtime for typed tensor graphs and memory-planned execution. Targeting edge deployment.</p>
-        </a>
-        <a href="/resume/" class="landing-card">
-          <h3>Zach James</h3>
-          <p>Background, writeups, and research — systems work, reverse engineering, and applied ML.</p>
-        </a>
+    <!-- Local WASM assistant placeholder (interactive Groq/Claude-Code style terminal coming later) -->
+    <div class="assistant-window">
+      <div class="window-bar">
+        <span class="window-title">local-assistant • wasm</span>
+        <span class="window-status">PREVIEW — Groq / on-device LLM coming soon</span>
       </div>
-    </section>
+      <div class="window-content">
+        <div class="chat-line">&gt; Hi. I can help you explore low-level systems, agentic tooling, reverse engineering, or forward-deployed engineering projects.</div>
+        <div class="chat-line" style="margin-top:0.35rem;">&gt; Discuss your needs and let's plan a time to meet / schedule a time with my assistant.</div>
+        <div class="chat-line prompt" style="margin-top:0.55rem;">Ready when you are.</div>
+      </div>
+      <div class="window-footer">
+        <a href="mailto:info@agapebloom.com">email to schedule →</a>
+        <span style="margin:0 7px; color:#444;">|</span>
+        <span style="font-size:0.68rem; color:#888;">full interactive chat loading in WASM soon</span>
+      </div>
+    </div>
 
     <section class="landing-section">
       <h2>Services</h2>
@@ -78,10 +82,17 @@
       <p style="margin-top:0.75rem; font-size:0.9rem;">For scoped engagements or productized builds, <a href="mailto:info@agapebloom.com">get in touch</a>. Full proof in the <a href="/resume/">resume</a> and <a href="/archive/">archive</a>.</p>
     </section>
 
-    <section class="landing-section">
-      <h2>About</h2>
-      <p>Practitioner-led. For consulting inquiries, <a href="mailto:info@agapebloom.com">get in touch</a>. For background, see <a href="/resume/">Zach James</a>.</p>
-    </section>
+    <!-- Featured work (no 'Projects' heading) -->
+    <div class="landing-grid" style="max-width:700px; margin: 0 auto; padding: 0 1rem 1.5rem;">
+      <a href="/thymos/" class="landing-card">
+        <h3>Thymos <span style="font-size: 0.85rem; color: #888; font-weight: normal;">(open source)</span></h3>
+        <p>Zero-dependency C runtime for typed tensor graphs and memory-planned execution. Targeting edge deployment.</p>
+      </a>
+      <a href="/resume/" class="landing-card">
+        <h3>Zach James</h3>
+        <p>Background, writeups, and research — systems work, reverse engineering, and applied ML.</p>
+      </a>
+    </div>
 
     <section class="landing-section">
       <h2>Archive &amp; Lab</h2>

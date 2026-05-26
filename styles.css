@@ -794,6 +794,73 @@ a:hover {
   }
 }
 
+/* Assistant / local WASM chat window placeholder (terminal aesthetic) */
+.assistant-window {
+  max-width: 700px;
+  margin: 0.25rem auto 1.25rem;
+  background: #00002a;
+  border: 1px solid #ffce00;
+  border-radius: 6px;
+  font-family: 'Courier New', 'Menlo', monospace;
+  font-size: 0.9rem;
+  color: #ffce00;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 42, 0.35);
+}
+
+.window-bar {
+  background: #000018;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  border-bottom: 1px solid #ffce00;
+  letter-spacing: 0.3px;
+}
+
+.window-title {
+  font-weight: bold;
+}
+
+.window-status {
+  font-size: 0.62rem;
+  color: #ffaa00;
+  opacity: 0.9;
+}
+
+.window-content {
+  padding: 13px 15px;
+  line-height: 1.42;
+}
+
+.window-content .chat-line {
+  margin-bottom: 4px;
+}
+
+.window-content .prompt {
+  color: #fff;
+  font-style: italic;
+}
+
+.window-footer {
+  background: #000018;
+  padding: 7px 14px;
+  border-top: 1px solid #ffce00;
+  text-align: right;
+  font-size: 0.78rem;
+}
+
+.window-footer a {
+  color: #ffce00;
+  text-decoration: none;
+}
+
+.window-footer a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
 /* ==================================================== */
 /* === PRODUCT PAGES                                === */
 /* ==================================================== */
