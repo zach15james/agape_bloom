@@ -24,10 +24,10 @@ class myFooter extends HTMLElement {
             <h4>Recent Articles</h4>
             <div class="articles_cont">
               <a href="https://agapebloom.com/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
-              <a href="https://agapebloom.com/archive/literary-synthesis/notes_from_underground.html">Dostoevsky's Warning</a>
               <a href="https://agapebloom.com/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations for an
                 Information-Rich World</a>
               <a href="https://agapebloom.com/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
+              <a href="https://agapebloom.com/archive/literary-synthesis/six-easy-pieces.html">Feynman: Six Easy Pieces</a>
             </div>
           </div>
           <div class="footer-links">
