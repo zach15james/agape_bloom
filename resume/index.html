@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="../archive/images/favicon/favicon.svg">
   <link rel="apple-touch-icon" href="../archive/images/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../archive/images/favicon/site.webmanifest">
-  <link rel="stylesheet" href="https://agapebloom.com/fonts/fonts.css">
+  <link rel="stylesheet" href="/fonts/fonts.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -29,8 +29,8 @@
 
     /* --- Header --- */
     .r-header {
-      margin-bottom: 1.25rem;
-      padding-bottom: 1.5rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid #ddd;
     }
 
@@ -57,7 +57,7 @@
 
     /* --- Download button --- */
     .r-download {
-      margin-top: 1.25rem;
+      margin-top: 0.9rem;
     }
 
     .r-download-btn {
@@ -79,8 +79,8 @@
 
     /* --- Nav --- */
     .r-nav {
-      margin-bottom: 2.5rem;
-      padding-top: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding-top: 0.6rem;
       font-size: 0.83rem;
     }
 
@@ -114,9 +114,9 @@
 
     /* --- Coursework --- */
     .cw-block {
-      margin-top: 1.25rem;
+      margin-top: 0.9rem;
       font-size: 0.85rem;
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
     .cw-core {
@@ -125,7 +125,7 @@
 
     /* --- Sections --- */
     .r-section {
-      margin-bottom: 3rem;
+      margin-bottom: 1.75rem;
     }
 
     .r-section h2 {
@@ -263,8 +263,8 @@
 
     /* --- Footer --- */
     .r-footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
       border-top: 1px solid #ddd;
       font-size: 0.8rem;
       color: #aaa;
@@ -307,184 +307,160 @@
     </p>
     <p class="links" style="margin-top:0.25rem; font-size:0.78rem; color:#888;">Willing to relocate • US Citizen</p>
     <div class="r-download">
-      <a href="zachary_james_resume.pdf" class="r-download-btn" download>Download Latest PDF ↓</a>
+      <a href="zachary_james_resume.pdf" class="r-download-btn" download>Resume</a>
     </div>
   </header>
 
   <nav class="r-nav">
-    <a href="writeups/">Writeups</a>
+    <a href="writeups/">Security</a>
     <a href="https://github.com/zach15james" target="_blank">GitHub</a>
     <a href="https://github.com/zach15james/xorpd" target="_blank">xorpd</a>
-    <a href="https://agapebloom.com">agapebloom.com</a>
+    <a href="/">agapebloom.com</a>
   </nav>
 
-  <!-- ==================== INTRO ==================== -->
-  <div class="r-intro">
-    <p>Recent dual-degree graduate with published ML research, full-stack SWE experience, hands-on low-level cyber expertise. Seeking software engineering and cyber (reverse engineering) roles where I can contribute from day one.</p>
-  </div>
+  <!-- ==================== RESEARCH ==================== -->
+  <section class="r-section" id="research">
+    <h2>Research</h2>
+    <div class="r-project-inline">
+      <a href="https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2026.1722578/full" target="_blank" style="font-weight:500;"><em>p-Laplacian semi-supervised regression on graphs</em></a>
+      <span style="color:#888; font-size:0.85em; margin-left:0.5rem;">Frontiers in Applied Mathematics and Statistics</span>
+    </div>
+    <p style="font-size:0.9rem; color:#444; margin:0.25rem 0 0 0.1rem;">Co-authored. Novel graph-based semi-supervised ML methods for body composition prediction from limited labeled data.</p>
+  </section>
+
+  <!-- ==================== SOFTWARE ==================== -->
+  <section class="r-section" id="software">
+    <h2>Software</h2>
+
+    <div class="skills-block" style="font-size:0.9rem; line-height:1.6; margin-bottom:0.6rem;">
+      <div class="skill-row"><span class="skill-key">Languages</span> <span>C, C++, Python, JavaScript, PHP, SQL</span></div>
+      <div class="skill-row"><span class="skill-key">Web / Systems</span> <span>React, Firebase, Tailwind, REST, WASM, full-stack delivery</span></div>
+      <div class="skill-row"><span class="skill-key">ML / DS</span> <span>PyTorch, scikit-learn, NumPy, semi-supervised methods</span></div>
+    </div>
+
+    <div class="r-project-inline" style="margin-bottom:0.25rem;">
+      <a href="/thymos/">Thymos</a> <em>(in progress)</em>: Zero-dependency C runtime for typed tensor graphs and memory-planned execution. Targets edge (C, arenas, multithreading). <span class="stack">[C, planned CUDA]</span>
+    </div>
+    <div class="r-project-inline">
+      <a href="https://github.com/zach15james/OpTraxx-public" target="_blank">OpTraxx</a> — Full-stack task management (React, Firebase, Vite, Tailwind)
+    </div>
+
+    <div class="r-project-inline" style="margin-top:0.5rem;">
+      <strong>AWS Certified Cloud Practitioner</strong>
+    </div>
+  </section>
+
+  <!-- ==================== SECURITY ==================== -->
+  <section class="r-section" id="security">
+    <h2>Security</h2>
+
+    <div class="r-project-inline">
+      <a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a> — Heap/stack exploits, shellcoding, ROP, kernel primitives <span class="stack">[x86 ASM, C]</span>
+    </div>
+    <div class="r-project-inline">
+      Active: Hack the Box, OpenSecurityTraining2 (OST2)
+    </div>
+    <div class="r-project-inline" style="margin-top:0.35rem;">
+      <strong>CompTIA Security+</strong>
+    </div>
+
+    <div style="margin-top:0.6rem;">
+      <div class="r-project-inline" style="margin-bottom:0.2rem;">
+        <strong>Reverse Engineering</strong>
+      </div>
+      <a href="/archive/documents/sqlslammer.txt" target="_blank" class="r-callout" style="margin-bottom:0.4rem;">
+        <h3>SQL Slammer (376-byte worm) →</h3>
+      </a>
+      <a href="/archive/documents/michelangelo.html" target="_blank" class="r-callout" style="margin-bottom:0.4rem;">
+        <h3>Michelangelo.DOS (MBR boot virus) →</h3>
+      </a>
+      <a href="/archive/documents/dos7.pdf" target="_blank" class="r-callout" style="margin-bottom:0.4rem;">
+        <h3>DOS7 (INT 3/21h infector) →</h3>
+      </a>
+      <a href="/archive/documents/mystery64.txt" target="_blank" class="r-callout" style="margin-bottom:0.4rem;">
+        <h3>mystery64 (x86_64 ELF beacon) →</h3>
+      </a>
+      <div class="r-callout" style="margin-bottom:0.35rem;">
+        <a href="https://github.com/zach15james/xorpd/tree/main/xchg_rax_rax" target="_blank" rel="noopener noreferrer" style="font-weight:600;">xchg rax, rax</a>
+        <span style="color:#666; font-size:0.85rem;">("black book") – 64 x86 puzzles</span>
+      </div>
+      <div class="r-callout" style="margin-bottom:0.35rem;">
+        <a href="https://github.com/zach15james/xorpd/tree/main/ReversingHero" target="_blank" rel="noopener noreferrer" style="font-weight:600;">ReversingHero</a>
+        <span style="color:#666; font-size:0.85rem;">– xorpd reversing training materials</span>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== EDUCATION ==================== -->
   <section class="r-section" id="education">
     <h2>Education</h2>
+
     <div class="r-project-inline">
-      <strong>Louisiana State University</strong> — B.S. Computer Science, Minor Psychology &nbsp;|&nbsp; B.S. Mathematics, Honors Minor &nbsp;·&nbsp; Baton Rouge, LA
-      <span style="float:right; color:#888; font-size:0.85em;">Graduated May 2026</span>
+      <strong>Louisiana State University</strong> — B.S. Mathematics (Honors Minor) &nbsp;·&nbsp; Baton Rouge, LA
+      <span style="float:right; color:#888; font-size:0.85em;">May 2026</span>
     </div>
-    <div class="cw-block" style="margin-top:0.5rem;">
-      <strong style="color:#888; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;">Awards:</strong>
-      Honors College, Dean’s List, President’s Honor Roll, S&amp;B Engineers Scholarship, ICPC Competitive Programming team, Startup LSU, CTO LSU’s Emerging Technologies Club, <strong>CompTIA Security+</strong>
-    </div>
-    <div class="cw-block">
-      <strong style="color:#888; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;">Selected Coursework:</strong>
-      Abstract Algebra II, Applied Optimization Theory, Advanced Calculus of Several Variables, Numerical Linear Algebra, OS, Computer Networks, OOP, Malware Analysis, AI, Math Stats, Software Systems
+    <div class="cw-block" style="margin-top:0.35rem;">
+      <strong style="color:#888; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;">Mathematics Coursework</strong>
+      <div style="margin-top:0.2rem; font-size:0.82rem; line-height:1.45; color:#333;">
+        <strong>Honors Calculus Sequence:</strong> Honors Differential &amp; Integral Calculus (MATH 1551), Honors Analytic Geometry &amp; Calculus II (MATH 1553), Multidimensional Calculus (MATH 2057)<br>
+        <strong>Advanced Calculus:</strong> Advanced Calculus I (MATH 4031), Advanced Calculus of Several Variables (MATH 4035)<br>
+        <strong>Abstract Algebra:</strong> Abstract Algebra I (MATH 4200), Abstract Algebra II (MATH 4201)<br>
+        <strong>Differential Equations &amp; Linear Algebra:</strong> Elementary Differential Equations &amp; Linear Algebra (MATH 2090)<br>
+        <strong>Probability &amp; Statistics:</strong> Probability (MATH 3355), Mathematical Statistics (MATH 4056)<br>
+        <strong>Numerical &amp; Applied Mathematics:</strong> Numerical Methods (CSC 2262), Numerical Linear Algebra (MATH 4064), Numerical Analysis (MATH 4065), Optimization Theory – Applications (MATH 4025)<br>
+        <strong>Other:</strong> College Algebra (MATH 1021), Plane Trigonometry (MATH 1022), Vertically Integrated Research (MATH 4997)
+      </div>
     </div>
 
-    <div class="r-project-inline" style="margin-top:1rem; border-top:1px solid #f0f0f0; padding-top:0.75rem;">
+    <div class="r-project-inline" style="margin-top:0.7rem;">
+      <strong>Louisiana State University</strong> — B.S. Computer Science (Minor: Psychology) &nbsp;·&nbsp; Baton Rouge, LA
+      <span style="float:right; color:#888; font-size:0.85em;">May 2026</span>
+    </div>
+    <div class="cw-block" style="margin-top:0.35rem;">
+      <strong style="color:#888; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;">Computer Science &amp; Math-Heavy Technical Coursework</strong>
+      <div style="margin-top:0.2rem; font-size:0.82rem; line-height:1.45; color:#333;">
+        <strong>Core Theory &amp; Foundations:</strong> Discrete Structures (CSC 2259), Advanced Data Structures (CSC 3102), Introduction to Competitive Programming (CSC 2700 – multiple semesters)<br>
+        <strong>Systems:</strong> Computer Organization and Design (CSC 3501), Operating Systems (CSC 4103), Computer Networks (CSC 4501), Software Systems Development (CSC 4330), Introduction to Database Management Systems (CSC 4402)<br>
+        <strong>Artificial Intelligence &amp; Languages:</strong> Artificial Intelligence (CSC 4444), Programming Languages (CSC 4101)<br>
+        <strong>Security &amp; Low-Level:</strong> Malware Analysis and Reverse Engineering (CSC 4360)
+      </div>
+    </div>
+
+    <div class="cw-block" style="margin-top:0.6rem;">
+      <strong style="color:#888; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;">Awards &amp; Activities:</strong>
+      Honors College, Dean’s List, President’s Honor Roll, S&amp;B Engineers Scholarship, ICPC Competitive Programming team, Startup LSU, CTO of LSU’s Emerging Technologies Club
+    </div>
+
+    <div class="r-project-inline" style="margin-top:0.7rem; border-top:1px solid #f0f0f0; padding-top:0.6rem;">
       <strong>Southern Methodist University</strong> — M.S. Computer Science, Cybersecurity &nbsp;·&nbsp; Dallas, TX
-      <span style="float:right; color:#888; font-size:0.85em;">Admitted May 2026 (part-time)</span>
+      <span style="float:right; color:#888; font-size:0.85em;">Incoming (part-time, Fall 2026)</span>
     </div>
-    <p style="font-size:0.85rem; color:#666; margin:0.25rem 0 0;">Pursuing alongside full-time work.</p>
-  </section>
-
-  <!-- ==================== EXPERIENCE ==================== -->
-  <section class="r-section" id="experience">
-    <h2>Experience</h2>
-
-    <div class="r-project-inline">
-      <strong>LSU Department of Mathematics</strong> — Undergraduate Research Assistant (Python, scikit-learn, PyTorch, NumPy)
-      <span style="float:right; color:#888; font-size:0.82em;">May 2024 – Mar 2026</span>
-    </div>
-    <ul style="margin:0.3rem 0 1rem 1.1rem; font-size:0.9rem; color:#444; line-height:1.55;">
-      <li>Developed ML (regressions, neural nets, novel p-Laplacian semi-supervised regression) to predict body composition metrics; implemented thread pools &amp; custom methods. <a href="https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2026.1722578/full" target="_blank" style="font-size:0.8em;">[paper]</a></li>
-    </ul>
-
-    <div class="r-project-inline">
-      <strong>Brick Bridge Consulting</strong> — Full-Stack Software Engineer (Python, JS, PHP, HTML/CSS, Zapier) — Louisville, KY (Hybrid)
-      <span style="float:right; color:#888; font-size:0.82em;">Dec 2022 – Jan 2024</span>
-    </div>
-    <ul style="margin:0.3rem 0 1rem 1.1rem; font-size:0.9rem; color:#444; line-height:1.55;">
-      <li>Independently designed &amp; delivered HRM, billing, financial dashboards + onboarding workflows for medical staffing firms.</li>
-      <li>Built internal analytics/financial tools (invoice gen, rate-card calculators, tax logic, exec dashboards) for data-driven decisions.</li>
-      <li>Developed multi-interface CRUD app for medical-legal startup (PHP API, HTML/CSS, leveled access control).</li>
-    </ul>
-
-    <div class="r-project-inline">
-      <strong>LSU Division of Computer Science &amp; Engineering</strong> — Undergraduate TA (Java)
-      <span style="float:right; color:#888; font-size:0.82em;">Dec 2022 – May 2024</span>
-    </div>
-    <ul style="margin:0.3rem 0 0.75rem 1.1rem; font-size:0.9rem; color:#444; line-height:1.55;">
-      <li>TA for 100+ student Java labs: grading, proctoring, one-on-one tutoring.</li>
-    </ul>
-  </section>
-
-  <!-- ==================== SKILLS ==================== -->
-  <section class="r-section" id="skills" style="margin-bottom:2rem;">
-    <h2>Skills</h2>
-    <div class="skills-block" style="font-size:0.9rem; line-height:1.7;">
-      <div class="skill-row"><span class="skill-key">Languages</span> <span>C, C++, Python (scikit-learn, PyTorch, NumPy), Java, JavaScript, PHP, SQL</span></div>
-      <div class="skill-row"><span class="skill-key">ML / DS</span> <span>Neural nets, regression, semi-supervised learning, p-Laplacian methods</span></div>
-      <div class="skill-row"><span class="skill-key">Web / Full-stack</span> <span>React, HTML/CSS, Firebase, Tailwind, REST APIs, CRUD, Zapier</span></div>
-      <div class="skill-row"><span class="skill-key">Security</span> <span>Ghidra, IDA Pro, gdb, Linux, sockets, malware RE, CompTIA Security+</span></div>
-    </div>
-  </section>
-
-<!-- ==================== PROJECTS ==================== -->
-  <section class="r-section" id="projects">
-    <h2>Projects &amp; Activities</h2>
-
-    <div class="r-tier">
-      <div class="r-tier-label">Systems &amp; Security</div>
-      <div class="r-project-inline">
-        <a href="https://thymos.agapebloom.com">Thymos</a> <em>(in progress)</em>: Zero-dependency C runtime for typed tensor graphs, memory-planned execution. Targets edge (C, arena alloc, multithreading). <span class="stack">[C, planned CUDA]</span>
-      </div>
-      <div class="r-project-inline">
-        <a href="https://pwn.college/hacker/zach15james" target="_blank">pwn.college</a>: Heap/stack exploits, shellcoding, ROP, kernel primitives <span class="stack">[x86 ASM, C]</span>
-      </div>
-      <div class="r-project-inline">
-        Active: Hack the Box, Pwn College, OpenSecurityTraining2 (OST2)
-      </div>
-    </div>
-
-    <div class="r-tier">
-      <div class="r-tier-label">Research &amp; Formal</div>
-      <div class="r-project-inline">
-        <a href="https://arxiv.org/pdf/2506.14815" target="_blank"><em>p-Laplacian semi-supervised regression on graphs</em></a> — Co-authored, accepted <em>Frontiers in Applied Mathematics and Statistics</em> <span class="stack">[Python, ML]</span>
-      </div>
-      <div class="r-project-inline">
-        <a href="https://github.com/zach15james/uva" target="_blank">UVA ICPC-style</a> (graph theory, DP, combinatorics) + ICPC team at LSU
-      </div>
-    </div>
-
-    <div class="r-tier">
-      <div class="r-tier-label">Selected Class &amp; Personal</div>
-      <div class="r-project-inline">
-        <a href="https://github.com/zach15james/OpTraxx-public" target="_blank">OpTraxx</a> — Task management (React, Firebase, Vite, Tailwind) <span class="stack">[full-stack]</span>
-      </div>
-      <div class="r-project-inline">
-        MathDoku — Sudoku-style game from scratch (C++, CMake, CTest, Raylib)
-      </div>
-      <div class="r-project-inline">
-        Database rideshare app (sqlite C++ API, MySQL, HTML/CSS)
-      </div>
-      <div class="r-project-inline">
-        Obedient Jarvis — Private local LLM inference network (Jetson Nano + repurposed server, Tailscale, llama-server)
-      </div>
-      <div class="r-project-inline">
-        Reverse engineering writeups &amp; puzzles: <a href="writeups/">resume.agapebloom.com/writeups</a>, <a href="https://github.com/zach15james/xorpd" target="_blank">xorpd</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== WRITEUPS ==================== -->
-  <section class="r-section" id="writeups">
-    <h2>Writeups</h2>
-    <p style="font-size: 0.93rem; color: #444; margin-bottom: 1rem;">Static and dynamic analysis of malware, x86 assembly deep-dives, and vulnerability research. The proof-of-work behind the projects above.</p>
-    <a href="https://agapebloom.com/archive/documents/sqlslammer.txt" target="_blank" class="r-callout">
-      <h3>SQL Slammer: Static Shellcode Analysis →</h3>
-      <p>376-byte UDP/1434 worm (CVE-2002-0649). Returns into a sqlsort.dll trampoline at 0x42B0C9DC, walks that DLL's IAT for LoadLibraryA / GetProcAddress, builds API names on the stack, then infinite-loops sendto() against a GetTickCount-seeded LCG. Memory-only, no persistence.</p>
-    </a>
-    <a href="https://agapebloom.com/archive/documents/michelangelo.html" target="_blank" class="r-callout">
-      <h3>Michelangelo: Full Walkthrough →</h3>
-      <p>1991 MBR/floppy boot virus, Stoned-family. Hooks INT 13h, steals 2&nbsp;KB of conventional memory by decrementing the BIOS memory-size word at 0x413, and hides the original boot sector on an unused track. On March 6 (Michelangelo's birthday) overwrites successive sectors across every head.</p>
-    </a>
-    <a href="https://agapebloom.com/archive/documents/dos7.pdf" target="_blank" class="r-callout">
-      <h3>DOS7: Reverse Engineering Notes →</h3>
-      <p>419-byte DOS .COM infector by Lucifer Messiah / Anarkick Systems (1993). On entry, swaps the INT 3 and INT 21h IVT entries — every 1-byte 0xCC opcode now invokes a DOS service, saving bytes and tripping debuggers that breakpoint via INT 3. FindFirst/Next over *.C?M targets, taunt strings on completion.</p>
-    </a>
-    <a href="https://agapebloom.com/archive/documents/mystery64.txt" target="_blank" class="r-callout">
-      <h3>mystery64: Decompiled Malware Analysis →</h3>
-      <p>Linux x86_64 ELF beacon (course sample, co-analyzed). HTTP-POSTs hostname, username, and a byte-XOR rolling-hash bot ID to an XOR-decoded C2; clock() timing check for debuggers; falls back to a glibc-LCG DGA — three date-keyed .com candidates per day. Most of the binary is dead-stub obfuscation around a small real code surface.</p>
-    </a>
-    <a href="https://github.com/zach15james/xorpd" target="_blank" rel="noopener noreferrer" class="r-callout">
-      <h3>xorpd x86 Puzzles: All 64 Exercises →</h3>
-      <p>Scanned handwritten notes for every exercise in xorpd's "little black book".</p>
-    </a>
   </section>
 
   <!-- ==================== ARCHIVE ==================== -->
   <section class="r-section" id="archive">
     <h2>Archive</h2>
-    <p style="color: #555; font-size: 0.9rem; margin-bottom: 1rem;">Selected notes from ongoing reading across philosophy, organizational theory, and literature — a signal of intellectual range, not a reading list. From the <a href="https://agapebloom.com/archive/">Agape Bloom archive</a>.</p>
+    <p style="color: #555; font-size: 0.9rem; margin-bottom: 1rem;">Selected notes from ongoing reading across philosophy, organizational theory, and literature.</p>
     <div class="r-project">
-      <a href="https://agapebloom.com/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
+      <a href="/archive/literary-synthesis/logic-right-use-of-reason.html">Watts on How to Think</a>
       <span class="desc">Watts</span>
     </div>
     <div class="r-project">
-      <a href="https://agapebloom.com/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations</a>
+      <a href="/archive/literary-synthesis/designing-orgs-inforich-world.html">Designing Organizations</a>
       <span class="desc">Simon et al.</span>
     </div>
     <div class="r-project">
-      <a href="https://agapebloom.com/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
+      <a href="/archive/literary-synthesis/ideal-team-player.html">How to be a Team Player</a>
       <span class="desc">Lencioni</span>
     </div>
     <div class="r-project">
-      <a href="https://agapebloom.com/archive/course-notes/operating_systems.html">Operating Systems Notes</a>
+      <a href="/archive/course-notes/operating_systems.html">Operating Systems Notes</a>
       <span class="desc">Course notes</span>
     </div>
   </section>
 
   <footer class="r-footer">
-    <p>&copy; <a href="https://agapebloom.com">Agape Bloom</a>. All rights reserved.</p>
+    <p>&copy; <a href="/">Agape Bloom</a>. All rights reserved.</p>
   </footer>
 
 </div>

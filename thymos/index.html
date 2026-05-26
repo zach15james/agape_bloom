@@ -173,7 +173,7 @@
 
   <header class="thy-header">
     <h1>θ thymos <span style="font-size: 0.7rem; color: #888; font-weight: normal; letter-spacing: 0.05em;">(in progress)</span></h1>
-    <p class="oneliner">zero-dependency C runtime for typed tensor graphs and memory-planned execution</p>
+    <p class="oneliner">zero-dependency C substrate for typed, effectful, deterministic compositional computation (graphs, plans, provenance)</p>
     <nav class="thy-nav">
       <a href="#intro">intro</a>
       <span class="sep">·</span>
@@ -183,47 +183,51 @@
       <span class="sep">·</span>
       <a href="#roadmap">roadmap</a>
       <span class="sep">·</span>
-      <a href="https://github.com/zach15james" target="_blank">github</a>
+      <a href="https://github.com/zach15james/thymos" target="_blank">repo</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/zach15james" target="_blank">profile</a>
     </nav>
   </header>
 
   <section class="thy-section" id="intro">
-    <p>Thymos is an in-progress zero-dependency C runtime for typed tensor graphs and memory-planned execution. The aim is a small, auditable core that can eventually run inference on memory-constrained hardware (e.g. Jetson-class) without dragging in the Python/PyTorch stack.</p>
-    <p>Initial target: scalar CPU execution, a graph IR with validation, an arena/context-based allocator, and linear/logistic regression as the first end-to-end demos. Everything beyond that — quantized inference, GGUF, CUDA, classical ML models from published research — is on the roadmap, not in the codebase.</p>
-    <p>Design motif: typed morphisms. Every operation has explicit inputs, outputs, and context. No hidden state. The point of writing it in C from scratch is to keep that property all the way down.</p>
+    <p>Thymos is a <strong>typed, effectful, deterministic compositional computation substrate in zero-dependency C</strong>. ML is the first morphism library on top, not the project itself. The three levels are (i) category-theoretic graphical design, (ii) compiler with passes, (iii) kernel implementation. The use case splits as WHAT (declarative: opt.h, models/, tools/, quant/), HOW (compiler, fusion, th_Graph + th_Plan), WHERE (kernels &amp; backends via th_run + registry for CPU/AVX2/BLAS/CUDA/Metal/etc.).</p>
+    <p>The moat is the small algebra: typed values, declared effects, content-addressed deterministic plans, and audit-grade provenance. Agent tools, classical models, quantization, actuarial work, and vulnerability research are all morphism packs over the same core. It targets embeddability on memory-constrained hardware (Jetson-class, edge) without Python/PyTorch drag.</p>
+    <p>Non-negotiable invariants: zero forced dependencies (pure C core), flat repo layout, determinism by default (same graph+inputs → byte-identical outputs unless non-det effect declared), effects first-class (every morphism declares its set; planner respects barriers), content-addressable plans, provenance emitted on every compile, embeddability (no unscoped globals; th_Context scopes everything), and no hidden allocations in the hot loop (steady-state runs on pre-planned memory layout).</p>
+    <p>Design motif: typed morphisms. Every operation has explicit inputs, outputs, effects, and context. No hidden state. Writing the core in C from scratch keeps that property all the way down.</p>
   </section>
 
   <section class="thy-section" id="status">
     <h2>status</h2>
 
     <div class="thy-module">
-      <h3>implemented</h3>
-      <p class="desc">What currently exists in the repo.</p>
-      <p>Early scaffolding only — see the <a href="https://github.com/zach15james" target="_blank">repo</a> for the current state of the code. This page will be updated as modules land.</p>
+      <h3>phase 0 — core substrate (active)</h3>
+      <p class="desc">Precondition for everything else. Detailed build plan defines DoD and invariants.</p>
+      <p>Prelude (th_Error, th_DType, th_Id, th_Shape, th_Type, th_Hash). Context + arena allocator + th_MemoryPlan + execution policy. Tensor (strided views, elementwise + linear kernels, no allocs in steady state). ACT IR (th_Object, th_Morphism, th_Signature, th_Category, th_HyperGraph, th_Compiler). Eight compiler passes required before Phase 1: type/effect/capability check, topo sort, liveness, memory_plan, content_address, emit_provenance. Minimal CLI demo that builds a graph, compiles, runs, emits provenance bundle, and produces byte-identical results on replay.</p>
+      <p>Current: implementation in progress per the public PLAN. No working end-to-end yet; the plan is the artifact and the contract.</p>
     </div>
 
     <div class="thy-module">
-      <h3>in progress</h3>
-      <p class="desc">Active design and prototyping.</p>
-      <p>Graph IR and op registry. Arena/context allocator and lifetime model. Scalar CPU backend for core tensor ops. Validation pass over the graph. Linear and logistic regression as end-to-end smoke tests.</p>
+      <h3>phase 1 — tools/ pack (next)</h3>
+      <p class="desc">First domain pack; the agentic moat.</p>
+      <p>Typed, verifiable plans over registered tools (http, shell, file, llm-call, ...). th_plan_verify (effects, capabilities, budget, sandbox) before any execution. Deterministic replay from provenance. Idempotency keys, control-flow combinators (Sequence/Parallel/Branch/Approve), cache hits on unchanged sub-plans. A demo that registers tools, verifies/plans/runs a multi-step task, replays from bundle, and rejects unauthorized plans.</p>
     </div>
 
     <div class="thy-module">
-      <h3>planned</h3>
-      <p class="desc">Next, once the core is stable.</p>
-      <p>GGUF inspection and quantized weight loading. Quantized matmul (Q4_0 / Q8_0) on CPU. Transformer forward pass on top of the graph IR. Classical ML models (SVR, LS-SVR, p-Laplacian semi-supervised regression).</p>
+      <h3>phase 2 — models/ pack (after 1)</h3>
+      <p class="desc">Proves the performance thesis.</p>
+      <p>Static compilation of preprocess + predict pipelines (linear/logistic, trees, GBM, small MLP, calibration, drift) to flat memory plans. Zero allocations in the prediction hot loop. Measurable single-sample p99 latency win vs sklearn on realistic tabular pipelines. Train and predict express the same morphism category (training-serving skew structurally impossible). Wrap as Tool for Phase 1 planner.</p>
     </div>
 
     <div class="thy-module">
-      <h3>long-term target</h3>
-      <p class="desc">The reason the core looks the way it does.</p>
-      <p>Optional CUDA backend (custom kernels, cuBLAS where it pays). Jetson Orin Nano deployment for LLM inference under tight memory budgets. Benchmarks on real hardware against llama.cpp / ggml as reference points.</p>
+      <h3>long-term</h3>
+      <p class="desc">Why the invariants exist.</p>
+      <p>Optional CUDA/Metal/ROCm backends. Jetson Orin Nano deployment under tight memory. quant/ (time-aware effects, Black-Scholes, backtest=production), actuary/ (IFRS 17 audit packs from provenance), vuln/ (taint lattice, symbolic + concrete as parallel functors). All as morphism packs over the same substrate.</p>
     </div>
   </section>
 
   <section class="thy-section" id="design">
     <h2>design notes</h2>
-    <p>The runtime is organized around a graph of typed ops over a single arena/context. Allocation is bump-style inside the arena; the entire context is freed in one shot. The intended shape of the API:</p>
+    <p>The runtime is organized around a graph of typed ops over a single arena/context. Allocation is bump-style inside the arena; the entire context is freed in one shot. Core structs follow a strict naming convention (th_Pascal for types, th_snake_case for functions, TH_SCREAMING for constants). Public API returns th_Error; out-params are last. No globals except th_default_ctx; everything else lives in th_Context.</p>
 
 <pre>// arena + context (planned API — subject to change)
 ThymosArena *arena = thymos_arena_create(512 * MB);
@@ -240,28 +244,28 @@ thymos_graph_run(ctx);
 
 thymos_arena_destroy(arena);  // single free</pre>
 
-    <p>Morphism layer (planned): explicit domain/codomain on each op, so composition can be checked statically rather than discovered at runtime. The first place this earns its keep is graph validation.</p>
+    <p>ACT IR is the long-term moat: th_Object (typed IR value), th_Morphism (effect + capability flags + apply fn), th_Signature, th_Category, th_HyperGraph, th_Compiler. Eight passes (type_check, effect_check, capability_check, topo_sort, liveness, memory_plan, content_address, emit_provenance) run before any execution. Provenance bundle (graph hash, per-node hashes, effects, capabilities, memory plan, schedule) is a first-class compile output — identical builds on different machines produce identical bundles (timestamps isolated).</p>
+    <p>Morphism layer: explicit domain/codomain + declared effects on every op. Composition and reordering are checked statically and constrained by effects. The planner cannot move TH_EFF_NET_IO or TH_EFF_IRREVERSIBLE across barriers. This is what makes verifiable agent plans and training-serving skew impossible possible in the later phases.</p>
   </section>
 
   <section class="thy-section" id="roadmap">
     <h2>roadmap</h2>
-<pre class="bench">milestone                                status
+<pre class="bench">phase / milestone                        status
 ─────────────────────────────────────────────────
-graph IR + op registry                   in progress
-arena/context allocator                  in progress
-scalar CPU backend (core ops)            in progress
-linear / logistic regression demos       in progress
-GGUF inspection                          planned
-quantized matmul (Q4_0, Q8_0)            planned
-transformer forward pass                 planned
-SVR / LS-SVR / p-Laplacian               planned
-CUDA backend                             planned
-Jetson Orin Nano deployment              long-term</pre>
-    <p>Benchmarks will be published once a real end-to-end path lands. No numbers are claimed before then.</p>
+Phase 0: prelude + ctx + arena + tensor  active
+Phase 0: ACT IR + 8 compiler passes      active
+Phase 0: memory_plan + provenance        active
+Phase 0: minimal CLI demo + DoD          active
+Phase 1: tools/ (http, shell, llm, plan verify/run, sandbox, cache)  next
+Phase 1: verifiable agent plans + deterministic replay  next
+Phase 2: models/ (linear, trees, pipelines) + bench vs sklearn   after P1
+Phase 2: zero-alloc inference + train=predict morphisms          after P1
+long-term: quant/, actuary/, vuln/, CUDA/Jetson                  later</pre>
+    <p>A milestone is not done until its Definition of Done (demo runs on clean checkout, invariants hold, provenance reproducible) is met. The public PLAN.md is the contract. No numbers or claims before the demos exist.</p>
   </section>
 
   <footer class="thy-footer">
-    <a href="https://resume.agapebloom.com">Zach James</a> <span class="sep">·</span> <a href="https://github.com/zach15james" target="_blank">github</a> <span class="sep">·</span> <a href="https://agapebloom.com">agapebloom.com</a> <span class="sep">·</span> thymos is θυμός — spiritedness
+    <a href="/resume/">Zach James</a> <span class="sep">·</span> <a href="https://github.com/zach15james/thymos" target="_blank">repo</a> <span class="sep">·</span> <a href="https://github.com/zach15james" target="_blank">profile</a> <span class="sep">·</span> <a href="/">agapebloom.com</a> <span class="sep">·</span> thymos is θυμός — spiritedness
   </footer>
 
 </div>

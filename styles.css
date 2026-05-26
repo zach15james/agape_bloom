@@ -179,28 +179,6 @@ h2 {
   color: white;
 }
 
-.services-container {
-  margin: 5px;
-}
-
-.custom-db {
-  background-color: rgb(255, 206, 0);
-  border-radius: 5px 5px 0 0;
-  padding: 1px 15px;
-}
-
-.automated-reporting,
-.custom-swe {
-  background-color: rgb(0, 0, 42);
-  color: white;
-  padding: 1px 15px;
-}
-
-.wf-automation {
-  background-color: rgb(255, 206, 0);
-  padding: 1px 15px;
-}
-
 .archive-sect {
   background-color: white;
   color: black;

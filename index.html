@@ -16,8 +16,8 @@
   <div class="container">
 
     <section class="landing-intro">
-      <p class="tagline">A Louisiana-forged systems lab.</p>
-      <p>Low-level software, reverse engineering, and applied research. We build what we use, and we use what we build.</p>
+      <p class="tagline">Low-level systems. Reverse engineering. Applied research.</p>
+      <p>We build what we use, and we use what we build. Public artifacts, shipped production systems, and real C++ / RE / automation work.</p>
     </section>
 
     <section class="landing-section">
@@ -25,9 +25,9 @@
       <div class="landing-grid">
         <a href="/thymos/" class="landing-card">
           <h3>Thymos <span style="font-size: 0.85rem; color: #888; font-weight: normal;">(in progress)</span></h3>
-          <p>Zero-dependency C runtime for typed tensor graphs and memory-planned execution. Targeting edge deployment.</p>
+          <p>Zero-dependency C substrate (typed, effectful, deterministic plans + provenance). Phase 0 core + Phase 1 agent tools active per public PLAN.md. Edge/CUDA targets.</p>
         </a>
-        <a href="https://resume.agapebloom.com" class="landing-card">
+        <a href="/resume/" class="landing-card">
           <h3>Zach James</h3>
           <p>Background, writeups, and research — systems work, reverse engineering, and applied ML.</p>
         </a>
@@ -44,8 +44,52 @@
     </section>
 
     <section class="landing-section">
+      <h2>Services</h2>
+      <p style="margin-bottom: 1rem; color: #888;">Precision low-level and integration work for teams that need the result to hold. Every offering is backed by public artifacts, shipped production systems, and real C++/systems code — not slideware.</p>
+
+      <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
+        <strong>01 REVERSE ENGINEERING &amp; BINARY ANALYSIS</strong><br>
+        &gt; Static/dynamic analysis of 376-byte SQL Slammer worm (full IAT resolution, LCG, trampoline) — see /archive/documents/sqlslammer.txt<br>
+        &gt; Public writeups: Michelangelo.DOS (MBR infection), DOS7 (INT 3/21h swap infector), mystery64 (x86_64 ELF beacon + DGA)<br>
+        &gt; Tooling: Ghidra, IDA Pro, gdb, pwn.college (heap/stack/ROP/kernel), active xorpd + HTB/OST2<br>
+        &gt; C / x86 ASM / ELF &amp; PE internals
+      </div>
+
+      <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
+        <strong>02 AGENTIC WORKFLOWS &amp; TYPED COMPUTATION</strong><br>
+        &gt; Thymos: zero-dependency C substrate for typed, effectful, deterministic plans (ACT IR, 8 compiler passes incl. memory_plan + provenance, arena alloc, embeddable). Public PLAN.md defines invariants &amp; DoD. Targets edge/CUDA.<br>
+        &gt; Vlean: WASM C++ typed reasoning graph engine (ImGui/ImNodes) for formal hypothesis/proof work — live in /vlean/<br>
+        &gt; Local LLM nets (Jetson + llama-server + Tailscale), verifiable plan execution, deterministic replay
+      </div>
+
+      <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
+        <strong>03 PROCESS AUTOMATION &amp; INTERNAL TOOLING</strong><br>
+        &gt; Brick Bridge Consulting (2022-24): independently delivered HRM, billing, financial dashboards, invoice generators, rate-card/tax logic, exec analytics for medical staffing &amp; legal startups (Python/JS/PHP/Zapier/Firebase/React)<br>
+        &gt; Multi-interface CRUD apps with access control, onboarding workflows, data-driven decision tools<br>
+        &gt; Production systems that replaced spreadsheets and manual processes
+      </div>
+
+      <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
+        <strong>04 WEB DEVELOPMENT &amp; WASM SYSTEMS</strong><br>
+        &gt; This site + custom static architectures (Web Components, filter UIs, no frameworks)<br>
+        &gt; Vlean: full Emscripten C++ → WASM + JS glue pipeline with live interactive graph UI<br>
+        &gt; Full-stack delivery: React/Firebase/Tailwind/Vite frontends, PHP APIs, Firebase backends, Zapier orchestration<br>
+        &gt; Low-level + web: C++/WASM bridges, performance-sensitive UI, self-hosted fonts/assets
+      </div>
+
+      <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
+        <strong>05 IDEA → SHIPPED SYSTEM</strong><br>
+        &gt; From napkin spec to working artifact: Thymos runtime design &amp; PLAN, Vlean formal reasoning explorer, Terra inert-materials pour-over (materials research), Nomos/Steward autonomous mower (Jetson edge AI)<br>
+        &gt; Resume delivery record: published ML (p-Laplacian regression, Frontiers), production dashboards, low-level RE proofs, ICPC-style algorithms<br>
+        &gt; "You have a great idea" — I will build the first real version in C, WASM, Python, or full-stack and prove it works
+      </div>
+
+      <p style="margin-top:0.75rem; font-size:0.9rem;">For scoped engagements or productized builds, <a href="mailto:info@agapebloom.com">get in touch</a>. Full proof in the <a href="/resume/">resume</a> and <a href="/archive/">archive</a>.</p>
+    </section>
+
+    <section class="landing-section">
       <h2>About</h2>
-      <p>Louisiana-based. Practitioner-led. For consulting inquiries, <a href="mailto:info@agapebloom.com">get in touch</a>. For background, see <a href="https://resume.agapebloom.com">Zach James</a>.</p>
+      <p>Practitioner-led. For consulting inquiries, <a href="mailto:info@agapebloom.com">get in touch</a>. For background, see <a href="/resume/">Zach James</a>.</p>
     </section>
 
   </div>
