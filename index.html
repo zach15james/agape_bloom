@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agape Bloom</title>
+  <title>Agape Bloom | AI-Native Software Development &amp; Systems Engineering</title>
+  <meta name="description" content="Agape Bloom — AI-native software development, Forward Deployed Engineering Solutions, Low-Level Development, Reverse Engineering, and Applied Research. Precision systems work with real shipped artifacts.">
+  <meta property="og:title" content="Agape Bloom | AI-Native Systems &amp; Engineering">
+  <meta property="og:description" content="AI-native software development, forward deployed engineering, low-level systems, reverse engineering, and applied research.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agapebloom.com">
   <link rel="stylesheet" href="/styles.css">
   <script src="/scripts/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,32 +22,24 @@
 
     <section class="landing-intro">
       <p class="tagline">AI-native software development. Forward Deployed Engineering Solutions. Low-Level Development. Reverse engineering. Applied research.</p>
+
+      <!-- 
+        === TEMPORARILY COMMENTED OUT ===
+        The "Discuss your needs..." paragraph and the full Clank chat window 
+        (with voice-to-text) are disabled while the backend + Groq + logging 
+        is implemented on the server.
+
+        Will be restored once the API that stores IP + full chat history is live.
+      -->
+      <!--
       <p>Discuss your needs and let's plan a time to meet — schedule a time with my assistant.</p>
+      </section>
+
+      <div class="assistant-window">
+        [Clank chat UI with voice input temporarily removed]
+      </div>
+      -->
     </section>
-
-    <!-- Clank — local chat placeholder. Ready for real Groq API integration on your server. -->
-    <div class="assistant-window">
-      <div class="window-bar">
-        <span class="window-title">Clank</span>
-        <span class="window-status">local • Groq preview</span>
-      </div>
-
-      <div class="chat-messages" id="chat-messages">
-        <div class="message clank">&gt; Hey. What are you building?</div>
-        <div class="message clank">&gt; I can help with low-level systems, reverse engineering, agentic tooling, or forward-deployed engineering projects.</div>
-        <div class="message clank prompt">&gt; Would you like to learn more or schedule a time with Zach?</div>
-      </div>
-
-      <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Talk to Clank...">
-        <button id="send-btn" class="chat-btn">Send</button>
-        <button id="mic-btn" class="chat-btn mic-btn" title="Just talk — local speech-to-text (Web Speech API)">🎙️</button>
-      </div>
-
-      <div class="window-footer">
-        <span style="font-size:0.68rem; color:#888;">Local speech-to-text works now • Drop in Groq calls for real replies</span>
-      </div>
-    </div>
 
     <section class="landing-section">
       <h2>Services</h2>
