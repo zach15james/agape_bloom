@@ -99,3 +99,109 @@ function resetFilters() {
 
   filterAndSortLinks("apps-scripts-cont", "a");
 }
+
+/* =====================================================
+   Clank chat window — local demo (speech-to-text ready)
+   Drop this page on your server and wire the TODO below
+   to a real Groq API call (free tier works great).
+   ===================================================== */
+
+function initClankChat() {
+  const messagesEl = document.getElementById("chat-messages");
+  const inputEl = document.getElementById("chat-input");
+  const sendBtn = document.getElementById("send-btn");
+  const micBtn = document.getElementById("mic-btn");
+
+  if (!messagesEl || !inputEl || !sendBtn || !micBtn) return;
+
+  function appendMessage(text, who = "clank") {
+    const div = document.createElement("div");
+    div.className = `message ${who}`;
+    div.textContent = text.startsWith(">") ? text : `> ${text}`;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+
+    appendMessage(text, "user");
+    inputEl.value = "";
+
+    // === TODO: Replace this block with real Groq call ===
+    // Example (you'll need your own key + backend proxy for prod):
+    //
+    // fetch("/api/clank", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ message: text })
+    // })
+    // .then(r => r.json())
+    // .then(data => appendMessage(data.reply, "clank"));
+
+    // For now: simple local echo + hint (remove once Groq is wired)
+    setTimeout(() => {
+      appendMessage("Got it. (Real Groq reply will appear here once you wire the API.)", "clank");
+    }, 420);
+  }
+
+  // Send button + Enter key
+  sendBtn.addEventListener("click", sendMessage);
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  // === Local speech-to-text (Web Speech API) — works in Chrome/Edge ===
+  // No server needed. Purely client-side.
+  let recognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      inputEl.value = transcript;
+      // Optional: auto-send after voice
+      // sendMessage();
+      micBtn.style.opacity = "1";
+      micBtn.textContent = "🎙️";
+    };
+
+    recognition.onerror = () => {
+      micBtn.style.opacity = "1";
+      micBtn.textContent = "🎙️";
+      appendMessage("Speech recognition error — try typing instead.", "clank");
+    };
+
+    recognition.onend = () => {
+      micBtn.style.opacity = "1";
+      micBtn.textContent = "🎙️";
+    };
+
+    micBtn.addEventListener("click", () => {
+      try {
+        micBtn.textContent = "●";
+        micBtn.style.opacity = "0.6";
+        recognition.start();
+      } catch (err) {
+        micBtn.textContent = "🎙️";
+        micBtn.style.opacity = "1";
+        appendMessage("Could not start microphone. Use Chrome/Edge for best results.", "clank");
+      }
+    });
+  } else {
+    // No browser support
+    micBtn.addEventListener("click", () => {
+      appendMessage("Speech-to-text not supported in this browser. Use Chrome or Edge.", "clank");
+    });
+    micBtn.title = "Speech-to-text not supported in this browser";
+  }
+}
+
+// Initialize on load
+document.addEventListener("DOMContentLoaded", initClankChat);

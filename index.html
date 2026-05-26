@@ -20,63 +20,67 @@
       <p>Discuss your needs and let's plan a time to meet — schedule a time with my assistant.</p>
     </section>
 
-    <!-- Local WASM assistant placeholder (interactive Groq/Claude-Code style terminal coming later) -->
+    <!-- Clank — local chat placeholder. Ready for real Groq API integration on your server. -->
     <div class="assistant-window">
       <div class="window-bar">
-        <span class="window-title">local-assistant • wasm</span>
-        <span class="window-status">PREVIEW — Groq / on-device LLM coming soon</span>
+        <span class="window-title">Clank</span>
+        <span class="window-status">local • Groq preview</span>
       </div>
-      <div class="window-content">
-        <div class="chat-line">&gt; Hi. I can help you explore low-level systems, agentic tooling, reverse engineering, or forward-deployed engineering projects.</div>
-        <div class="chat-line" style="margin-top:0.35rem;">&gt; Discuss your needs and let's plan a time to meet / schedule a time with my assistant.</div>
-        <div class="chat-line prompt" style="margin-top:0.55rem;">Ready when you are.</div>
+
+      <div class="chat-messages" id="chat-messages">
+        <div class="message clank">&gt; Hey. What are you building?</div>
+        <div class="message clank">&gt; I can help with low-level systems, reverse engineering, agentic tooling, or forward-deployed engineering projects.</div>
+        <div class="message clank prompt">&gt; Would you like to learn more or schedule a time with Zach?</div>
       </div>
+
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Talk to Clank...">
+        <button id="send-btn" class="chat-btn">Send</button>
+        <button id="mic-btn" class="chat-btn mic-btn" title="Just talk — local speech-to-text (Web Speech API)">🎙️</button>
+      </div>
+
       <div class="window-footer">
-        <a href="mailto:info@agapebloom.com">email to schedule →</a>
-        <span style="margin:0 7px; color:#444;">|</span>
-        <span style="font-size:0.68rem; color:#888;">full interactive chat loading in WASM soon</span>
+        <span style="font-size:0.68rem; color:#888;">Local speech-to-text works now • Drop in Groq calls for real replies</span>
       </div>
     </div>
 
     <section class="landing-section">
       <h2>Services</h2>
-      <p style="margin-bottom: 1rem; color: #888;">Precision low-level and integration work for teams that need the result to hold. Every offering is backed by public artifacts, shipped production systems, and real C++/systems code — not slideware.</p>
+      <p style="margin-bottom: 1rem; color: #888;">Precise full-stack, integrative, or scratch offerings + solutions</p>
 
       <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
         <strong>01 REVERSE ENGINEERING &amp; BINARY ANALYSIS</strong><br>
-        &gt; Static/dynamic analysis of 376-byte SQL Slammer worm (full IAT resolution, LCG, trampoline) — see /archive/documents/sqlslammer.txt<br>
-        &gt; Public writeups: Michelangelo.DOS (MBR infection), DOS7 (INT 3/21h swap infector), mystery64 (x86_64 ELF beacon + DGA)<br>
-        &gt; Tooling: Ghidra, IDA Pro, gdb, pwn.college (heap/stack/ROP/kernel), active xorpd + HTB/OST2<br>
-        &gt; C / x86 ASM / ELF &amp; PE internals
+        &gt; Opaque binaries, protocols, and legacy systems are expensive risks.<br>
+        &gt; We open the black box, map real behavior, surface vulnerabilities, and deliver clarity you can act on — security reviews, compatibility work, or competitive intelligence.<br>
+        &gt; Deep. Fast. Zero hand-waving.
       </div>
 
       <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
         <strong>02 AGENTIC WORKFLOWS &amp; TYPED COMPUTATION</strong><br>
-        &gt; Thymos: zero-dependency C substrate for typed, effectful, deterministic plans (ACT IR, 8 compiler passes incl. memory_plan + provenance, arena alloc, embeddable). Public PLAN.md defines invariants &amp; DoD. Targets edge/CUDA.<br>
-        &gt; Vlean: WASM C++ typed reasoning graph engine (ImGui/ImNodes) for formal hypothesis/proof work — live in /vlean/<br>
-        &gt; Local LLM nets (Jetson + llama-server + Tailscale), verifiable plan execution, deterministic replay
+        &gt; Most “AI agents” are brittle prompt chains that break in production.<br>
+        &gt; We build the typed, deterministic substrates and verifiable execution engines that make agentic systems actually reliable — from edge runtimes to formal reasoning tools.<br>
+        &gt; Reproducible. Production-grade. No theater.
       </div>
 
       <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
         <strong>03 PROCESS AUTOMATION &amp; INTERNAL TOOLING</strong><br>
-        &gt; Brick Bridge Consulting (2022-24): independently delivered HRM, billing, financial dashboards, invoice generators, rate-card/tax logic, exec analytics for medical staffing &amp; legal startups (Python/JS/PHP/Zapier/Firebase/React)<br>
-        &gt; Multi-interface CRUD apps with access control, onboarding workflows, data-driven decision tools<br>
-        &gt; Production systems that replaced spreadsheets and manual processes
+        &gt; Your operations are still duct-taped together with spreadsheets and manual handoffs?<br>
+        &gt; We replace the chaos with clean, purpose-built internal systems — dashboards, automation layers, and decision tools your team will actually rely on.<br>
+        &gt; Modern ops that scale with the business.
       </div>
 
       <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
         <strong>04 WEB DEVELOPMENT &amp; WASM SYSTEMS</strong><br>
-        &gt; This site + custom static architectures (Web Components, filter UIs, no frameworks)<br>
-        &gt; Vlean: full Emscripten C++ → WASM + JS glue pipeline with live interactive graph UI<br>
-        &gt; Full-stack delivery: React/Firebase/Tailwind/Vite frontends, PHP APIs, Firebase backends, Zapier orchestration<br>
-        &gt; Low-level + web: C++/WASM bridges, performance-sensitive UI, self-hosted fonts/assets
+        &gt; High-performance web that doesn’t sacrifice control or speed.<br>
+        &gt; From zero-dependency static experiences to serious WASM + C++ systems running real computation in the browser. Craft that performs.<br>
+        &gt; Lightweight where it should be. Heavy where it matters.
       </div>
 
       <div style="background:#00002a; border:1px solid #ffce00; color:#ffce00; font-family:monospace; font-size:0.85rem; line-height:1.5; padding:0.75rem 1rem; margin-bottom:0.6rem;">
         <strong>05 IDEA → SHIPPED SYSTEM</strong><br>
-        &gt; From napkin spec to working artifact: Thymos runtime design &amp; PLAN, Vlean formal reasoning explorer, Terra inert-materials pour-over (materials research), Nomos/Steward autonomous mower (Jetson edge AI)<br>
-        &gt; Resume delivery record: published ML (p-Laplacian regression, Frontiers), production dashboards, low-level RE proofs, ICPC-style algorithms<br>
-        &gt; "You have a great idea" — I will build the first real version in C, WASM, Python, or full-stack and prove it works
+        &gt; You have the vision. No working version yet.<br>
+        &gt; We take it from napkin sketch to credible, production-grade artifact — in C, WASM, Python, or full-stack — and prove it works before you bet further.<br>
+        &gt; The fastest path from “what if” to real.
       </div>
 
       <p style="margin-top:0.75rem; font-size:0.9rem;">For scoped engagements or productized builds, <a href="mailto:info@agapebloom.com">get in touch</a>. Full proof in the <a href="/resume/">resume</a> and <a href="/archive/">archive</a>.</p>
